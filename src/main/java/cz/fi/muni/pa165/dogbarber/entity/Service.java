@@ -112,7 +112,7 @@ public class Service {
         return this.getServiceName().hashCode()* hash;
     }
     
-    
+    //do not equal on attribute id, but on name
     @Override
     public boolean equals(Object o){
     

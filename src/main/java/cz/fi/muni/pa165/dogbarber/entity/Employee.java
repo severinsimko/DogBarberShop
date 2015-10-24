@@ -32,6 +32,10 @@ public class Employee {
     
     }
     
+    public void removeService(Service service){
+        services.remove(service);
+    }
+    
     public Set<Service> getServices(){
         return Collections.unmodifiableSet(services);
     }

@@ -23,7 +23,7 @@ public class ServiceDaoImpl implements ServiceDao {
     
     @Override
     public Service findbyId(Long id) {
-        return null;
+        return (Service) em.createQuery("select s from Service where id = :id", Service.class).setParameter("id", id).getSingleResult();
     }
 
     @Override
