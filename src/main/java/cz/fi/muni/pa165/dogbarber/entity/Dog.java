@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Digits;
 
@@ -38,6 +39,8 @@ public class Dog {
     @NotNull
     private final Color color;
     
+    @ManyToOne
+    private Customer customer;
     //private final List<Service> services;
     
     public Dog(String name, String breed, int age, Color color){
@@ -96,3 +99,4 @@ public class Dog {
                 "Color " + color;    
     }
 }
+

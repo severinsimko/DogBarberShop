@@ -21,11 +21,11 @@ public class Main {
     public static void main(String[] args) {
         new AnnotationConfigApplicationContext(InMemoryDB.class);
         
-        emf = Persistence.createEntityManagerFactory("default");
+        /*emf = Persistence.createEntityManagerFactory("default");
         
         task();
         
-        emf.close();
+        emf.close();*/
 
         
     }
