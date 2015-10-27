@@ -42,6 +42,12 @@ public class Main {
        service.setServiceName("umytie");
        
        Employee employee = new Employee();
+       employee.setAddress("address");
+       employee.setName("name");
+       employee.setSurname("surname");
+       employee.setPhone_number("phone");
+       employee.setSurname("surname");
+       employee.setSalary(new BigDecimal(20000.00));
        em.persist(employee);
        em.persist(service);
        
