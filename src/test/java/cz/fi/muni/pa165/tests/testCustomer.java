@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
+import cz.fi.muni.pa165.dogbarber.dao.CustomerDaoImpl;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import junit.framework.Assert;
 import static org.testng.Assert.assertEquals;
@@ -25,8 +26,9 @@ import static org.testng.Assert.assertEquals;
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
 @DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class testCustomer extends AbstractTransactionalTestNGSpringContextTests {
-    @Inject
-    private CustomerDao customerDao;
+   
+    //@Inject
+    private CustomerDao customerDao = new CustomerDaoImpl();
     
     @Test
     public void customerTest(){

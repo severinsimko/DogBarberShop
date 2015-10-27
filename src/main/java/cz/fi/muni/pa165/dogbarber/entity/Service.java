@@ -31,7 +31,7 @@ public class Service {
     private int lengthInMinutes;
     
     @NotNull
-    @DecimalMin("00.00")
+    @DecimalMin("000.00")
     @Column(nullable=false)
     private BigDecimal price;
 
@@ -50,7 +50,12 @@ public class Service {
     }
     
     //Getters and setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
+         
     public Long getId() {
         return id;
     }
@@ -143,4 +148,11 @@ public class Service {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Service{" + "id=" + id + ", serviceName=" + serviceName + ", lengthInMinutes=" + lengthInMinutes + ", price=" + price + ", employees=" + employees + '}';
+    }
+    
+    
 }

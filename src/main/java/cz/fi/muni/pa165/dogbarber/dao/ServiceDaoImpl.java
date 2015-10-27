@@ -34,7 +34,7 @@ public class ServiceDaoImpl implements ServiceDao {
     @Override
     public void removeService(Service service) {
 
-        em.remove(em.merge(service));
+        em.remove(service);
             
     }
 

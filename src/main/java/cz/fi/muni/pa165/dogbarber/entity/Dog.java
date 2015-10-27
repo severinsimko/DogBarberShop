@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.dogbarber.entity;
 
+import cz.fi.muni.pa165.dogbarber.enums.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

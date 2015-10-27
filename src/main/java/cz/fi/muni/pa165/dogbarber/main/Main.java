@@ -1,6 +1,8 @@
 package cz.fi.muni.pa165.dogbarber.main;
 
 
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDaoImpl;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.math.BigDecimal;
@@ -53,6 +55,10 @@ public class Main {
        
        service.addEmployee(employee);
        
+       ServiceDao serviceDao = new ServiceDaoImpl();
+       
+       serviceDao.createService(service);
+       serviceDao.removeService(service);
        
        
        

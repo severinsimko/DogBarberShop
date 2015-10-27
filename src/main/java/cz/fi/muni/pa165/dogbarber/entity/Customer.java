@@ -18,6 +18,7 @@ import javax.persistence.*;
  *
  * @author Martin Penaz
  */
+
 @Entity
 public class Customer {
     
