@@ -10,11 +10,15 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Crumby
  */
+@Transactional
+@Repository
 public class DogDaoImpl implements DogDao {
     @PersistenceContext
     EntityManagerFactory emf;
@@ -23,7 +27,7 @@ public class DogDaoImpl implements DogDao {
     public void addDog(Dog dog) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(null);
+        em.persist(dog);
         em.getTransaction().commit();
         em.close();
     }
@@ -56,7 +60,7 @@ public class DogDaoImpl implements DogDao {
         
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        dogs = (Set<Dog>)em.createQuery("select d from Dog d", Dog.class);
+        dogs = (Set<Dog>)em.createQuery("select d from Dog d", Dog.class).getResultList();
         em.getTransaction().commit();
         em.close();
         

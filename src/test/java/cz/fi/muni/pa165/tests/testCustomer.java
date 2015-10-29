@@ -16,7 +16,6 @@ import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDaoImpl;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
-import junit.framework.Assert;
 import static org.testng.Assert.assertEquals;
 /**
  *
@@ -50,6 +49,6 @@ public class testCustomer extends AbstractTransactionalTestNGSpringContextTests 
 
         //System.out.println("result: " + result.getName());
         //System.out.println("expected: " + expected.getName());
-        Assert.assertEquals(expected.getName(), result.getName());
+        assertEquals(expected.getName(), result.getName());
     }
 }

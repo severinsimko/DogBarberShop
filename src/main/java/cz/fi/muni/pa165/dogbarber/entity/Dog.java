@@ -1,9 +1,7 @@
 package cz.fi.muni.pa165.dogbarber.entity;
 
 import cz.fi.muni.pa165.dogbarber.enums.Color;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -12,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Digits;
 
@@ -42,7 +41,9 @@ public class Dog {
     
     @ManyToOne
     private Customer customer;
-    //private final List<Service> services;
+    
+    @OneToMany
+    private final Set<Service> services;
     
     public Dog(String name, String breed, int age, Color color){
         this.name = name;
@@ -50,15 +51,23 @@ public class Dog {
         this.age = age;
         this.color = color;
         
-    //    services = new ArrayList<>();
+        services = new HashSet<>();
     }
     
-    /*public void addService(Service service){
+    public void addService(Service service){
         services.add(service);
     }
-    */
+    
+    public void removeService(Service service){
+        services.remove(service);
+    }
+    
     public void setAge(int age){
         this.age = age;
+    }
+    
+    public Long getId(){
+        return id;
     }
     
     public String getName(){

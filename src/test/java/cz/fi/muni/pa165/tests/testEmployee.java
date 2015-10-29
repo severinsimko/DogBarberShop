@@ -10,10 +10,10 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import junit.framework.Assert;
-import org.junit.runners.model.MultipleFailureException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
 
 /**
@@ -74,10 +74,10 @@ public class testEmployee extends AbstractTestNGSpringContextTests {
             emp.addService(service);
             
            services= emp.getServices();           
-           Assert.assertFalse(services.isEmpty());
+           assertFalse(services.isEmpty());
             
            emp.removeService(service);           
-           Assert.assertTrue(emp.getServices().isEmpty());
+           assertTrue(emp.getServices().isEmpty());
     
                     
             em.getTransaction().commit();
