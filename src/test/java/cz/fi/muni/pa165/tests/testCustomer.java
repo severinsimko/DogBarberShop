@@ -27,7 +27,7 @@ import static org.testng.Assert.assertEquals;
 @DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class testCustomer extends AbstractTransactionalTestNGSpringContextTests {
    
-    //@Inject
+    @Autowired
     private CustomerDao customerDao = new CustomerDaoImpl();
     
     @Test
