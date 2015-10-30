@@ -11,7 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
+import org.testng.Assert;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
@@ -20,9 +24,9 @@ import org.testng.annotations.Test;
  *
  * @author Severin Simko
  */
-
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
-public class testEmployee extends AbstractTestNGSpringContextTests {
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+public class EmployeeTest extends AbstractTestNGSpringContextTests {
     
     
     @PersistenceUnit
@@ -50,24 +54,20 @@ public class testEmployee extends AbstractTestNGSpringContextTests {
             em.persist(emp);
             em.persist(empExpected);
             
-            /*Employee emp2 = new Employee();
-                 em2 =em.find(Employee.class,emp.getId())
+            Employee emp2 = new Employee();
+                 emp2 =em.find(Employee.class,emp.getId());
                     
-            Assert.assertSame(emp2, emp);*/
+            Assert.assertSame(emp2, emp);
+            Assert.assertEquals(emp2.getName(), emp.getName());
+            
             
             Service service = new Service();
             service.setLengthInMinutes(90);
             service.setPrice(new BigDecimal(1000));
             service.setServiceName("test");
             
-            
-            Service service2 = new Service();
-            service.setLengthInMinutes(120);
-            service.setPrice(new BigDecimal(10700));
-            service.setServiceName("serviceNameTest");
-            
             em.persist(service);
-            em.persist(service2);
+           
             
             Set <Service> services = new HashSet<>();
             
@@ -84,5 +84,8 @@ public class testEmployee extends AbstractTestNGSpringContextTests {
             em.close(); 
         }
       
+     
+    
+    
         
 }
