@@ -27,24 +27,28 @@ public class Dog {
     
     @NotNull
     @Column(nullable=false)
-    private final String name;
+    private  String name;
     
     @NotNull
     @Column(nullable=false)
-    private final String breed;
+    private  String breed;
     
     @Digits(integer=2, fraction=0)
     private int age;
     
     @NotNull
-    private final Color color;
+    private  Color color;
     
     @ManyToOne
     private Customer customer;
     
     @OneToMany
-    private final Set<Service> services;
+    private Set<Service> services;
+
+    public Dog() {
+    }
     
+  
     public Dog(String name, String breed, int age, Color color){
         this.name = name;
         this.breed = breed;
@@ -53,6 +57,7 @@ public class Dog {
         
         services = new HashSet<>();
     }
+    
     
     public void addService(Service service){
         services.add(service);
@@ -68,6 +73,9 @@ public class Dog {
     
     public Long getId(){
         return id;
+    }
+    public void setId(Long id){
+        this.id = id;
     }
     
     public String getName(){
@@ -93,11 +101,14 @@ public class Dog {
 
     @Override
     public boolean equals(Object obj) {
+        
         if(obj instanceof Dog){
             Dog other = (Dog)obj;
             return Objects.equals(this.id, other.id);
         }
         return false;
+        
+        
     }
     
     @Override

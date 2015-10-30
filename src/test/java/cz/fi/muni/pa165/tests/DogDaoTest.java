@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
@@ -21,22 +22,23 @@ import org.testng.annotations.Test;
  */
 
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
+@DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class DogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
-    
+   
     @PersistenceUnit
-    private static EntityManagerFactory emf;
+    private EntityManagerFactory emf;
     
     private static Dog epicDog;
     private static Long epicDogId;
     
     @BeforeClass
-    public static void prepare(){
+    public  void prepare(){
         new AnnotationConfigApplicationContext(InMemoryDB.class);
         
         emf = Persistence.createEntityManagerFactory("default");
         
         epicDog = new Dog("Alik", "Chivavua", 14, Color.BLACK);
-        epicDogId = epicDog.getId();
+        //epicDogId = epicDog.getId();
     }
     
     @Test
@@ -51,10 +53,11 @@ public class DogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
         
         EntityManager eMan = emf.createEntityManager();
         eMan.getTransaction().begin();
+        epicDogId = epicDog.getId();
         epicDogCopy = eMan.find(Dog.class, epicDogId);
         eMan.getTransaction().commit();
         eMan.close();
         
-        assertEquals("Wrong or none dog found", epicDog.getName(), epicDogCopy.getName());
+        assertEquals( epicDog.getName(), epicDogCopy.getName());
     }
 }
