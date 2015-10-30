@@ -1,20 +1,23 @@
 
 package cz.fi.muni.pa165.tests;
 
+import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
+
+
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Iterator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -24,68 +27,75 @@ import org.testng.annotations.Test;
  *
  * @author Severin Simko
  */
+
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
-@TestExecutionListeners(TransactionalTestExecutionListener.class)
 public class EmployeeTest extends AbstractTestNGSpringContextTests {
     
     
-    @PersistenceUnit
-    private EntityManagerFactory emf;
+    @Autowired
+    public EmployeeDao employeeDao;
+    @Autowired
+    public ServiceDao serviceDao;
     
     @Test
 	public void categoryTest() {
-        
-            EntityManager em = emf.createEntityManager();
-            em.getTransaction().begin();
-            
-            Employee emp = new Employee();
-            emp.setAddress("Brno");
-            emp.setName("Peter");
-            emp.setSalary(new BigDecimal(1100.52));
-            emp.setPhone_number("0902111111");
-            emp.setSurname("test");
-            
-             Employee empExpected = new Employee();
-            empExpected.setAddress("Praha");
-            empExpected.setName("Test");
-            empExpected.setSalary(new BigDecimal(1000.52));
-            empExpected.setPhone_number("09021111111");
-            empExpected.setSurname("test1");
-            em.persist(emp);
-            em.persist(empExpected);
-            
-            Employee emp2 = new Employee();
-                 emp2 =em.find(Employee.class,emp.getId());
-                    
-            Assert.assertSame(emp2, emp);
-            Assert.assertEquals(emp2.getName(), emp.getName());
-            
-            
-            Service service = new Service();
-            service.setLengthInMinutes(90);
-            service.setPrice(new BigDecimal(1000));
-            service.setServiceName("test");
-            
-            em.persist(service);
+
+            Employee emp1 = 
+              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
            
+            Employee emp2 =   
+              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+           
+
+
             
-            Set <Service> services = new HashSet<>();
+            Service service1 = 
+                setService(new Service(), 20, BigDecimal.valueOf(200), "Washing");        
+            Service service2 = 
+                setService(new Service(), 10, BigDecimal.valueOf(100), "Fur brushing");
+            serviceDao.createService(service1);
+            serviceDao.createService(service2);
             
-            emp.addService(service);
+            Service tmpService=serviceDao.findbyId(service1.getId());
+            assertTrue(tmpService.getId().equals(service1.getId()));
             
-           services= emp.getServices();           
-           assertFalse(services.isEmpty());
+            tmpService=serviceDao.findbyId(service2.getId());
+            assertTrue(tmpService.getId()==(service2.getId()));
             
-           emp.removeService(service);           
-           assertTrue(emp.getServices().isEmpty());
-    
-                    
-            em.getTransaction().commit();
-            em.close(); 
+            emp1.addService(service1);
+            employeeDao.addEmployee(emp1);
+            employeeDao.addEmployee(emp2);
+            
+            Employee tmp=employeeDao.getEmployeeByID(emp1.getId());
+            
+            assertTrue(tmp.equals(emp1));
+            assertTrue(tmp.getServices().size()==1); 
+           /* Iterator iter = tmp.getServices().iterator();
+            
+            for(Service i: tmp.getServices()){
+                System.out.println(i.toString());
+                System.out.println(service1.toString());
+                assertTrue((i).equals(service1));
+            }*/
+            tmp=employeeDao.getEmployeeByID(emp2.getId());
+            assertTrue(emp2.equals(tmp));
+            
+
         }
       
-     
-    
-    
-        
+        Employee setEmployee(Employee em, String name, String surname,
+                             String address,String phonenumber,BigDecimal salary){
+            em.setName(name);
+            em.setSurname(surname);
+            em.setAddress(address);
+            em.setPhone_number(phonenumber);
+            em.setSalary(salary);
+            return em;
+        }
+        Service setService(Service se,int lenght, BigDecimal price, String name){
+            se.setLengthInMinutes(lenght);
+            se.setPrice(price);
+            se.setServiceName(name);
+            return se;
+        }
 }
