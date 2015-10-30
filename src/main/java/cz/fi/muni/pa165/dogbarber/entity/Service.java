@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -31,11 +32,11 @@ public class Service {
     private int lengthInMinutes;
     
     @NotNull
-    @DecimalMin("000.00")
+    @DecimalMin("00.00")
     @Column(nullable=false)
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Employee> employees = new HashSet<>();
 
     
@@ -113,45 +114,33 @@ public class Service {
         return this.getServiceName().hashCode()* hash;
     }
     
-    //do not equal on attribute id, but on name
-    @Override
-    public boolean equals(Object o){
-    
-        if(o == null) return false;
-        if(this == o) return true;
-        if(!(o instanceof Service)) return false;
-        
-        Service ser = (Service) o;
-        if(this.serviceName != ser.serviceName) return false;
-     
-        if (this.lengthInMinutes != ser.lengthInMinutes) {
-            return false;
-        }
-        if (this.price != ser.price) {
-            return false;
-        }
-
-        if (this.serviceName == null) {
-            if (ser.serviceName != null) {
-                return false;
-            }
-        } else if (!this.serviceName.equals(ser.serviceName)) {
-            return false;
-        }
-        
-        if(this.price == null){
-            if(ser.serviceName !=null){
-                return false;
-            }
-        }else if(!this.price.equals(ser.price)){
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Service{" + "id=" + id + ", serviceName=" + serviceName + ", lengthInMinutes=" + lengthInMinutes + ", price=" + price + ", employees=" + employees + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Service other = (Service) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.serviceName, other.serviceName)) {
+            return false;
+        }
+        if (this.lengthInMinutes != other.lengthInMinutes) {
+            return false;
+        }
+        if (!Objects.equals(this.price, other.price)) {
+            return false;
+        }
+        return true;
     }
     
     

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Digits;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -45,6 +46,17 @@ public class Dog {
     @OneToMany
     private Set<Service> services;
 
+    @Type(type="yes_no")
+    private boolean taken_by_shop;
+    
+    boolean getTakenByShop(){
+        return taken_by_shop;
+    }
+    
+    void setTakenByShop(boolean t){
+        taken_by_shop=t;
+    }
+    
     protected Dog() {}
     
     public Dog(String name, String breed, int age, Color color){

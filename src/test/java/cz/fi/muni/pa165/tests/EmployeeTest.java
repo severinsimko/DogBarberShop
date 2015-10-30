@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Severin Simko
+ * @author Michal Brath
  */
 
 @ContextConfiguration(classes=PersistenceSampleApplicationContext.class)
@@ -60,8 +60,8 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
             assertTrue(tmpService.getId().equals(service1.getId()));
             
             tmpService=serviceDao.findbyId(service2.getId());
-            assertTrue(tmpService.getId()==(service2.getId()));
-            
+            assertTrue(tmpService.getServiceName().equals(service2.getServiceName()));
+            assertTrue(tmpService.getLengthInMinutes()==(service2.getLengthInMinutes()));
             emp1.addService(service1);
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -70,13 +70,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
             
             assertTrue(tmp.equals(emp1));
             assertTrue(tmp.getServices().size()==1); 
-           /* Iterator iter = tmp.getServices().iterator();
-            
-            for(Service i: tmp.getServices()){
-                System.out.println(i.toString());
-                System.out.println(service1.toString());
-                assertTrue((i).equals(service1));
-            }*/
+
             tmp=employeeDao.getEmployeeByID(emp2.getId());
             assertTrue(emp2.equals(tmp));
             
