@@ -29,16 +29,14 @@ public class DogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
     private EntityManagerFactory emf;
     
     private static Dog epicDog;
-    private static Long epicDogId;
     
     @BeforeClass
-    public  void prepare(){
+    public void prepare(){
         new AnnotationConfigApplicationContext(InMemoryDB.class);
         
         emf = Persistence.createEntityManagerFactory("default");
         
         epicDog = new Dog("Alik", "Chivavua", 14, Color.BLACK);
-        //epicDogId = epicDog.getId();
     }
     
     @Test
@@ -53,11 +51,10 @@ public class DogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
         
         EntityManager eMan = emf.createEntityManager();
         eMan.getTransaction().begin();
-        epicDogId = epicDog.getId();
-        epicDogCopy = eMan.find(Dog.class, epicDogId);
+        epicDogCopy = eMan.find(Dog.class, epicDog.getId());
         eMan.getTransaction().commit();
         eMan.close();
         
-        assertEquals( epicDog.getName(), epicDogCopy.getName());
+        assertEquals(epicDog.getName(), epicDogCopy.getName());
     }
 }

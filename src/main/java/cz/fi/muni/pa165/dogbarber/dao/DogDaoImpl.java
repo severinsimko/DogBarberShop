@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
@@ -20,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository
 public class DogDaoImpl implements DogDao {
-   
-    
     EntityManagerFactory emf;
     
     @Override
@@ -67,37 +60,4 @@ public class DogDaoImpl implements DogDao {
         
         return dogs;
     }
-    
-    /*
-     ONLY TEST PURPOSES- SSIMKO
-    @PersistenceContext
-    EntityManager em ;
-    
-    
-    @Override
-    public Dog getDogByID(Long id) {
-        return (Dog) em.createQuery("select d from Dog where id = :id", Dog.class).setParameter("id", id).getSingleResult();
-    }
-
-    @Override
-    public void addDog(Dog dog) {
-        em.persist(dog);
-    }
-
-    @Override
-    public void removeDog(Dog dog) {
-
-        em.remove(dog);
-            
-    }
-
-    @Override
-    public Set<Dog> getAllDogs() {
-        return (Set<Dog>) em.createQuery("select d from Dog d", Dog.class).getResultList();
-        
-    }*/
-
-    
-    
-    
 }
