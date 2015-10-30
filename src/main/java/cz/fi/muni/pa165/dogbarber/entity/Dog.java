@@ -45,7 +45,7 @@ public class Dog {
     @OneToMany
     private Set<Service> services;
 
-    private Dog() {}
+    protected Dog() {}
     
     public Dog(String name, String breed, int age, Color color){
         this.name = name;

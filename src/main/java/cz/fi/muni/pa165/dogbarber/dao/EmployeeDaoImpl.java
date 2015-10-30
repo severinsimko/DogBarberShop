@@ -35,14 +35,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
         em.persist(employee);
     };
     
+    @Override
     public void removeEmployee(Employee employee){
         em.remove(employee);
     };
     
+    @Override
     public Employee getEmployeeByID(Long Id){
         return em.find(Employee.class, Id);
     };
     
+    @Override
     public Set<Employee> getAllEmployees(){
         return new HashSet<Employee>(em.createQuery("select c from Employee c", Employee.class)
                 .getResultList());
