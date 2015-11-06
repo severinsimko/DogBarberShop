@@ -1,24 +1,24 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
-
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  *
  * @author Severin Simko
  */
 
-//transactional annotation, because I want each method in different transaction
 @Transactional
 @Repository
 public class ServiceDaoImpl implements ServiceDao {
 
     @PersistenceContext
-    EntityManager em ;
+    private EntityManager em ;
     
     
     @Override
@@ -30,17 +30,23 @@ public class ServiceDaoImpl implements ServiceDao {
     public void createService(Service service) {
         em.persist(service);
     }
+    
+    @Override
+    public Service updateService(Service service){
+
+        return em.merge(service);
+    }
 
     @Override
     public void removeService(Service service) {
 
-        em.remove(service);
+        em.remove(findbyId(service.getId()));
             
     }
 
     @Override
-    public Set<Service> getAllServices() {
-        return (Set<Service>) em.createQuery("select s from Service s", Service.class).getResultList();
+    public List<Service> getAllServices() {
+        return em.createQuery("select s from Service s", Service.class).getResultList();
         
     }
 

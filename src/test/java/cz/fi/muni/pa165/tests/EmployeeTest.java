@@ -34,8 +34,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
     
     @Autowired
     public EmployeeDao employeeDao;
-    @Autowired
-    public ServiceDao serviceDao;
+    
     
     @Test
 	public void categoryTest() {
@@ -53,23 +52,14 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
                 setService(new Service(), 20, BigDecimal.valueOf(200), "Washing");        
             Service service2 = 
                 setService(new Service(), 10, BigDecimal.valueOf(100), "Fur brushing");
-            serviceDao.createService(service1);
-            serviceDao.createService(service2);
             
-            Service tmpService=serviceDao.findbyId(service1.getId());
-            assertTrue(tmpService.getId().equals(service1.getId()));
-            
-            tmpService=serviceDao.findbyId(service2.getId());
-            assertTrue(tmpService.getServiceName().equals(service2.getServiceName()));
-            assertTrue(tmpService.getLengthInMinutes()==(service2.getLengthInMinutes()));
-            emp1.addService(service1);
+          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
             
             Employee tmp=employeeDao.getEmployeeByID(emp1.getId());
             
             assertTrue(tmp.equals(emp1));
-            assertTrue(tmp.getServices().size()==1); 
 
             tmp=employeeDao.getEmployeeByID(emp2.getId());
             assertTrue(emp2.equals(tmp));

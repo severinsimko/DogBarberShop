@@ -3,7 +3,6 @@ package cz.fi.muni.pa165.dogbarber.entity;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 
 /**
  *
- * Severin Simko
+ * @author Severin Simko
  */
 
 @Entity
@@ -36,7 +35,7 @@ public class Service {
     @Column(nullable=false)
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "services")
     private Set<Employee> employees = new HashSet<>();
 
     
@@ -50,12 +49,7 @@ public class Service {
     
     }
     
-    //Getters and setters
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
+    //Getters and setters  
          
     public Long getId() {
         return id;
@@ -88,13 +82,12 @@ public class Service {
     //methods that add, remove and show all the employees assigned to a service
     
     public void addEmployee(Employee employee){
-        employees.add(employee);
-        employee.addService(this);
+        this.employees.add(employee);
     
     }
     
     public void removeEmployee(Employee employee){
-        employees.remove(employee);
+        this.employees.remove(employee);
         
     }
     
@@ -110,38 +103,34 @@ public class Service {
     @Override
     public int hashCode(){
     
-        int hash = 31;
-        return this.getServiceName().hashCode()* hash;
+        int hash = 5;
+        hash = 17 * hash + ((serviceName == null) ? 0 : serviceName.hashCode());
+        return hash;
+        
     }
-    
-    @Override
-    public String toString() {
-        return "Service{" + "id=" + id + ", serviceName=" + serviceName + ", lengthInMinutes=" + lengthInMinutes + ", price=" + price + ", employees=" + employees + '}';
-    }
-
+   
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Service)) {
             return false;
         }
         final Service other = (Service) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.serviceName, other.serviceName)) {
-            return false;
-        }
-        if (this.lengthInMinutes != other.lengthInMinutes) {
-            return false;
-        }
-        if (!Objects.equals(this.price, other.price)) {
+
+        if (serviceName == null) {
+            if (other.getServiceName() != null) {
+                return false;
+            }
+        }else if(!serviceName.equals(other.getServiceName())){
             return false;
         }
         return true;
     }
-    
-    
+
+
 }
