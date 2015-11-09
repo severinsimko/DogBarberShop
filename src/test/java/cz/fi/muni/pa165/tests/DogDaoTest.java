@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
+import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,8 +27,10 @@ public class DogDaoTest extends AbstractTransactionalTestNGSpringContextTests {
     @Test
     public void dogAddTest(){
         Dog epicDogCopy;
-
-        Dog epicDog = new Dog("Alik", "Chivavua", 14, Color.BLACK);
+        Calendar bornDate = Calendar.getInstance();
+        bornDate.set(2001, 5, 3);
+        
+        Dog epicDog = new Dog("Alik", "Chivavua", bornDate, Color.BLACK);
         
         dogDao.addDog(epicDog);
         

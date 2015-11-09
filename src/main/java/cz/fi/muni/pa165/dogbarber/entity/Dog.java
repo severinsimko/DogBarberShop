@@ -1,6 +1,8 @@
 package cz.fi.muni.pa165.dogbarber.entity;
 
 import cz.fi.muni.pa165.dogbarber.enums.Color;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,8 +36,8 @@ public class Dog {
     @Column(nullable=false)
     private String breed;
     
-    @Digits(integer=2, fraction=0)
-    private int age;
+    @NotNull
+    private Calendar bornDate;
     
     @NotNull
     private Color color;
@@ -59,10 +61,10 @@ public class Dog {
     
     protected Dog() {}
     
-    public Dog(String name, String breed, int age, Color color){
+    public Dog(String name, String breed, Calendar bornDate, Color color){
         this.name = name;
         this.breed = breed;
-        this.age = age;
+        this.bornDate = bornDate;
         this.color = color;
         
         services = new HashSet<>();
@@ -84,10 +86,6 @@ public class Dog {
         services.remove(service);
     }
     
-    public void setAge(int age){
-        this.age = age;
-    }
-    
     public Long getId(){
         return id;
     }
@@ -96,10 +94,29 @@ public class Dog {
         return name;
     }
     
-    public int getAge(){
-        return age;
+    public Calendar getBornDate(){
+        return bornDate;
     }
     
+    public int getAge(){
+        Calendar cal = Calendar.getInstance();
+        
+        int currentYear = cal.get(Calendar.YEAR);
+        int currentMonth = cal.get(Calendar.MONTH);
+        int currentDay = cal.get(Calendar.DAY_OF_MONTH);
+        
+        int bornYear = bornDate.get(Calendar.YEAR);
+        int bornMonth = bornDate.get(Calendar.MONTH);
+        int bornDay = bornDate.get(Calendar.DAY_OF_MONTH);
+        
+        int result = currentYear - bornYear;
+        
+        if(currentMonth < bornMonth) result--;
+        else if(currentMonth == bornMonth)
+            if(currentDay < bornDay) result--;
+        return result;
+    }
+
     public Color getColor(){
         return color;
     }
@@ -127,7 +144,7 @@ public class Dog {
         return "Id: " + id +
                 "Name: " + name +
                 "Breed: " + breed +
-                "Age: " + age +
+                "Age: " + bornDate.toString() +
                 "Color " + color;    
     }
 }
