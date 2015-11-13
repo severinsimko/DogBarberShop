@@ -43,7 +43,7 @@ public class Customer {
     private String phoneNumber;
     
     @OneToMany(mappedBy = "customer")
-    private Set<Dog> dogs = new HashSet<Dog>();
+    private Set<Dog> dogs = new HashSet<>();
     
     public Customer(Long customerId){
         this.id = customerId;
@@ -94,11 +94,11 @@ public class Customer {
     }
     
     public void addDog(Dog dog){
-        dogs.add(dog);
+        this.dogs.add(dog);
     }
     
     public void removeDog(Dog dog){
-        dogs.remove(dog);
+        this.dogs.remove(dog);
     }
     
     public Set<Dog> getAllDogs(){
@@ -107,8 +107,12 @@ public class Customer {
     
     @Override
     public int hashCode(){    
-        int hash = 31;
-        return this.name.hashCode()* hash;
+        int hash = 5;
+        hash = 53 * hash + ((name == null) ? 0 : name.hashCode());
+        hash = 53 * hash + ((surname == null) ? 0 : surname.hashCode());
+        hash = 53 * hash + ((adress == null) ? 0 : adress.hashCode());
+        hash = 53 * hash + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+        return hash;
     }
 
     @Override

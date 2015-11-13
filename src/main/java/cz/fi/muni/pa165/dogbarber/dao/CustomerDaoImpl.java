@@ -6,9 +6,9 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,12 +36,19 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void deleteCustomer(Customer customer) {
+        if(customer == null)
+            throw new IllegalArgumentException("Tried to delete null entity.");
         em.remove(customer);
+    }
+    
+    @Override
+    public Customer updateCustomer(Customer customer){
+        return em.merge(customer);
     }
 
     @Override
-    public Set<Customer> getAllCustomers() {
-        return (Set<Customer>) em.createQuery("select c from Customer c", Customer.class).getResultList();
+    public List<Customer> getAllCustomers() {
+        return em.createQuery("select c from Customer c", Customer.class).getResultList();
     }
     
 }
