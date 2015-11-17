@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest">
+              <span class="suite-name border-failed">cz.fi.muni.pz165.tests.CustomerTest</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>[unset file name]</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-cz.fi.muni.pz165.tests.CustomerTest">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">7 methods, 1 failed,   6 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" class="hide-methods failed suite-cz.fi.muni.pz165.tests.CustomerTest"> (hide)</a> <!-- hide-methods failed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                      <a href="#" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" class="show-methods failed suite-cz.fi.muni.pz165.tests.CustomerTest"> (show)</a> <!-- show-methods failed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                    </span>
+                    <div class="method-list-content failed suite-cz.fi.muni.pz165.tests.CustomerTest">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="createNullNameTest">createNullNameTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" class="hide-methods passed suite-cz.fi.muni.pz165.tests.CustomerTest"> (hide)</a> <!-- hide-methods passed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                      <a href="#" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" class="show-methods passed suite-cz.fi.muni.pz165.tests.CustomerTest"> (show)</a> <!-- show-methods passed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                    </span>
+                    <div class="method-list-content passed suite-cz.fi.muni.pz165.tests.CustomerTest">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="createNullTest">createNullTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="createSuccessTest">createSuccessTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="deleteNullTest">deleteNullTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="deleteTest">deleteTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="findAllTest">findAllTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" title="cz.fi.muni.pz165.tests.CustomerTest" hash-for-method="updateTest">updateTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-cz.fi.muni.pz165.tests.CustomerTest -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-cz.fi.muni.pz165.tests.CustomerTest" class="panel cz.fi.muni.pz165.tests.CustomerTest">
+          <div class="suite-cz.fi.muni.pz165.tests.CustomerTest-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">cz.fi.muni.pz165.tests.CustomerTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createNullNameTest">
+                  </a> <!-- createNullNameTest -->
+                  <span class="method-name">createNullNameTest</span>
+                  <div class="stack-trace">org.testng.TestException: 
+Expected exception javax.persistence.PersistenceException but got javax.validation.ConstraintViolationException: Validation failed for classes [cz.fi.muni.pa165.dogbarber.entity.Customer] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=name, rootBeanClass=class cz.fi.muni.pa165.dogbarber.entity.Customer, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+Expected exception javax.persistence.PersistenceException but got javax.validation.ConstraintViolationException: Validation failed for classes [cz.fi.muni.pa165.dogbarber.entity.Customer] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=name, rootBeanClass=class cz.fi.muni.pa165.dogbarber.entity.Customer, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	... 25 more
+Caused by: javax.validation.ConstraintViolationException: Validation failed for classes [cz.fi.muni.pa165.dogbarber.entity.Customer] during persist time for groups [javax.validation.groups.Default, ]
+List of constraint violations:[
+	ConstraintViolationImpl{interpolatedMessage=&apos;may not be null&apos;, propertyPath=name, rootBeanClass=class cz.fi.muni.pa165.dogbarber.entity.Customer, messageTemplate=&apos;{javax.validation.constraints.NotNull.message}&apos;}
+]
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:160)
+	at org.hibernate.cfg.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:95)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.preInsert(EntityIdentityInsertAction.java:214)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:92)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:490)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:195)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:179)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:214)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:324)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:288)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:194)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:125)
+	at org.hibernate.jpa.event.internal.core.JpaPersistEventListener.saveWithGeneratedId(JpaPersistEventListener.java:84)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:206)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:149)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:75)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:811)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:784)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:789)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.persist(AbstractEntityManagerImpl.java:1181)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:289)
+	at com.sun.proxy.$Proxy39.persist(Unknown Source)
+	at cz.fi.muni.pa165.dogbarber.dao.CustomerDaoImpl.createCustomer(CustomerDaoImpl.java:34)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:98)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:262)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+	at com.sun.proxy.$Proxy41.createCustomer(Unknown Source)
+	at cz.fi.muni.pz165.tests.CustomerTest.createNullNameTest(CustomerTest.java:83)
+	at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.run(AbstractTestNGSpringContextTests.java:172)
+	... 27 more
+... Removed 53 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-cz.fi.muni.pz165.tests.CustomerTest-class-failed -->
+          <div class="suite-cz.fi.muni.pz165.tests.CustomerTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">cz.fi.muni.pz165.tests.CustomerTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createNullTest">
+                  </a> <!-- createNullTest -->
+                  <span class="method-name">createNullTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="createSuccessTest">
+                  </a> <!-- createSuccessTest -->
+                  <span class="method-name">createSuccessTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteNullTest">
+                  </a> <!-- deleteNullTest -->
+                  <span class="method-name">deleteNullTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteTest">
+                  </a> <!-- deleteTest -->
+                  <span class="method-name">deleteTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="findAllTest">
+                  </a> <!-- findAllTest -->
+                  <span class="method-name">findAllTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateTest">
+                  </a> <!-- updateTest -->
+                  <span class="method-name">updateTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-cz.fi.muni.pz165.tests.CustomerTest-class-passed -->
+        </div> <!-- panel cz.fi.muni.pz165.tests.CustomerTest -->
+        <div panel-name="test-xml-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite verbose=&quot;0&quot; name=&quot;cz.fi.muni.pz165.tests.CustomerTest&quot;&gt;
+  &lt;test name=&quot;Command line test&quot; preserve-order=&quot;false&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;cz.fi.muni.pz165.tests.CustomerTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Command line test --&gt;
+&lt;/suite&gt; &lt;!-- cz.fi.muni.pz165.tests.CustomerTest --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for cz.fi.muni.pz165.tests.CustomerTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Command line test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for cz.fi.muni.pz165.tests.CustomerTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for cz.fi.muni.pz165.tests.CustomerTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_cz.fi.muni.pz165.tests.CustomerTest');
+function tableData_cz.fi.muni.pz165.tests.CustomerTest() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(7);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'deleteTest')
+data.setCell(0, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(0, 3, 130);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'createNullNameTest')
+data.setCell(1, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(1, 3, 95);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'createSuccessTest')
+data.setCell(2, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(2, 3, 29);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'updateTest')
+data.setCell(3, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(3, 3, 5);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'findAllTest')
+data.setCell(4, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(4, 3, 3);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'deleteNullTest')
+data.setCell(5, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(5, 3, 0);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'createNullTest')
+data.setCell(6, 2, 'cz.fi.muni.pz165.tests.CustomerTest')
+data.setCell(6, 3, 0);
+window.suiteTableData['cz.fi.muni.pz165.tests.CustomerTest']= { tableData: data, tableDiv: 'times-div-cz.fi.muni.pz165.tests.CustomerTest'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 262 ms</span>
+              <div id="times-div-cz.fi.muni.pz165.tests.CustomerTest">
+              </div> <!-- times-div-cz.fi.muni.pz165.tests.CustomerTest -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for cz.fi.muni.pz165.tests.CustomerTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-cz.fi.muni.pz165.tests.CustomerTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">cz.fi.muni.pz165.tests.CustomerTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextBeforeTestClass</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextPrepareTestInstance</span>
+                <span class="method-start">7 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createNullNameTest())</span>
+                <span class="method-start">2433 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2482 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">createNullNameTest</span>
+                <span class="method-start">2483 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createNullNameTest())</span>
+                <span class="method-start">2582 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createNullTest())</span>
+                <span class="method-start">2587 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">createNullTest</span>
+                <span class="method-start">2589 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2589 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createNullTest())</span>
+                <span class="method-start">2589 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createSuccessTest())</span>
+                <span class="method-start">2590 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">createSuccessTest</span>
+                <span class="method-start">2592 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2592 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.createSuccessTest())</span>
+                <span class="method-start">2622 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.deleteNullTest())</span>
+                <span class="method-start">2625 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">deleteNullTest</span>
+                <span class="method-start">2627 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2627 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.deleteNullTest())</span>
+                <span class="method-start">2627 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.deleteTest())</span>
+                <span class="method-start">2628 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">deleteTest</span>
+                <span class="method-start">2630 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2630 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.deleteTest())</span>
+                <span class="method-start">2760 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.findAllTest())</span>
+                <span class="method-start">2762 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">findAllTest</span>
+                <span class="method-start">2764 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2764 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.findAllTest())</span>
+                <span class="method-start">2767 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.updateTest())</span>
+                <span class="method-start">2769 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">iniTest</span>
+                <span class="method-start">2770 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">updateTest</span>
+                <span class="method-start">2770 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void cz.fi.muni.pz165.tests.CustomerTest.updateTest())</span>
+                <span class="method-start">2775 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">springTestContextAfterTestClass</span>
+                <span class="method-start">2776 ms</span>
+              </div> <!-- configuration-class after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

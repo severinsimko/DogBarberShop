@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [cz.fi.muni.pz165.tests.CustomerTest]">
+  <test name="Command line test(failed)">
+    <classes>
+      <class name="cz.fi.muni.pz165.tests.CustomerTest">
+        <methods>
+          <include name="iniTest"/>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextBeforeTestClass"/>
+          <include name="springTestContextBeforeTestMethod"/>
+          <include name="createNullNameTest"/>
+          <include name="springTestContextPrepareTestInstance"/>
+          <include name="springTestContextAfterTestMethod"/>
+        </methods>
+      </class> <!-- cz.fi.muni.pz165.tests.CustomerTest -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [cz.fi.muni.pz165.tests.CustomerTest] -->
