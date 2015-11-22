@@ -29,11 +29,11 @@ public class Dog {
     private Long id;
     
     @NotNull
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String name;
     
     @NotNull
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String breed;
     
     @NotNull
@@ -47,21 +47,22 @@ public class Dog {
     
     @OneToMany
     private Set<Service> services;
-
-    @Type(type="yes_no")
+    
+    @Type(type = "yes_no")
     private boolean taken_by_shop;
     
-    boolean getTakenByShop(){
+    boolean getTakenByShop() {
         return taken_by_shop;
     }
     
-    void setTakenByShop(boolean t){
-        taken_by_shop=t;
+    void setTakenByShop(boolean t) {
+        taken_by_shop = t;
     }
     
-    protected Dog() {}
+    protected Dog() {
+    }
     
-    public Dog(String name, String breed, Calendar bornDate, Color color){
+    public Dog(String name, String breed, Calendar bornDate, Color color) {
         this.name = name;
         this.breed = breed;
         this.bornDate = bornDate;
@@ -70,35 +71,35 @@ public class Dog {
         services = new HashSet<>();
     }
     
-    public void setCustomer(Customer customer){
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
     
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         return customer;
     }
     
-    public void addService(Service service){
+    public void addService(Service service) {
         services.add(service);
     }
     
-    public void removeService(Service service){
+    public void removeService(Service service) {
         services.remove(service);
     }
     
-    public Long getId(){
+    public Long getId() {
         return id;
     }
     
-    public String getName(){
+    public String getName() {
         return name;
     }
     
-    public Calendar getBornDate(){
+    public Calendar getBornDate() {
         return bornDate;
     }
     
-    public int getAge(){
+    public int getAge() {
         Calendar cal = Calendar.getInstance();
         
         int currentYear = cal.get(Calendar.YEAR);
@@ -111,41 +112,54 @@ public class Dog {
         
         int result = currentYear - bornYear;
         
-        if(currentMonth < bornMonth) result--;
-        else if(currentMonth == bornMonth)
-            if(currentDay < bornDay) result--;
+        if (currentMonth < bornMonth) {
+            result--;
+        } else if (currentMonth == bornMonth) {
+            if (currentDay < bornDay) {
+                result--;
+            }
+        }
         return result;
     }
-
-    public Color getColor(){
+    
+    public Color getColor() {
         return color;
     }
     
-    public String getBreed(){
+    public String getBreed() {
         return breed;
     }
-
+    
     @Override
-    public int hashCode(){
-        return id.hashCode();
+    public int hashCode() {
+        int hash = 13;
+        hash = hash * 29 + name.hashCode();
+        hash = hash * 11 + bornDate.hashCode();
+        hash = hash * 7 + breed.hashCode();
+        hash = hash * 17 + color.hashCode();
+        
+        return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Dog){
-            Dog other = (Dog)obj;
-            return Objects.equals(this.id, other.id);
+        if (obj instanceof Dog) {
+            Dog other = (Dog) obj;
+            
+            return name.equals(other.name) 
+                    && bornDate.equals(other.bornDate) 
+                    && breed.equals(other.breed) 
+                    && color.equals(other.color);
         }
         return false;
     }
     
     @Override
-    public String toString(){
-        return "Id: " + id +
-                "Name: " + name +
-                "Breed: " + breed +
-                "Age: " + bornDate.toString() +
-                "Color " + color;    
+    public String toString() {
+        return "Id: " + id
+                + "Name: " + name
+                + "Breed: " + breed
+                + "Age: " + bornDate.toString()
+                + "Color " + color;        
     }
 }
-

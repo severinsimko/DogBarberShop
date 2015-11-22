@@ -1,7 +1,7 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -35,7 +35,12 @@ public class DogDaoImpl implements DogDao {
     }
 
     @Override
-    public Set<Dog> getAllDogs() {
-        return (Set<Dog>)em.createQuery("select d from Dog d", Dog.class).getResultList();
+    public List<Dog> getAllDogs() {
+        return (List<Dog>)em.createQuery("select d from Dog d", Dog.class).getResultList();
+    }
+
+    @Override
+    public void updateDog(Dog dog) {
+        em.merge(dog);
     }
 }
