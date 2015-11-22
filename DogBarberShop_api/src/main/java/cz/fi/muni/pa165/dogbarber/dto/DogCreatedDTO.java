@@ -2,29 +2,32 @@ package cz.fi.muni.pa165.dogbarber.dto;
 
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Pavel Drobek
  */
-public class DogDTO {
+public class DogCreatedDTO {
 
-    private Long id;
+    @NotNull
+    @Size(min=2, max=20)
     private String name;
+
+    @NotNull
+    @Size(min=2, max=20)
     private String breed;
+
+    @NotNull
     private Color color;
+
+    @NotNull
     private Calendar bornDate;
-    private boolean takenByShop;
 
+    //@NotNull
     //private CustomerDTO customer;
-    private Set<ServiceDTO> services = new HashSet<ServiceDTO>();
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -41,21 +44,9 @@ public class DogDTO {
         this.bornDate = bornDate;
     }
 
-    public void setTakenByShop(boolean takenByShop) {
-        this.takenByShop = takenByShop;
-    }
-
     /*public void setCustom(CustomerDTO customer){
      this.customer = customer;
      }*/
-    
-    public void setServices(Set<ServiceDTO> services) {
-        this.services = services;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -77,14 +68,6 @@ public class DogDTO {
      return customer;
      }*/
     
-    public Set<ServiceDTO> getServices() {
-        return services;
-    }
-
-    public boolean getTakenByShop() {
-        return takenByShop;
-    }
-
     @Override
     public int hashCode() {
         int hash = 13;
@@ -101,8 +84,8 @@ public class DogDTO {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof DogDTO) {
-            DogDTO other = (DogDTO) obj;
+        if (obj instanceof DogCreatedDTO) {
+            DogCreatedDTO other = (DogCreatedDTO) obj;
 
             return name.equals(other.name)
                     && bornDate.equals(other.bornDate)
@@ -114,8 +97,7 @@ public class DogDTO {
 
     @Override
     public String toString() {
-        return "Id: " + id
-                + "Name: " + name
+        return "Name: " + name
                 + "Breed: " + breed
                 + "Age: " + bornDate.toString()
                 + "Color " + color;

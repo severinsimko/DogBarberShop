@@ -11,4 +11,11 @@
 
     <artifactId>DogBarberShop_api</artifactId>
     <name>DogBarberShop_api</name>
+    
+    <dependencies>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
