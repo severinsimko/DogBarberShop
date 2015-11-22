@@ -143,6 +143,7 @@ public class Dog {
     
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) return true;
         if (obj instanceof Dog) {
             Dog other = (Dog) obj;
             
