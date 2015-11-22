@@ -3,83 +3,47 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.fi.muni.pa165.dogbarber.entity;
+package cz.fi.muni.pa165.dogbarber.dto;
 
-import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Type;
 
-@Entity
-public class Employee {
+/**
+ *
+ * @author artur
+ */
+public class EmployeeDTO {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    @Column(nullable=false)
-    private String name;
-    
-    @NotNull
-    private String password_hash;
-    
-    // root user is created by system, juts root user can add another users
-    @Type(type="yes_no")
     private boolean root;
     
-    @NotNull
-    @Column(nullable=false)
+    private String name;
+    
     private String surname;
     
-    @NotNull
-    @Column(nullable=false)
     private String address;
     
-    @NotNull
-    @Column(nullable=false)
     private String phone_number;
     
-    @NotNull
-    @DecimalMin("00.00")
-    @Column(nullable=false)
     private BigDecimal salary;
 
+    private Set <ServiceDTO> services = new HashSet<>();
     
+    // root user can be created just by system
+    public boolean isRoot(){
+        return root;
+    }
     
-    //set of services, on which the employee is working    
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set <Service> services = new HashSet<>();
-    
-    public void addService(Service service){
-        
-        services.add(service);
-    
+    public void setId(Long id){
+        this.id=id;
     }
     
     public Long getId(){
-    
         return id;
-    }
-    
-    public void removeService(Service service){
-        services.remove(service);
-    }
-    
-    public Set<Service> getServices(){
-        return Collections.unmodifiableSet(services);
     }
 
     public String getName() {
@@ -98,26 +62,10 @@ public class Employee {
         return phone_number;
     }
 
-    public String getPassword_hash(){
-        return password_hash;
-    }
-    
     public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setRoot(boolean root){
-        this.root=root;
-    }
-    
-    public boolean getRoot(){
-        return root;
-    }
-    
-    public void setPassword_hash(String hash){
-        this.password_hash=hash;
-    }
-    
     public void setName(String name) {
         this.name = name;
     }
@@ -138,10 +86,14 @@ public class Employee {
         this.salary = salary;
     }
 
-    public void setServices(Set<Service> services) {
+    public void setServices(Set<ServiceDTO> services) {
         this.services = services;
     }
 
+    public Set<ServiceDTO> getServices(){
+        return Collections.unmodifiableSet(services);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -160,7 +112,7 @@ public class Employee {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Employee other = (Employee) obj;
+        final EmployeeDTO other = (EmployeeDTO) obj;
 
         if (!Objects.equals(this.name, other.name)) {
             return false;

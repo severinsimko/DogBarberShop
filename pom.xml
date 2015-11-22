@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.muni.fi.pa165</groupId>
+    <groupId>cz.fi.muni.pa165</groupId>
     <artifactId>dog_barber_shop</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>

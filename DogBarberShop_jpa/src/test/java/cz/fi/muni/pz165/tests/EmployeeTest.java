@@ -140,12 +140,15 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
             em.setAddress(address);
             em.setPhone_number(phonenumber);
             em.setSalary(salary);
+            em.setPassword_hash("");
+            em.setRoot(false);
             return em;
         }
         Service setService(Service se,int lenght, BigDecimal price, String name){
             se.setLengthInMinutes(lenght);
             se.setPrice(price);
             se.setServiceName(name);
+            
             return se;
         }
 }
