@@ -5,6 +5,8 @@
  */
 package cz.fi.muni.pa165.dogbarber.dao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
+import java.util.Collection;
 import java.util.Set;
 
 /**

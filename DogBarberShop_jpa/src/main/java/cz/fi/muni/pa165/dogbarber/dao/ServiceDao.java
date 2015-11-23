@@ -5,8 +5,9 @@
  */
 package cz.fi.muni.pa165.dogbarber.dao;
 
+import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import java.util.List;
+import java.util.Collection;
 import org.hibernate.exception.ConstraintViolationException;
 
 /**
@@ -19,6 +20,6 @@ public interface ServiceDao {
     void createService(Service service)throws ConstraintViolationException;
     Service updateService(Service service)throws ConstraintViolationException;
     void removeService(Service service);
-    List<Service> getAllServices();
+    Collection<Service> getAllServices();
     
 }

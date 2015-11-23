@@ -1,10 +1,9 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,9 +44,11 @@ public class ServiceDaoImpl implements ServiceDao {
     }
 
     @Override
-    public List<Service> getAllServices() {
+    public Collection<Service> getAllServices() {
         return em.createQuery("select s from Service s", Service.class).getResultList();
         
     }
+    
+    
 
 }

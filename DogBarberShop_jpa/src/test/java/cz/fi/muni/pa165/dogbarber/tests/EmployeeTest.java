@@ -1,5 +1,5 @@
 
-package cz.fi.muni.pz165.tests;
+package cz.fi.muni.pa165.dogbarber.tests;
 
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
