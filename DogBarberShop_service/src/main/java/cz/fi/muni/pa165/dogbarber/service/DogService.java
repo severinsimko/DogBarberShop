@@ -1,14 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.service;
+
+import cz.fi.muni.pa165.dogbarber.entity.Dog;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
+import java.util.List;
 
 /**
  *
- * @author Martin Penaz
+ * @author Pavel Drobek
  */
-public class DogService {
+@org.springframework.stereotype.Service
+public interface DogService {
+    void createDog(Dog dog);
     
+    void deleteDog(Dog dog);
+    
+    Dog getDogByID(Long dogId);
+    
+    List<Dog> getAllDogs();
+    
+    void subscribeDogForAService(Dog dog, Service service);
+    
+    void unsubscribeDogForAService(Dog dog, Service service);
 }

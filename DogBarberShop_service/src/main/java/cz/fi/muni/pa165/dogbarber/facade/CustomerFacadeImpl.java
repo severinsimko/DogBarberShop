@@ -41,15 +41,15 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return (c == null) ? null : beanMappingService.mapTo(c, CustomerDTO.class);
     }
 
-    /*@Override
+    @Override
     public void addDog(Long CustomerId, Long DogId) {
-        customerService.addDog(customerService.findById(CustomerId), dogService.findById(DogId));
+        customerService.addDog(dogService.getDogByID(DogId), customerService.findById(CustomerId));
     }
 
     @Override
     public void removeDog(Long CustomerId, Long DogId) {
-        customerService.removeDog(customerService.findById(CustomerId), dogService.findById(DogId));
-    }*/
+        customerService.removeDog(dogService.getDogByID(DogId), customerService.findById(CustomerId));
+    }
 
     @Override
     public void deleteCustomer(Long CustomerId) {
@@ -68,15 +68,4 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerService.authenticate(customerService.findById(c.getCustomerId()), c.getPassword());
     }    
 
-    @Override
-    public void addDog(Long CustomerId, Long DogId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeDog(Long CustomerId, Long DogId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    //TODO: uncomment and delete methods when Dog Services are done
 }

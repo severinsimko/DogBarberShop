@@ -25,8 +25,8 @@ public class DogCreatedDTO {
     @NotNull
     private Calendar bornDate;
 
-    //@NotNull
-    //private CustomerDTO customer;
+    @NotNull
+    private CustomerDTO customer;
     
     public void setName(String name) {
         this.name = name;
@@ -44,9 +44,9 @@ public class DogCreatedDTO {
         this.bornDate = bornDate;
     }
 
-    /*public void setCustom(CustomerDTO customer){
-     this.customer = customer;
-     }*/
+    public void setCustom(CustomerDTO customer){
+        this.customer = customer;
+    }
 
     public String getName() {
         return name;
@@ -64,9 +64,9 @@ public class DogCreatedDTO {
         return bornDate;
     }
 
-    /*public CustomerDTO getCustom(){
-     return customer;
-     }*/
+    public CustomerDTO getCustom(){
+        return customer;
+    }
     
     @Override
     public int hashCode() {

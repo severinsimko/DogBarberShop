@@ -18,8 +18,8 @@ public class DogDTO {
     private Calendar bornDate;
     private boolean takenByShop;
 
-    //private CustomerDTO customer;
-    private Set<ServiceDTO> services = new HashSet<ServiceDTO>();
+    private CustomerDTO customer;
+    private Set<ServiceDTO> services = new HashSet<>();
 
     public void setId(Long id) {
         this.id = id;
@@ -45,9 +45,9 @@ public class DogDTO {
         this.takenByShop = takenByShop;
     }
 
-    /*public void setCustom(CustomerDTO customer){
-     this.customer = customer;
-     }*/
+    public void setCustom(CustomerDTO customer){
+        this.customer = customer;
+    }
     
     public void setServices(Set<ServiceDTO> services) {
         this.services = services;
@@ -73,9 +73,9 @@ public class DogDTO {
         return bornDate;
     }
 
-    /*public CustomerDTO getCustom(){
-     return customer;
-     }*/
+    public CustomerDTO getCustomer(){
+        return customer;
+    }
     
     public Set<ServiceDTO> getServices() {
         return services;
