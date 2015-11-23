@@ -5,6 +5,7 @@ import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
+import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
