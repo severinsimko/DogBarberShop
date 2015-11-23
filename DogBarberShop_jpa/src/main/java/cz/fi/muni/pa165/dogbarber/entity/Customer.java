@@ -45,6 +45,16 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Dog> dogs = new HashSet<>();
     
+    private String password;
+    
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
     public Customer(Long customerId){
         this.id = customerId;
     }

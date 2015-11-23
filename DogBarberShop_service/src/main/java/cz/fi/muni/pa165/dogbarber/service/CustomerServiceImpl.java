@@ -54,14 +54,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void registerCustomer(Customer c, String password) {
-       // c.setPassword(createHash(password));
-       // customerDao.createCustomer(c);
+       c.setPassword(createHash(password));
+       customerDao.createCustomer(c);
     }
 
     @Override
     public boolean authenticate(Customer c, String password) {
-       return true;
-        //return validatePassword(password, c.getPassword());
+       return validatePassword(password, c.getPassword());
     }
     
     //see  https://crackstation.net/hashing-security.htm#javasourcecode
