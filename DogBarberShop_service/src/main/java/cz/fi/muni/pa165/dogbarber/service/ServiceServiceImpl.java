@@ -4,59 +4,65 @@ package cz.fi.muni.pa165.dogbarber.service;
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
-import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.util.Collection;
-import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Severin Simko
  */
+@Service
 public class ServiceServiceImpl implements ServiceService{
     
-    @Inject
+    @Autowired
     private ServiceDao serviceDao;
     
-    @Inject
+    @Autowired
     private EmployeeDao employeeDao;
     
     @Override
-    public void create(Service service){
+    public void create(cz.fi.muni.pa165.dogbarber.entity.Service service){
     
         serviceDao.createService(service);
     }
     
     @Override
-    public void remove(Service serv){
+    public void remove(cz.fi.muni.pa165.dogbarber.entity.Service serv){
     serviceDao.removeService(serv);
     }
     
     @Override
-    public Service update(Service serv){
+    public cz.fi.muni.pa165.dogbarber.entity.Service update(cz.fi.muni.pa165.dogbarber.entity.Service serv){
         return serviceDao.updateService(serv);
     
     }
     
     @Override
-    public Service findById(Long id){
+    public cz.fi.muni.pa165.dogbarber.entity.Service findById(Long id){
        return serviceDao.findbyId(id);    
     
     }
     
     @Override
-    public Collection<Service> getAllServices(){
+    public List<cz.fi.muni.pa165.dogbarber.entity.Service> getAllServices(){
     return serviceDao.getAllServices();
     
     }
     
     @Override
-    public Collection<Service> getServicesByName(String name){
-    return null;
+    public List<cz.fi.muni.pa165.dogbarber.entity.Service> getServicesByName(String name){
+    
+        
+        
+        return serviceDao.findByName(name);
     }
     
     @Override
-    public void addEmployee(Service serv, Employee emp){
+    public void addEmployee(cz.fi.muni.pa165.dogbarber.entity.Service serv, Employee emp){
     
         if(serv.getAllEmployees().contains(emp)){
             throw new DogBarberException("This service with the id:"+serv.getId()+"already contains the employee with the id" +emp.getId());
@@ -66,7 +72,7 @@ public class ServiceServiceImpl implements ServiceService{
     }
     
     @Override
-    public void removeEmployee(Service serv, Employee emp){
+    public void removeEmployee(cz.fi.muni.pa165.dogbarber.entity.Service serv, Employee emp){
         if(serv.getAllEmployees().contains(emp)){
             throw new DogBarberException("The service with the id"+serv.getId()+"does not contain the employee with id"+ emp.getId());
         }else{
@@ -76,7 +82,7 @@ public class ServiceServiceImpl implements ServiceService{
     }
     
     @Override
-    public void changeServiceName(Service service, String name){
+    public void changeServiceName(cz.fi.muni.pa165.dogbarber.entity.Service service, String name){
     service.setServiceName(name);
     }
     

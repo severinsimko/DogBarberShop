@@ -8,6 +8,7 @@ package cz.fi.muni.pa165.dogbarber.service;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -18,8 +19,8 @@ public interface ServiceService {
     void remove(Service serv);
     Service update(Service serv);
     Service findById(Long id);
-    Collection<Service> getAllServices();
-    Collection<Service> getServicesByName(String name);
+    List<Service> getAllServices();
+    List<Service> getServicesByName(String name);
     void addEmployee(Service serv, Employee emp);
     void removeEmployee(Service serv, Employee emp);
     void changeServiceName(Service service, String name);

@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -44,11 +45,16 @@ public class ServiceDaoImpl implements ServiceDao {
     }
 
     @Override
-    public Collection<Service> getAllServices() {
+    public List<Service> getAllServices() {
         return em.createQuery("select s from Service s", Service.class).getResultList();
         
     }
     
+    @Override
+    public List<Service> findByName(String serviceName){
+        
+    return em.createQuery("select s from Service s where s.serviceName =:serviceName", Service.class).setParameter("serviceName", serviceName).getResultList();
+    }
     
 
 }
