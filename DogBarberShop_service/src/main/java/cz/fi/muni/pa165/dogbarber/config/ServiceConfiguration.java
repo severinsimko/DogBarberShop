@@ -17,10 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-/**
- *
- * @author Severin Simko
- */
+
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
 @ComponentScan(basePackageClasses={ServiceServiceImpl.class, ServiceFacadeImpl.class})
@@ -32,16 +29,6 @@ public class ServiceConfiguration {
 		return new DozerBeanMapper();
 	}
 	
-	/**
-	 * Custom config for Dozer if needed
-	 * @author nguyen
-	 *
-	 */
-	/*public class DozerCustomConfig extends BeanMappingBuilder {
-	    @Override
-	    protected void configure() {
-	        mapping(Category.class, CategoryDTO.class);
-	    }
-	}*/
+
 	
 }
