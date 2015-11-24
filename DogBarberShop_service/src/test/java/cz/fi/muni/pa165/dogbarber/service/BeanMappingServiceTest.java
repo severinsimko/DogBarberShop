@@ -1,18 +1,17 @@
-package cz.muni.fi.pa165.dogbarber.service;
+package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import cz.fi.muni.pa165.service.BeanMappingService;
-import cz.fi.muni.pa165.service.config.ServiceConfiguration;
+import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import junit.framework.Assert;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  *
