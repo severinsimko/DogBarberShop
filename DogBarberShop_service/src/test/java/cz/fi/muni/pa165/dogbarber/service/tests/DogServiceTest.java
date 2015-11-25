@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.service.tests;
 
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.DogDao;
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
@@ -34,6 +35,9 @@ public class DogServiceTest {
     @Mock
     DogDao dogDao;
     
+    @Mock
+    ServiceDao serviceDao;
+    
     @Autowired
     @InjectMocks
     private DogServiceImpl dogService;
@@ -49,6 +53,8 @@ public class DogServiceTest {
     
     private Service service;
     
+    private List<Service> services;
+    
     @BeforeMethod
     public void prepareDog(){
         Calendar bornDate = Calendar.getInstance();
@@ -60,6 +66,9 @@ public class DogServiceTest {
         
         service = new Service();
         service.setServiceName("Washing");
+        
+        services = new ArrayList();
+        services.add(service);
         
         dog2.addService(service);
     }
@@ -97,6 +106,7 @@ public class DogServiceTest {
     
     @Test
     public void subscribeDogForAServiceTest(){
+        when(serviceDao.findByName("Washing")).thenReturn(services);
         dogService.subscribeDogForAService(dog1, service);
         assertTrue(dog1.getServices().contains(service));
         verify(dogDao, times(1)).updateDog(dog1);
@@ -104,6 +114,7 @@ public class DogServiceTest {
     
     @Test
     public void unsubscribeDogForAServiceTest(){
+        when(serviceDao.findByName("Washing")).thenReturn(services);
         dogService.unsubscribeDogForAService(dog2, service);
         assertFalse(dog2.getServices().contains(service));
         verify(dogDao, times(1)).updateDog(dog2);
