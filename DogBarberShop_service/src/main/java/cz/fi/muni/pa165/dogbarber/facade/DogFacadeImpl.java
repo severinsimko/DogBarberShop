@@ -28,7 +28,7 @@ public class DogFacadeImpl implements DogFacade {
     @Override
     public void createDog(DogCreatedDTO dog) {
         Dog dogy = new Dog(dog.getName(), dog.getBreed(), dog.getBornDate(), dog.getColor());
-        dogService.createDog(null);
+        dogService.createDog(dogy);
     }
     
     @Override

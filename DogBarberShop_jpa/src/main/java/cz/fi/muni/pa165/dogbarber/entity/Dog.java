@@ -87,6 +87,10 @@ public class Dog {
         services.remove(service);
     }
     
+    public Set<Service> getServices(){
+        return java.util.Collections.unmodifiableSet(services);
+    }
+    
     public Long getId() {
         return id;
     }

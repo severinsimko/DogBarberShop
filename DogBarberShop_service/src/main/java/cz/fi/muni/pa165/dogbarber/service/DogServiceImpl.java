@@ -10,6 +10,7 @@ import javax.inject.Inject;
  *
  * @author Pavel Drobek
  */
+@org.springframework.stereotype.Service
 public class DogServiceImpl implements DogService {
 
     @Inject
