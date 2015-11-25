@@ -1,9 +1,9 @@
-
-package cz.muni.fi.pa165.dogbarber.service;
+package cz.fi.muni.pa165.dogbarber.service.tests;
 
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
+import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
