@@ -6,6 +6,7 @@ import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.service.DogServiceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -118,5 +119,23 @@ public class DogServiceTest {
         dogService.unsubscribeDogForAService(dog2, service);
         assertFalse(dog2.getServices().contains(service));
         verify(dogDao, times(1)).updateDog(dog2);
+    }
+    
+    @Test(expectedExceptions=DogBarberException.class)
+    public void subscribeForNonExistingServiceTest(){
+        when(serviceDao.findByName("Washing")).thenReturn(new ArrayList<Service>());
+        dogService.subscribeDogForAService(dog1, service);
+    }
+    
+    @Test(expectedExceptions=DogBarberException.class)
+    public void unsubscribeForNonSubscribedServiceTest(){
+        when(serviceDao.findByName("Washing")).thenReturn(services);
+        dogService.unsubscribeDogForAService(dog1, service);
+    }
+    
+    @Test(expectedExceptions=DogBarberException.class)
+    public void unsubscribeForNonexistingServiceTest(){
+        when(serviceDao.findByName("Washing")).thenReturn(new ArrayList<Service>());
+        dogService.unsubscribeDogForAService(dog1, service);
     }
 }
