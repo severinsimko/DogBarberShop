@@ -4,12 +4,16 @@ import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
-import cz.fi.muni.pa165.dogbarber.service.ServiceService;
-import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.apache.commons.beanutils.BeanComparator;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -27,8 +31,10 @@ import org.testng.annotations.Test;
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
+    final static Logger logger = LoggerFactory.getLogger(ServiceServiceTest.class);
+    
     @Autowired
-    private ServiceDao serviceDao;
+    ServiceDao serviceDao;
 
     @Autowired
     @InjectMocks
@@ -94,10 +100,56 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
     @Test
     public void testFindByName() {
         serviceDao.createService(service1);
-        assertTrue(serviceServ.getAllServices().size()==1);
-        
-        
+        assertTrue(serviceServ.getAllServices().size()==1);       
         assertTrue( serviceServ.getServicesByName(service1.getServiceName()).contains(service1));
     }
 
+    @Test
+    public void getSortedServicestest() {
+        //Sorting by prices testing
+        
+        
+        Service service2 = new Service();
+        service2.setLengthInMinutes(900);
+        service2.setPrice(new BigDecimal("12"));
+        service2.setServiceName("TestName2");
+        
+         Service service3 = new Service();
+        service3.setLengthInMinutes(900);
+        service3.setPrice(new BigDecimal("1"));
+        service3.setServiceName("TestName2");
+        
+        //service 3 : 1 , service2: 12 ,service 1 : 120
+        
+        List<Service> list = new ArrayList<>();
+        serviceDao.createService(service1);
+        serviceDao.createService(service2);
+        serviceDao.createService(service3);
+        list = serviceDao.getAllServices();
+        assertTrue(list.size()==3);
+        assertEquals(service1.getId(), list.get(0).getId());
+        assertEquals(service2.getId(), list.get(1).getId());
+        
+       
+        
+        logger.info(list.get(0).getPrice().toString());
+        logger.info(list.get(1).getPrice().toString());
+        logger.info(list.get(2).getPrice().toString());
+        
+        
+        
+       List<Service> sortedList = new ArrayList<>();
+        
+      sortedList =  serviceServ.sortedServicesByPrice();
+      
+      
+      logger.info(sortedList.get(0).getPrice().toString());
+        logger.info(sortedList.get(1).getPrice().toString());
+        logger.info(sortedList.get(2).getPrice().toString());
+        
+       assertEquals(service3.getId(), sortedList.get(0).getId());
+       assertEquals(service2.getId(), sortedList.get(1).getId());
+       assertEquals(service1.getId(), sortedList.get(2).getId());
+        
+    }
 }

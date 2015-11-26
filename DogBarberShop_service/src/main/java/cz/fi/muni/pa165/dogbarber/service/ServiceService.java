@@ -7,8 +7,8 @@ package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -24,6 +24,7 @@ public interface ServiceService {
     void addEmployee(Service serv, Employee emp);
     void removeEmployee(Service serv, Employee emp);
     void changeServiceName(Service service, String name);
-    
+    List<Service> sortedServicesByPrice();
+    //Set<Service> getTheMostPopularServices();
     
 }
