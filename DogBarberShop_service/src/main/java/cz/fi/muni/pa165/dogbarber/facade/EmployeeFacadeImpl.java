@@ -6,6 +6,7 @@ import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacade;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import java.util.Collection;
+import java.util.List;
 import javax.inject.Inject;
 
 
@@ -36,19 +37,31 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     }
 
     @Override
-    public EmployeeDTO findUserById(Long userId) {
+    public EmployeeDTO findEmployeeById(Long userId) {
         Employee emp = employeeService.findEmployeeById(userId);
         return beanMappingService.mapTo(emp, EmployeeDTO.class);
     }
 
     @Override
-    public EmployeeDTO findEmployeeByName(String name) {
-        Employee user = employeeService.findEmployeeByName(name);
-        return beanMappingService.mapTo(user, EmployeeDTO.class);
+    public List<EmployeeDTO> findEmployeeByName(String name) {
+        List<Employee> users = employeeService.findEmployeeByName(name);
+        return beanMappingService.mapTo(users, EmployeeDTO.class);
     }
 
     @Override
     public Collection<EmployeeDTO> getAllEmployees() {
         return beanMappingService.mapTo(employeeService.getAllEmployees(), EmployeeDTO.class);
+    }
+    
+    @Override
+    public EmployeeDTO update(EmployeeDTO e) {
+        return e;
+        /*Employee tmp=employee;
+        tmp.setAddress(e.getAddress());
+        tmp.setName(e.getName());
+        tmp.setPhone_number(e.getPhone_number());
+        tmp.setSalary(e.getSalary());
+        //tmp.setServices(e.getServices());
+        return beanMappingService.mapTo(employeeService.update(tmp), EmployeeDTO.class);*/
     }
 }

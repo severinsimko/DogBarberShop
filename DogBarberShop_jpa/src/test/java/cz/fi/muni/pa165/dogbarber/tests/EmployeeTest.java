@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -132,6 +133,21 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
             
         }
         
+        @Test
+        public void findByName_test() {
+
+            Employee emp1 = 
+              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
+           
+            Employee emp2 =   
+              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+         
+            employeeDao.addEmployee(emp1);
+            employeeDao.addEmployee(emp2);
+        
+            List<Employee> tmp=employeeDao.findByName("Miso");
+            assertTrue(tmp.get(0).equals(emp1));
+        }
         
         Employee setEmployee(Employee em, String name, String surname,
                              String address,String phonenumber,BigDecimal salary){

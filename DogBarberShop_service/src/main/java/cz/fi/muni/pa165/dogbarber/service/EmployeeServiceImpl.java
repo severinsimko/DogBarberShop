@@ -10,13 +10,12 @@ import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
+//import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
- *
- * @author artur
+ * @author MichalBrath
  */
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 public class EmployeeServiceImpl implements EmployeeService {
@@ -46,13 +45,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployeeByName(String name) {
-        return null;// employeeDao.findByName(name);
+    public List<Employee> findEmployeeByName(String name) {
+        return employeeDao.findByName(name);
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-        return new ArrayList<Employee>(employeeDao.getAllEmployees());
+        return new ArrayList<>(employeeDao.getAllEmployees());
+    }
+    
+    @Override
+    public Employee update(Employee emp){
+        return employeeDao.updateEmployee(emp);
     }
 
     public static boolean validatePassword(String password, String hash) {

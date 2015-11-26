@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
+import java.util.List;
 /**
  *
  * @author artur
@@ -41,6 +42,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee getEmployeeByID(Long Id){
         return em.find(Employee.class, Id);
     };
+    
+    @Override
+    public List<Employee> findByName(String name) {
+        return em.createQuery("SELECT a FROM Employee a WHERE a.name = :name", Employee.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
     
     @Override
     public Set<Employee> getAllEmployees(){

@@ -10,7 +10,7 @@ import org.dozer.Mapper;
 
 /**
  *
- * @author artur
+ * @author MichalBrath
  */
 
 

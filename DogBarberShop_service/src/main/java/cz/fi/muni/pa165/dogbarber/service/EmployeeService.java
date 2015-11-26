@@ -1,12 +1,13 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
+import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author artur
+ * @author MichalBrath
  */
 @Service
 public interface EmployeeService {
@@ -19,10 +20,10 @@ public interface EmployeeService {
 
     Employee findEmployeeById(Long id);
 
-    Employee findEmployeeByName(String name);
+    List<Employee> findEmployeeByName(String name);
 
     List<Employee> getAllEmployees();
     
-   
+    Employee update(Employee emp);
 }
 
