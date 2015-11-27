@@ -10,7 +10,10 @@ import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-
+/**
+ * 
+ * @author MichalBrath
+ */
 
 @Transactional
 @org.springframework.stereotype.Service
