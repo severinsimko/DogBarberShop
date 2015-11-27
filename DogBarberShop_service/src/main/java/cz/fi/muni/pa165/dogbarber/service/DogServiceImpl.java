@@ -5,7 +5,9 @@ import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 
 /**
@@ -65,6 +67,16 @@ public class DogServiceImpl implements DogService {
         } else {
             throw new DogBarberException("Dog is not subscribed for this service!");
         }
+    }
+
+    @Override
+    public BigDecimal getTotalPrice(Long dogId) {
+        BigDecimal totalPrice = new BigDecimal("0.00");
+        Set<Service> services = dogDao.getDogByID(dogId).getServices();
+        for(Service s : services){
+            totalPrice.add(s.getPrice());
+        }
+        return totalPrice;
     }
 
 }
