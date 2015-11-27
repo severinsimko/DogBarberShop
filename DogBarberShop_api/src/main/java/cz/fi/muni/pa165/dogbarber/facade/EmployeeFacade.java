@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
+import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,5 +20,10 @@ public interface EmployeeFacade {
     Collection<EmployeeDTO> getAllEmployees();
     
     EmployeeDTO update(EmployeeDTO e);
-   
+    
+    void deleteEmployee(EmployeeDTO emp);
+
+    void addService(EmployeeDTO emp, ServiceDTO s);
+    
+    void removeService(EmployeeDTO emp, ServiceDTO s);
 }

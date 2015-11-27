@@ -6,25 +6,32 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
-import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.util.ArrayList;
 import java.util.List;
 //import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
+import javax.inject.Inject;
 
 /**
  * @author MichalBrath
  */
-@Service
+@org.springframework.stereotype.Service
 //@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
+    @Inject
     private EmployeeDao employeeDao;
-
+    
+    
+    @Override
+    public void removeEmployee(Employee emp){
+        employeeDao.removeEmployee(emp);
+    }
+    
     @Override
     public void registerEmployee(Employee employee, String password_hash) {
         employee.setPassword_hash(password_hash);
@@ -63,6 +70,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public static boolean validatePassword(String password, String hash) {
         return password.equals(hash);
+    }
+    
+    @Override
+    public void addService(Employee emp, Service s) {
+        if(emp.getServices().contains(s)){
+            throw new DogBarberException("Employee already has this service. Employee: " + emp.getId() + ", service: " + s.getId());
+        }
+        else{ 
+            
+            emp.addService(s);
+            employeeDao.updateEmployee(emp);
+        }
+    }
+
+    @Override
+    public void removeService(Employee emp, Service s) {
+        if(emp.getServices().contains(s)){
+            emp.removeService(s);
+            employeeDao.updateEmployee(emp);
+        }
+        else{
+            throw new DogBarberException("Employee doesnt has this service. Employee: " + emp.getName() + ", service: " + s.getServiceName());
+        }        
     }
 }
 

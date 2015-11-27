@@ -2,17 +2,18 @@ package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
-import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacade;
+import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import org.springframework.stereotype.Service;
+
 
 @Transactional
-@Service
+@org.springframework.stereotype.Service
 public class EmployeeFacadeImpl implements EmployeeFacade {
     @Inject
     private EmployeeService employeeService;
@@ -27,7 +28,11 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
         employeeDTO.setId(employee.getId());
     }
 
-
+    @Override
+    public void deleteEmployee(EmployeeDTO emp) {
+        employeeService.removeEmployee(beanMappingService.mapTo(emp, Employee.class));
+    }
+    
     @Override
     public boolean authenticate(EmployeeDTO emp, String pass) {
         return employeeService.authenticate(
@@ -35,8 +40,8 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     }
 
     @Override
-    public boolean isRoot(EmployeeDTO userDTO) {
-        return employeeService.isRoot(beanMappingService.mapTo(userDTO, Employee.class));
+    public boolean isRoot(EmployeeDTO employeeDTO) {
+        return employeeService.isRoot(beanMappingService.mapTo(employeeDTO, Employee.class));
     }
 
     @Override
@@ -58,13 +63,18 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     
     @Override
     public EmployeeDTO update(EmployeeDTO e) {
-        return e;
-        /*Employee tmp=employee;
-        tmp.setAddress(e.getAddress());
-        tmp.setName(e.getName());
-        tmp.setPhone_number(e.getPhone_number());
-        tmp.setSalary(e.getSalary());
-        //tmp.setServices(e.getServices());
-        return beanMappingService.mapTo(employeeService.update(tmp), EmployeeDTO.class);*/
+        return beanMappingService.mapTo(employeeService.update(beanMappingService.mapTo(e, Employee.class)),EmployeeDTO.class);
     }
+    
+    @Override
+    public void addService(EmployeeDTO emp, ServiceDTO s) {
+        employeeService.addService(beanMappingService.mapTo(emp,Employee.class), beanMappingService.mapTo(s, Service.class));
+    }
+    
+    @Override
+    public void removeService(EmployeeDTO emp, ServiceDTO s) {
+        employeeService.removeService(beanMappingService.mapTo(emp,Employee.class), beanMappingService.mapTo(s, Service.class));
+    }
+
+    
 }

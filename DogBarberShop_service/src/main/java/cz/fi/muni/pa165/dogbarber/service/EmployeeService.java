@@ -2,14 +2,14 @@ package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author MichalBrath
  */
-@Service
+@org.springframework.stereotype.Service
 public interface EmployeeService {
 
     void registerEmployee(Employee employee, String password_hash);
@@ -25,5 +25,14 @@ public interface EmployeeService {
     List<Employee> getAllEmployees();
     
     Employee update(Employee emp);
+    
+   
+    void removeEmployee(Employee emp);
+        
+    void addService(Employee emp, Service s);
+
+    void removeService(Employee emp, Service s);
+    
+
 }
 
