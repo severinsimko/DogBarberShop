@@ -3,15 +3,12 @@ package cz.fi.muni.pa165.dogbarber.service;
 import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
-import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import javax.inject.Inject;
 import org.apache.commons.beanutils.BeanComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,13 +20,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceServiceImpl implements ServiceService {
 
-    @Autowired
+    @Inject
     private ServiceDao serviceDao;
 
-    @Autowired
+    @Inject
     private EmployeeDao employeeDao;
 
-    @Autowired
+    @Inject
     private DogDao dogDao;
 
     @Override

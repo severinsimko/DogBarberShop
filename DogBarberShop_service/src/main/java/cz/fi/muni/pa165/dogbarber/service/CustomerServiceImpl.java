@@ -6,7 +6,6 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
-import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
@@ -16,11 +15,13 @@ import java.util.List;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Martin Penaz
  */
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Inject

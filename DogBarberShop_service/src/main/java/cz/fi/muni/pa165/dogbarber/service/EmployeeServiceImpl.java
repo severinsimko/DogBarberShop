@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 //import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
  * @author MichalBrath
  */
-@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
+@Service
+//@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired

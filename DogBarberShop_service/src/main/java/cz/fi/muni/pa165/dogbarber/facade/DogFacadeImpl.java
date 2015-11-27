@@ -9,11 +9,15 @@ import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.util.List;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Pavel Drobek
  */
+@Transactional
+@Service
 public class DogFacadeImpl implements DogFacade {
     
     @Inject

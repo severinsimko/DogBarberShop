@@ -68,7 +68,7 @@ public class Customer {
     }
     
     public long getId(){
-        return this.id;
+        return id;
     }
     
     public void setName(String name){

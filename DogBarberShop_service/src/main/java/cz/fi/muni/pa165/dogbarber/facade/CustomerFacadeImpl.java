@@ -15,10 +15,14 @@ import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import java.util.Collection;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 /**
  *
  * @author Martin Penaz
  */
+@Transactional
+@Service
 public class CustomerFacadeImpl implements CustomerFacade {
 
     @Inject
