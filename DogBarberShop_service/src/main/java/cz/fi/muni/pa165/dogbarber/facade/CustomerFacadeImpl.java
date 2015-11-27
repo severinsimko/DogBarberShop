@@ -13,6 +13,7 @@ import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
+import java.math.BigDecimal;
 import java.util.Collection;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -71,5 +72,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public boolean authenticate(CustomerAuthenticateDTO c) {
         return customerService.authenticate(customerService.findById(c.getCustomerId()), c.getPassword());
     }    
+
+    @Override
+    public BigDecimal getTotalPrice(Long Id) {
+        return customerService.getTotalPrice(customerService.findById(Id));
+    }
 
 }

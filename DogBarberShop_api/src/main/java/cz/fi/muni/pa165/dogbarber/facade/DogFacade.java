@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.dogbarber.facade;
 import cz.fi.muni.pa165.dogbarber.dto.DogCreatedDTO;
 import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -22,4 +23,6 @@ public interface DogFacade {
     void subscribeDogForAService(DogDTO dog, ServiceDTO service);
     
     void unsubscribeDogForAService(DogDTO dog, ServiceDTO service);
+    
+    BigDecimal getTotalPrice(Long dogId);
 }

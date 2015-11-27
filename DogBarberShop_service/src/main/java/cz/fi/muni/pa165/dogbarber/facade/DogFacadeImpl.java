@@ -7,6 +7,7 @@ import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -60,6 +61,11 @@ public class DogFacadeImpl implements DogFacade {
     public void unsubscribeDogForAService(DogDTO dog, ServiceDTO service) {
         dogService.unsubscribeDogForAService(dogService.getDogByID(dog.getId()), 
                 serviceService.findById(service.getId()));
+    }
+
+    @Override
+    public BigDecimal getTotalPrice(Long dogId) {
+        return dogService.getTotalPrice(dogId);
     }
     
 }

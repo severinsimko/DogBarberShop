@@ -133,6 +133,5 @@ public class CustomerServiceTest {
     @Test(expectedExceptions=DogBarberException.class)
     public void deleteNonExistentDog(){
         customerService.removeDog(d2, c1);
-    }
-    
+    }    
 }

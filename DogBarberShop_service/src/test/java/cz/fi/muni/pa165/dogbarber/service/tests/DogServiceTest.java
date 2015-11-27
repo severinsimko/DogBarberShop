@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.*;
@@ -85,5 +86,11 @@ public class DogServiceTest extends AbstractDogServiceTest {
     @Test(expectedExceptions=DogBarberException.class)
     public void unsubscribeForNonexistingServiceTest(){
         dogService.unsubscribeDogForAService(dog1, nonExistingService);
+    }
+    
+    public void getTotalPriceTest(){
+        when(dogDao.getDogByID(dog4.getId())).thenReturn(dog4);
+        BigDecimal price = dogService.getTotalPrice(dog4.getId());
+        assertEquals(price, new BigDecimal("20.00"));
     }
 }

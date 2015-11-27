@@ -6,6 +6,7 @@ import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import cz.fi.muni.pa165.dogbarber.service.DogServiceImpl;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,8 +45,10 @@ public abstract class AbstractDogServiceTest {
     protected Dog dog1;
     protected Dog dog2;
     protected Dog dog3;
+    protected Dog dog4;
     
     protected Service service;
+    protected Service service1;
     protected Service nonExistingService;
     
     protected List<Service> services;
@@ -57,9 +60,16 @@ public abstract class AbstractDogServiceTest {
         dog1 = new Dog("Johny The Dog", "Husky", bornDate, Color.WHITE);
         dog2 = new Dog("Johny's Twin Bulgod", "Buldog", bornDate, Color.BLACK);
         dog3 = new Dog("Doge", "Chivauva", bornDate, Color.BROWN);
+        dog4 = new Dog("Johny The Dog", "Husky", bornDate, Color.WHITE);
         
-                service = new Service();
+        service = new Service();
         service.setServiceName("Washing");
+        service.setPrice(new BigDecimal("10.00"));
+        
+        service1 = new Service();
+        service1.setServiceName("Skinning");
+        service1.setPrice(new BigDecimal("20.00"));
+        
         
         services = new ArrayList();
         services.add(service);
@@ -68,5 +78,8 @@ public abstract class AbstractDogServiceTest {
         nonExistingService.setServiceName("Spare");
         
         dog2.addService(service);
+        
+        dog4.addService(service);
+        dog4.addService(service1);
     }
 }
