@@ -8,7 +8,7 @@ package cz.fi.muni.pa165.dogbarber.facade;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -31,7 +31,7 @@ public interface ServiceFacade {
     /*
     Will return collection of allServices currently available
     */
-    Collection<ServiceDTO> getAllServices();
+    List<ServiceDTO> getAllServices();
     
     /*
     Will find a service with a specific id

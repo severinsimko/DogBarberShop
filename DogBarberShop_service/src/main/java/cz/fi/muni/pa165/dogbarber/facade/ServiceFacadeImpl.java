@@ -6,26 +6,27 @@ import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
-import java.util.Collection;
-import javax.inject.Inject;
+import java.util.List;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Severin Simko
  */
-@Transactional
 @Service
+@Transactional
+
 public class ServiceFacadeImpl implements ServiceFacade {
  
-    @Inject
+    @Autowired
     private BeanMappingService beanMappingService;
     
-    @Inject
+    @Autowired
     private ServiceService service;
     
-    @Inject
+    @Autowired
     private EmployeeService employeeService;
     
     @Override
@@ -46,7 +47,7 @@ public class ServiceFacadeImpl implements ServiceFacade {
     }
     
     @Override
-    public Collection<ServiceDTO> getAllServices(){
+    public List<ServiceDTO> getAllServices(){
     
         return beanMappingService.mapTo(service.getAllServices(), ServiceDTO.class);
     }
