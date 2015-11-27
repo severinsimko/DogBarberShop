@@ -6,8 +6,10 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
+import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
@@ -23,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Inject
     private CustomerDao customerDao;
-
+    
     @Override
     public Customer findById(Long Id) {
         return customerDao.findById(Id);
@@ -36,15 +38,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addDog(Dog dog, Customer customer) {
-        /*if(customer.getAllDogs().contains(dog)){
-            throw new ShopServiceException("Customer already has this dog. Customer: " + customer.getId() + ", dog: " dog.getId());
-        }*/
-        customer.addDog(dog);
+        if(customer.getAllDogs().contains(dog)){
+            throw new DogBarberException("Customer already has this dog. Customer: " + customer.getId() + ", dog: " + dog.getId());
+        }
+        else{            
+            customer.addDog(dog);
+            customerDao.updateCustomer(customer);
+        }
     }
 
     @Override
     public void removeDog(Dog dog, Customer customer) {
-        customer.removeDog(dog);
+        if(customer.getAllDogs().contains(dog)){
+            customer.removeDog(dog);
+            customerDao.updateCustomer(customer);
+        }
+        else{
+            throw new DogBarberException("Customer doesnt own this dog. Customer: " + customer.getId() + ", dog: " + dog.getId());
+        }        
     }
 
     @Override
