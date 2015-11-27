@@ -95,6 +95,10 @@ public class Dog {
         return id;
     }
     
+    public void setId(Long Id){
+        this.id = Id;
+    }
+    
     public String getName() {
         return name;
     }

@@ -96,7 +96,6 @@ public class CustomerServiceTest {
     
     @Test
     public void findCustomerByIdTest(){
-       // c1.setId(new Long("1"));
         when(customerDao.findById(c1.getId())).thenReturn(c1);
         assertEquals(customerService.findById(c1.getId()), c1);
     }
