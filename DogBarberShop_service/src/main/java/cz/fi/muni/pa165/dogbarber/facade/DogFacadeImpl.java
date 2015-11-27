@@ -11,23 +11,25 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Pavel Drobek
  */
-@Transactional
+
 @Service
+@Transactional
 public class DogFacadeImpl implements DogFacade {
     
-    @Inject
+    @Autowired
     private DogService dogService;
     
-    @Inject
+    @Autowired
     private ServiceService serviceService;
     
-    @Inject
+    @Autowired
     private BeanMappingService beanMappingService;
     
     @Override

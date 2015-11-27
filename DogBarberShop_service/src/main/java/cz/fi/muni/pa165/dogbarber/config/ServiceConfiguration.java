@@ -5,8 +5,10 @@
  */
 package cz.fi.muni.pa165.dogbarber.config;
 
+import cz.fi.muni.pa165.dogbarber.facade.DogFacadeImpl;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacadeImpl;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
+import cz.fi.muni.pa165.dogbarber.service.DogServiceImpl;
 import cz.fi.muni.pa165.dogbarber.service.ServiceServiceImpl;
 import java.util.Locale.Category;
 import org.dozer.DozerBeanMapper;
@@ -20,7 +22,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-@ComponentScan(basePackageClasses={ServiceServiceImpl.class, ServiceFacadeImpl.class})
+@ComponentScan(basePackageClasses={ServiceServiceImpl.class, ServiceFacadeImpl.class, DogServiceImpl.class, DogFacadeImpl.class})
 public class ServiceConfiguration {
 	
 
