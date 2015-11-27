@@ -7,6 +7,7 @@ package cz.fi.muni.pa165.dogbarber.service.tests;
 
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
+import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
@@ -42,6 +43,9 @@ public class CustomerServiceTest {
     @Mock
     CustomerDao customerDao;
     
+    @Mock
+    DogDao dogDao;
+    
     @Autowired
     @InjectMocks
     CustomerServiceImpl customerService;
@@ -65,7 +69,7 @@ public class CustomerServiceTest {
         c1.setSurName("Hruska");
         c1.setAdress("Brno");
         c1.setPhoneNumber("123456789");
-        //c1.setId(new Long(1));
+        c1.setId(new Long(1));
         
         c2 = new Customer();
         c2.setName("Adam");
@@ -74,9 +78,8 @@ public class CustomerServiceTest {
         c2.setPhoneNumber("123456789");
         
         d1 = new Dog("Rex", "Vlcak", new GregorianCalendar(2013, Calendar.JANUARY, 10), Color.BLACK);
-        d1.setCustomer(c1);
+        c1.addDog(d1);
         d2 = new Dog("Dasenka", "Pudl", new GregorianCalendar(2013, Calendar.DECEMBER, 10), Color.WHITE);  
-        c2.addDog(d2);
     }
     
     @Test
@@ -110,26 +113,26 @@ public class CustomerServiceTest {
     
     @Test
     public void addDogTest(){
-        customerService.addDog(d1, c1);
+        customerService.addDog(d2, c1);
         assertTrue(c1.getAllDogs().contains(d1));
         verify(customerDao, times(1)).updateCustomer(c1); 
     }
     
     @Test
     public void removeDogTest(){
-        customerService.removeDog(d2, c2);
-        assertFalse(c2.getAllDogs().contains(d2));
-        verify(customerDao, times(1)).updateCustomer(c2); 
+        customerService.removeDog(d1, c1);
+        assertFalse(c1.getAllDogs().contains(d1));
+        verify(customerDao, times(2)).updateCustomer(c1); 
     }
     
     @Test(expectedExceptions=DogBarberException.class)
     public void addAlreadyOwnedDog(){
-        
+        customerService.addDog(d1, c1);
     }
     
     @Test(expectedExceptions=DogBarberException.class)
     public void deleteNonExistentDog(){
-        
+        customerService.removeDog(d2, c1);
     }
     
 }
