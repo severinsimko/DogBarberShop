@@ -3,17 +3,20 @@ package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
-import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.util.Collection;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Severin Simko
  */
+@Transactional
+@Service
 public class ServiceFacadeImpl implements ServiceFacade {
  
     @Inject
@@ -57,7 +60,7 @@ public class ServiceFacadeImpl implements ServiceFacade {
     @Override
     public Long createService(ServiceDTO s){
     
-        Service serv = new Service();
+        cz.fi.muni.pa165.dogbarber.entity.Service serv = new cz.fi.muni.pa165.dogbarber.entity.Service();
         serv.setServiceName(s.getServiceName());
         serv.setLengthInMinutes(s.getLengthInMinutes());
         serv.setPrice(s.getPrice());
@@ -78,7 +81,7 @@ public class ServiceFacadeImpl implements ServiceFacade {
     @Override
     public void updateService(ServiceDTO s){
     
-        service.update(beanMappingService.mapTo(s, Service.class));
+        service.update(beanMappingService.mapTo(s, cz.fi.muni.pa165.dogbarber.entity.Service.class));
     }
     
 }

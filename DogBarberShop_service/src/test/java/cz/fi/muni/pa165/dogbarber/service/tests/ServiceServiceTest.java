@@ -6,11 +6,14 @@ import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.beanutils.BeanComparator;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +36,7 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
 
     final static Logger logger = LoggerFactory.getLogger(ServiceServiceTest.class);
     
-    @Autowired
+    @Mock
     ServiceDao serviceDao;
 
     @Autowired
@@ -60,37 +63,39 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
     @Test
     public void testUpdateExcusion() {
 
-        serviceDao.createService(service1);
-        service1.setServiceName("Name changed");
-        service1.setLengthInMinutes(150);
+       
         serviceServ.update(service1);
-        assertEquals(service1, serviceDao.findbyId(service1.getId()));
+        verify(serviceDao).updateService(service1);
     }
 
     @Test
     public void testFindByIdNotExisting() {
+         when(serviceDao.findbyId(Long.MIN_VALUE)).thenReturn(null);
         assertNull(serviceServ.findById(Long.MIN_VALUE));
     }
 
     @Test
     public void testFindById() {
-
-        serviceDao.createService(service1);
+        service1.setId(new Long("11"));
+        when(serviceDao.findbyId(service1.getId())).thenReturn(service1);
+       
         assertEquals(service1, serviceServ.findById(service1.getId()));
     }
 
     @Test
     public void testFindAll() {
 
+        when(serviceDao.getAllServices()).thenReturn(new ArrayList<Service>());
         assertEquals(serviceServ.getAllServices().size(), 0);
-        serviceDao.createService(service1);
-        assertTrue(serviceServ.getAllServices().size() == 1);
+        when(serviceDao.getAllServices()).thenReturn(Collections.singletonList(service1));
+        assertEquals(serviceServ.getAllServices().size(), 1);
+        
         Service s = new Service();
         s.setLengthInMinutes(120);
         s.setPrice(new BigDecimal("1270"));
         s.setServiceName("TestName2");
 
-        serviceDao.createService(s);
+        when(serviceDao.getAllServices()).thenReturn(Arrays.asList(service1, s));
 
         assertTrue(serviceServ.getAllServices().size()==2);
     }
@@ -99,8 +104,8 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
 
     @Test
     public void testFindByName() {
-        serviceDao.createService(service1);
-        assertTrue(serviceServ.getAllServices().size()==1);       
+        when(serviceDao.findByName(service1.getServiceName())).thenReturn(Arrays.asList(service1));
+               
         assertTrue( serviceServ.getServicesByName(service1.getServiceName()).contains(service1));
     }
 
@@ -114,7 +119,7 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
         service2.setPrice(new BigDecimal("12"));
         service2.setServiceName("TestName2");
         
-         Service service3 = new Service();
+        Service service3 = new Service();
         service3.setLengthInMinutes(900);
         service3.setPrice(new BigDecimal("1"));
         service3.setServiceName("TestName2");
@@ -122,34 +127,19 @@ public class ServiceServiceTest extends AbstractTransactionalTestNGSpringContext
         //service 3 : 1 , service2: 12 ,service 1 : 120
         
         List<Service> list = new ArrayList<>();
-        serviceDao.createService(service1);
-        serviceDao.createService(service2);
-        serviceDao.createService(service3);
-        list = serviceDao.getAllServices();
-        assertTrue(list.size()==3);
-        assertEquals(service1.getId(), list.get(0).getId());
-        assertEquals(service2.getId(), list.get(1).getId());
         
+        when(serviceDao.getAllServices()).thenReturn(Arrays.asList(service1,service3,service2));
+          
+   
+        
+        list = serviceServ.sortedServicesByPrice();
        
-        
-        logger.info(list.get(0).getPrice().toString());
-        logger.info(list.get(1).getPrice().toString());
-        logger.info(list.get(2).getPrice().toString());
-        
-        
-        
-       List<Service> sortedList = new ArrayList<>();
-        
-      sortedList =  serviceServ.sortedServicesByPrice();
-      
-      
-      logger.info(sortedList.get(0).getPrice().toString());
-        logger.info(sortedList.get(1).getPrice().toString());
-        logger.info(sortedList.get(2).getPrice().toString());
-        
-       assertEquals(service3.getId(), sortedList.get(0).getId());
-       assertEquals(service2.getId(), sortedList.get(1).getId());
-       assertEquals(service1.getId(), sortedList.get(2).getId());
+         assertTrue(list.size()==3);
+         
+         
+       assertEquals(service3.getId(), list.get(0).getId());
+       assertEquals(service2.getId(), list.get(1).getId());
+       assertEquals(service1.getId(), list.get(2).getId());
         
     }
 }

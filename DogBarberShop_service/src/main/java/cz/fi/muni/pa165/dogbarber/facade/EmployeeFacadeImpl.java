@@ -8,8 +8,11 @@ import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
-
+@Transactional
+@Service
 public class EmployeeFacadeImpl implements EmployeeFacade {
     @Inject
     private EmployeeService employeeService;
