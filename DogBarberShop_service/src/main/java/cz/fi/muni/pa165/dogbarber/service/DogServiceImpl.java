@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -25,47 +27,71 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public void createDog(Dog dog) {
-        dogDao.addDog(dog);
+        try{
+            dogDao.addDog(dog);
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
+        }
     }
 
     @Override
     public void deleteDog(Dog dog) {
-        dogDao.removeDog(dog);
+        try{
+            dogDao.removeDog(dog);
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
+        } 
     }
 
     @Override
     public Dog getDogByID(Long dogId) {
-        return dogDao.getDogByID(dogId);
+        try{
+            return dogDao.getDogByID(dogId);
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
+        }
     }
 
     @Override
     public List<Dog> getAllDogs() {
-        return dogDao.getAllDogs();
+        try{
+            return dogDao.getAllDogs();
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
+        }
     }
 
     @Override
     public void subscribeDogForAService(Dog dog, Service service) {
-        List<Service> services = serviceDao.findByName(service.getServiceName());
-        if (services.contains(service)) {
-            dog.addService(service);
-            dogDao.updateDog(dog);
-        } else {
-            throw new DogBarberException("No such service in database!");
+        try{    
+            List<Service> services = serviceDao.findByName(service.getServiceName());
+            if (services.contains(service)) {
+                dog.addService(service);
+                dogDao.updateDog(dog);
+            } else {
+                throw new DogBarberException("No such service in database!");
+            }
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
         }
     }
 
     @Override
     public void unsubscribeDogForAService(Dog dog, Service service) {
-        List<Service> services = serviceDao.findByName(service.getServiceName());
-        if (!services.contains(service)){
-            throw new DogBarberException("No such service in database!");
-        }
-        if(dog.getServices().contains(service))
-        {
-            dog.removeService(service);
-            dogDao.updateDog(dog);
-        } else {
-            throw new DogBarberException("Dog is not subscribed for this service!");
+        try{    
+            List<Service> services = serviceDao.findByName(service.getServiceName());
+            if (!services.contains(service)){
+                throw new DogBarberException("No such service in database!");
+            }
+            if(dog.getServices().contains(service))
+            {
+                dog.removeService(service);
+                dogDao.updateDog(dog);
+            } else {
+                throw new DogBarberException("Dog is not subscribed for this service!");
+            }
+        } catch(PersistenceException e){
+            throw new DataAccessException("Failed to add dog", e) {};
         }
     }
 
