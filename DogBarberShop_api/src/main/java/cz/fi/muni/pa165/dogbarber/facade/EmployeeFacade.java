@@ -4,7 +4,10 @@ import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import java.util.Collection;
 import java.util.List;
-
+/**
+ * 
+ * @author MichalBrath
+ */
 public interface EmployeeFacade {
 
     void registerEmployee(EmployeeDTO employeeDTO, String passwordHash);

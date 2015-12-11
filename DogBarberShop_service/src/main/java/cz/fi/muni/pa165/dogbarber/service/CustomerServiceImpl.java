@@ -9,12 +9,15 @@ import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Set;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,6 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Inject
     private CustomerDao customerDao;
+    
+    @Autowired
+    private DogService dogService;
     
     @Override
     public Customer findById(Long Id) {
@@ -73,6 +79,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean authenticate(Customer c, String password) {
        return validatePassword(password, c.getPassword());
+    }
+    
+    @Override
+    public BigDecimal getTotalPrice(Customer customer) {
+        BigDecimal price = new BigDecimal("0.00");
+        Set<Dog> dogs = customerDao.findById(customer.getId()).getAllDogs();
+        for(Dog d : dogs){
+            price.add(dogService.getTotalPrice(d.getId()));
+        }
+        return price;
     }
     
     //see  https://crackstation.net/hashing-security.htm#javasourcecode

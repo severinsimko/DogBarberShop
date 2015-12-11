@@ -8,6 +8,7 @@ package cz.fi.muni.pa165.dogbarber.facade;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerAuthenticateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
@@ -20,7 +21,7 @@ public interface CustomerFacade {
     public void registerCustomer(CustomerCreateDTO c, String password);
     public void addDog(Long CustomerId, Long DogId);
     public void removeDog(Long CustomerId, Long DogId);
-    public void deleteCustomer(Long CustomerId);
-    
+    public void deleteCustomer(Long CustomerId);    
     boolean authenticate(CustomerAuthenticateDTO c);
+    BigDecimal getTotalPrice(Long Id);
 }

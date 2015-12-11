@@ -7,6 +7,7 @@ package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.stereotype.Service;
 /**
@@ -22,4 +23,5 @@ public interface CustomerService {
     public void removeDog(Dog dog, Customer customer);
     public void deleteCustomer(Customer c);
     boolean authenticate(Customer c, String password);
+    public BigDecimal getTotalPrice(Customer customer);
 }

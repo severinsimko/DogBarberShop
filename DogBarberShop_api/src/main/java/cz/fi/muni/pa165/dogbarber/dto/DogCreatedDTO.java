@@ -28,6 +28,16 @@ public class DogCreatedDTO {
     @NotNull
     private CustomerDTO customer;
     
+    public DogCreatedDTO() {}
+    
+    public DogCreatedDTO(String name, String breed, Color color, Calendar bornDate, CustomerDTO customer){
+        this.name = name;
+        this.breed = breed;
+        this.bornDate = bornDate;
+        this.color = color;
+        this.customer = customer;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
