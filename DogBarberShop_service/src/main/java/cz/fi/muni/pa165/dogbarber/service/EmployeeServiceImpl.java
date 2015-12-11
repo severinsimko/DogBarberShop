@@ -6,14 +6,13 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
-import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.util.ArrayList;
 import java.util.List;
 //import javax.inject.Inject;
-import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
+import static cz.fi.muni.pa165.dogbarber.service.CustomerServiceImpl.validatePassword;
 import javax.inject.Inject;
 
 /**
@@ -71,6 +70,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static boolean validatePassword(String password, String hash) {
         return password.equals(hash);
     }
+    
+    
+    
     
     @Override
     public void addService(Employee emp, Service s) {

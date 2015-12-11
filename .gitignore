@@ -15,3 +15,4 @@ target/
 DogBarberShop_api/target/
 DogBarberShop_jpa/target/
 DogBarberShop_service/target/
+/DogBarberShop_sampleData/nbproject/private/

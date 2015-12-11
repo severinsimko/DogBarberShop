@@ -33,6 +33,12 @@ public interface ServiceFacade {
     */
     List<ServiceDTO> getAllServices();
     
+    
+    /*
+    Will return list of services by surName
+    */
+        
+    List<ServiceDTO> getServicesByName(String surName);
     /*
     Will find a service with a specific id
     */

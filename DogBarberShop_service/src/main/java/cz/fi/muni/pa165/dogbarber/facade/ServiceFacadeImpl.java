@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
-
 public class ServiceFacadeImpl implements ServiceFacade {
  
     @Autowired
@@ -53,8 +52,15 @@ public class ServiceFacadeImpl implements ServiceFacade {
     }
     
     @Override
-    public ServiceDTO getServiceById(Long id){
+    public List<ServiceDTO> getServicesByName(String surName){
+     return beanMappingService.mapTo(service.getServicesByName(surName), ServiceDTO.class);
+        
+    }
     
+    
+    @Override
+    public ServiceDTO getServiceById(Long id){
+      
         return beanMappingService.mapTo(service.findById(id), ServiceDTO.class);
     }
     
