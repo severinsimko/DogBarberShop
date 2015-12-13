@@ -13,10 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Date;
 /**
  *
  * @author Severin Simko
@@ -45,6 +43,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Service service1= service(120,new BigDecimal(BigInteger.TEN),"Test1");
        Service service2= service(180,new BigDecimal("120"),"Test2");
     
+       Employee employee1= employee("Admin","TestPriezvisko",true,"admin","address","1921654",new BigDecimal("120"));
+       Employee employee2= employee("Meno","Priezvisko",false,"meno","addressa","1921654546",new BigDecimal("1200"));
     
     }
     
@@ -57,8 +57,23 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         return ser;
     }
      
+     
+     private Employee employee(String name, String surname,boolean root,String pass, String address,String phoneNum,BigDecimal salary) {
+        Employee employee = new Employee();
+        employee.setAddress(address);
+        employee.setName(name);
+        employee.setPassword_hash(pass);
+        employee.setPhone_number(phoneNum);
+        employee.setRoot(root);
+        employee.setSurname(surname);
+        employee.setSalary(salary);       
+        employeeService.registerEmployee(employee, pass);
+        return employee;    
+    }
+     
+     
+     
      }
-    
     
     
 

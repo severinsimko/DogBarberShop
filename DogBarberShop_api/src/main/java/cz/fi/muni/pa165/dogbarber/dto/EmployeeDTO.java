@@ -85,7 +85,9 @@ public class EmployeeDTO {
     }
 
     public Set<ServiceDTO> getServices(){
-        return Collections.unmodifiableSet(services);
+       // return Collections.unmodifiableSet(services);
+        Set<ServiceDTO> set = new HashSet<>();
+        return set;
     }
     
     @Override

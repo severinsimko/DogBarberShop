@@ -27,16 +27,7 @@ public class CustomerDTO {
     private String phoneNumber;
     
     private Set<DogDTO> dogs = new HashSet<>();
-    
-    private String passwordHash;
-    
-    public String getPasswordHash(){
-        return passwordHash;
-    }
-    
-    public void setPasswordHash(String passwordHash){
-        this.passwordHash = passwordHash;
-    }
+ 
     
     public Long getId(){
         return Id;

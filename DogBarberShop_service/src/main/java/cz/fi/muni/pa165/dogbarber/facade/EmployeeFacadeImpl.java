@@ -49,8 +49,15 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public EmployeeDTO findEmployeeById(Long userId) {
+       
         Employee emp = employeeService.findEmployeeById(userId);
-        return beanMappingService.mapTo(emp, EmployeeDTO.class);
+        
+         if(emp==null){
+            return null;
+        
+        }
+            return beanMappingService.mapTo(emp, EmployeeDTO.class);
+    
     }
 
     @Override

@@ -13,11 +13,6 @@
     <packaging>war</packaging>
 
     <name>DogBarberShop_spring_mvc</name>
-
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
     
     <dependencies>
         <dependency>
@@ -26,11 +21,16 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DogBarberShop_api</artifactId>
+            <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DogBarberShop_sampleData</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    
         
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -55,29 +55,6 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
-        <!-- validator for bean properties -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-
-        <!-- must provide logging implementation, this is a runnable project -->
-        <!-- see viz http://docs.spring.io/platform/docs/1.1.4.RELEASE/reference/htmlsingle/#getting-started-logging -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
-
-        <!-- libraries needed for unit tests -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -105,7 +82,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/eshop</path>
+                    <path>/pa165</path>
                 </configuration>
             </plugin>
         </plugins>
