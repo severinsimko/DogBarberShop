@@ -5,11 +5,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author MichalBrath
  */
 public class EmployeeDTO {
+    
+    final static Logger log = LoggerFactory.getLogger(EmployeeDTO.class);
     
     private Long id;
     
@@ -85,9 +89,8 @@ public class EmployeeDTO {
     }
 
     public Set<ServiceDTO> getServices(){
-       // return Collections.unmodifiableSet(services);
-        Set<ServiceDTO> set = new HashSet<>();
-        return set;
+        log.error("EMPLOYEE GET SERVICES",services);
+       return services;
     }
     
     @Override

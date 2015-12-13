@@ -77,7 +77,7 @@ public class ServiceDTO {
     }
 
     public Set<EmployeeDTO> getAllEmployees() {
-        return Collections.unmodifiableSet(employees);
+        return employees;
 
     }
 

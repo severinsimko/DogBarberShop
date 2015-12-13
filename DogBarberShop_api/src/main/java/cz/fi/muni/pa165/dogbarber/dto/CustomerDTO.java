@@ -50,7 +50,7 @@ public class CustomerDTO {
     }
     
     public Set<DogDTO> getDogs(){
-        return Collections.unmodifiableSet(dogs);
+        return dogs;
     }
     
      public void setId(Long Id){
