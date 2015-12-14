@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.fi.muni.pa165</groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
+    <modelVersion>4.0.0</modelVersion>
+	
+	<groupId>cz.fi.muni.pa165</groupId>
     <artifactId>dog_barber_shop</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
-
-    <name>Dog Barber Shop</name>
+	<name>Dog Barber Shop</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +30,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <build>
         <plugins>
             <plugin>
@@ -39,6 +44,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -57,12 +63,8 @@
         <module>DogBarberShop_api</module>
         <module>DogBarberShop_service</module>
         <module>DogBarberShop_jpa</module>
-    <module>DogBarberShop_rest</module>
+        <module>DogBarberShop_rest</module>
         <module>DogBarberShop_sampleData</module>
-    <module>DogBarberShop_spring_mvc</module>
-  </modules>
-
-    <dependencies>
-    </dependencies>
-
+        <module>DogBarberShop_spring_mvc</module>
+    </modules>
 </project>

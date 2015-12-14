@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>dog_barber_shop</artifactId>
         <groupId>cz.fi.muni.pa165</groupId>
+        <artifactId>dog_barber_shop</artifactId>
         <version>1.0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>DogBarberShop_service</artifactId>
+	<name>DogBarberShop_service</name>
 
     <dependencies>
         <dependency>
@@ -22,10 +26,10 @@
             <artifactId>DogBarberShop_jpa</artifactId>
             <version>1.0</version>
         </dependency>
+        
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
-            <version>1</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -41,5 +45,4 @@
             <type>jar</type>
         </dependency>
     </dependencies>
-    <name>DogBarberShop_service</name>
 </project>
