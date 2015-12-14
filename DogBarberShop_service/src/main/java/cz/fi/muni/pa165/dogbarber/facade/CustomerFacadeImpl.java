@@ -78,4 +78,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return customerService.getTotalPrice(customerService.findById(Id));
     }
 
+    @Override
+    public CustomerDTO getCustomerByEmail(String email) {
+        Customer c = customerService.findByEmail(email);
+        return (c == null) ? null : beanMappingService.mapTo(c, CustomerDTO.class);
+    }
+
 }

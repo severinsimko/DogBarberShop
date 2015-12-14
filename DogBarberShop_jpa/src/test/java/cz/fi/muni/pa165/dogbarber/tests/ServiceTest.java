@@ -51,14 +51,17 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
         employee1.setPhone_number("0123456");
         employee1.setSalary(new BigDecimal(222.22));
         employee1.setSurname("Employee1 surname");
+        employee1.setEmail("mail@mail.cz");
 
+        
         employee2 = new Employee();
         employee2.setAddress("Address employee2");
         employee2.setName("Second Employee");
         employee2.setPhone_number("654321");
         employee2.setSalary(new BigDecimal(111.111));
         employee2.setSurname("Employee2 surname");
-
+        employee2.setEmail("mail@mail.cz");
+        
         service1 = new Service();
         service1.setLengthInMinutes(90);
         service1.setPrice(new BigDecimal(222.222));

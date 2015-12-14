@@ -18,6 +18,8 @@ public interface EmployeeFacade {
 
     EmployeeDTO findEmployeeById(Long id);
     
+    EmployeeDTO findEmployeeByEmail(String email);
+    
     List<EmployeeDTO> findEmployeeByName(String name);
 
     Collection<EmployeeDTO> getAllEmployees();

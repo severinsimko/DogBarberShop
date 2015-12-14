@@ -42,10 +42,22 @@ public class Customer {
     @Column(nullable=false)
     private String phoneNumber;
     
+    @NotNull
+    @Column(nullable=false)
+    private String email;
+    
     @OneToMany(mappedBy = "customer")
     private Set<Dog> dogs = new HashSet<>();
     
     private String password;
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
     
     public String getPassword(){
         return password;

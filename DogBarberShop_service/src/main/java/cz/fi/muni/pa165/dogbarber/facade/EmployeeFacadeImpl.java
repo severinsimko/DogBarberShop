@@ -86,5 +86,16 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
         employeeService.removeService(beanMappingService.mapTo(emp,Employee.class), beanMappingService.mapTo(s, Service.class));
     }
 
+    @Override
+    public EmployeeDTO findEmployeeByEmail(String email) {
+        Employee emp = employeeService.findEmployeeByEmail(email);
+        
+        if(emp==null){
+            return null;
+        
+        }
+            return beanMappingService.mapTo(emp, EmployeeDTO.class);
+    }
+
     
 }

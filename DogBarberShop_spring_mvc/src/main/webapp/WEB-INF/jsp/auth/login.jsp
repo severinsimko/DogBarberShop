@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <form method="POST">
-            Idcko: <input type="text" name="id"/><br/>
+            Email: <input type="text" name="email"/><br/>
             Password: <input type="password" name="password"/><br/>
             <input type="submit"/>
         </form>

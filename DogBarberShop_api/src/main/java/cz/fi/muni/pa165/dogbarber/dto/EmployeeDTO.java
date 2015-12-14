@@ -31,6 +31,16 @@ public class EmployeeDTO {
 
     private Set <ServiceDTO> services = new HashSet<>();
     
+    private String email;
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
     // root user can be created just by system
     public boolean isRoot(){
         return root;

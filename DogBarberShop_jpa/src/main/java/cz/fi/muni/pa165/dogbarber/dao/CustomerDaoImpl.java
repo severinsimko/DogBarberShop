@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerDaoImpl implements CustomerDao {
 
     @PersistenceContext
-    EntityManager em ;
+    EntityManager em;
     
     @Override
     public Customer findById(Long id) {
@@ -49,6 +49,11 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<Customer> getAllCustomers() {
         return em.createQuery("select c from Customer c", Customer.class).getResultList();
+    }
+
+    @Override
+    public Customer findByEmail(String email) {
+        return em.createQuery("SELECT c FROM Customer c where email=:email", Customer.class).setParameter("email", email).getSingleResult();
     }
     
 }

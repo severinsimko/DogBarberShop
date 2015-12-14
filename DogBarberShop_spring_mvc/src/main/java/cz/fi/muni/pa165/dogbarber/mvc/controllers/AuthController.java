@@ -44,18 +44,23 @@ public class AuthController {
     
     
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@RequestParam long id,@RequestParam String password, Model model,RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {
-       log.error("login"+id);
-        EmployeeDTO employeeDTO = employee.findEmployeeById(id);
+    public String login(@RequestParam String password, @RequestParam String email,Model model,RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {       
+       EmployeeDTO employeeDTO = null;
+       try{
+           employeeDTO = employee.findEmployeeByEmail(email);
+       }
+       catch(Exception ex){
+           
+       }
        
        if(employeeDTO == null){       
            log.error("login found employee null ");
             CustomerAuthenticateDTO authCust = new CustomerAuthenticateDTO();
-            authCust.setCustomerId(id);
+            CustomerDTO customerDTO = customer.getCustomerByEmail(email);
+            authCust.setCustomerId(customerDTO.getId());
             authCust.setPassword(password);
             boolean authenticatedCustomer = customer.authenticate(authCust) ;
-            if(authenticatedCustomer){
-                CustomerDTO customerDTO = customer.getCustomerById(id);
+            if(authenticatedCustomer){                
                 HttpSession session= request.getSession(true);
                 session.setAttribute("customerDTO", customerDTO);
                 return "redirect:/shopping";

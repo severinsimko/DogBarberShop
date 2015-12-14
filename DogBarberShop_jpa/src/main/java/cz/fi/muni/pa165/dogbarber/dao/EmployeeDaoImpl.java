@@ -60,5 +60,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee updateEmployee(Employee employee){
         return em.merge(employee);
     }
+
+    @Override
+    public Employee getEmployeeByEmail(String email) {
+        return em.createQuery("SELECT e FROM Employee e where email=:email", Employee.class).setParameter("email", email).getSingleResult();
+    }
     
 }

@@ -53,12 +53,14 @@ public class CustomerTest extends AbstractTransactionalTestNGSpringContextTests 
         c1.setSurName("Frajer");
         c1.setAdress("Brno");
         c1.setPhoneNumber("123456789");
+        c1.setEmail("email@email.cz");
         
         c2 = new Customer();
         c2.setName("Petr");
         c2.setSurName("Frajer");
         c2.setAdress("Brno");
         c2.setPhoneNumber("123456789");
+        c2.setEmail("email@email.cz");
         
         d1 = new Dog("Rex", "Vlcak", new GregorianCalendar(2013, Calendar.JANUARY, 10), Color.BLACK);
         d1.setCustomer(c1);

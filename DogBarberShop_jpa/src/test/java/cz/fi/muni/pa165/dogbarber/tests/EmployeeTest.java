@@ -48,10 +48,10 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
 	public void create_update_addService_test() {
 
             Employee emp1 = 
-              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
+              setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
            
 
 
@@ -89,10 +89,10 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
         public void add_find_test() {
 
             Employee emp1 = 
-              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
+              setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -109,10 +109,10 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
         public void remove_test() {
 
             Employee emp1 = 
-              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
+              setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -137,10 +137,10 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
         public void findByName_test() {
 
             Employee emp1 = 
-              setEmployee(new Employee(),"Miso","Brath","Pohranice","3636569",BigDecimal.valueOf(10000));
+              setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -149,10 +149,11 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
             assertTrue(tmp.get(0).equals(emp1));
         }
         
-        Employee setEmployee(Employee em, String name, String surname,
+        Employee setEmployee(Employee em, String name, String surname, String email,
                              String address,String phonenumber,BigDecimal salary){
             em.setName(name);
             em.setSurname(surname);
+            em.setEmail(email);
             em.setAddress(address);
             em.setPhone_number(phonenumber);
             em.setSalary(salary);

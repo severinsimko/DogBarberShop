@@ -57,11 +57,21 @@ public class Employee {
     @Column(nullable=false)
     private BigDecimal salary;
 
-    
+    @NotNull
+    @Column(nullable=false)
+    private String email;
     
     //set of services, on which the employee is working    
     @ManyToMany(fetch = FetchType.EAGER)
     private Set <Service> services = new HashSet<>();
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
     
     public void addService(Service service){
         

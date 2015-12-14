@@ -19,6 +19,8 @@ public interface EmployeeService {
     boolean isRoot(Employee emp);
 
     Employee findEmployeeById(Long id);
+    
+    Employee findEmployeeByEmail(String email);
 
     List<Employee> findEmployeeByName(String name);
 

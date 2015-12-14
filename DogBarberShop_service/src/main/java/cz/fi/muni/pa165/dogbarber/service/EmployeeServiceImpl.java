@@ -96,5 +96,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new DogBarberException("Employee doesnt has this service. Employee: " + emp.getName() + ", service: " + s.getServiceName());
         }        
     }
+
+    @Override
+    public Employee findEmployeeByEmail(String email) {
+        return employeeDao.getEmployeeByEmail(email);
+    }
 }
 

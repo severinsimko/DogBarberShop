@@ -156,4 +156,9 @@ public class CustomerServiceImpl implements CustomerService {
         int paddingLength = (array.length * 2) - hex.length();
         return paddingLength > 0 ? String.format("%0" + paddingLength + "d", 0) + hex : hex;
     }
+
+    @Override
+    public Customer findByEmail(String email) {
+        return customerDao.findByEmail(email);
+    }
 }

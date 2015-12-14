@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 public interface CustomerService {
     public void registerCustomer(Customer c, String password);
     public Customer findById(Long Id);
+    public Customer findByEmail(String email);
     public List<Customer> findAll();
     public void addDog(Dog dog, Customer customer);
     public void removeDog(Dog dog, Customer customer);

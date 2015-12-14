@@ -42,6 +42,18 @@ public class CustomerCreateDTO {
     @Size(min = 5, max = 10)
     private String password;
     
+    @NotNull
+    @Size(min = 5, max = 10)
+    private String email;
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
     public void setId(Long Id){
         this.Id = Id;
     }

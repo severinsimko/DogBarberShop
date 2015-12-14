@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface CustomerDao {
     public Customer findById(Long id);
+    public Customer findByEmail(String email);
     public void createCustomer(Customer customer);
     public void deleteCustomer(Customer customer) throws IllegalArgumentException;
     public Customer updateCustomer(Customer customer);
