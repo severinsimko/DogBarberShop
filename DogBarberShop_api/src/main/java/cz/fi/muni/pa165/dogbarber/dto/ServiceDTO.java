@@ -7,7 +7,6 @@ package cz.fi.muni.pa165.dogbarber.dto;
 
 import java.math.BigDecimal;
 import java.security.Provider.Service;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

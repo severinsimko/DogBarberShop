@@ -4,16 +4,20 @@ import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
+
 import static org.testng.Assert.assertEquals;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,7 +30,7 @@ import org.testng.annotations.Test;
 public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests {
     
     
-final static org.slf4j.Logger logger = LoggerFactory.getLogger(BeanMappingServiceTest.class);
+final static Logger LOGGER = LoggerFactory.getLogger(BeanMappingServiceTest.class);
     @Autowired
     BeanMappingService beanMappingService;
 
@@ -80,12 +84,12 @@ final static org.slf4j.Logger logger = LoggerFactory.getLogger(BeanMappingServic
 
     @Test
     public void testMapToCollectionServiceDTOToEntity() {
-        logger.debug("testMapToCollectionServiceDTOToEntity");
+        LOGGER.debug("testMapToCollectionServiceDTOToEntity");
         List<Service> eList = beanMappingService.mapTo(
                 serviceDTOList, Service.class
         );
-        logger.info("eList Simko:" + eList.get(0).toString());
-        logger.info("Service2 Simko" + service2.toString());
+        LOGGER.info("eList Simko:" + eList.get(0).toString());
+        LOGGER.info("Service2 Simko" + service2.toString());
         
         assertDeepEquals(eList.get(0),service1);
         assertDeepEquals(eList.get(1), service2);

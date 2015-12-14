@@ -9,7 +9,6 @@ import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

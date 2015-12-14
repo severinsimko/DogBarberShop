@@ -5,7 +5,6 @@
  */
 package cz.fi.muni.pa165.dogbarber.facade;
 
-import cz.fi.muni.pa165.dogbarber.dto.EmployeeAuthenticateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
 

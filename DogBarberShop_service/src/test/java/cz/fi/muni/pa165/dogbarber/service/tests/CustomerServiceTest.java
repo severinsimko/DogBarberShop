@@ -12,7 +12,6 @@ import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
-import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerServiceImpl;
 import java.util.ArrayList;
 import java.util.Calendar;

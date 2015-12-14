@@ -1,14 +1,11 @@
 package cz.fi.muni.pa165.dogbarber.mvc.security;
 
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
-import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
-import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacade;
 import javax.servlet.http.HttpSession;
 
 

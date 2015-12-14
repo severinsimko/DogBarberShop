@@ -71,7 +71,7 @@ public abstract class AbstractDogServiceTest {
         service1.setPrice(new BigDecimal("20.00"));
         
         
-        services = new ArrayList();
+        services = new ArrayList<>();
         services.add(service);
         
         nonExistingService = new Service();

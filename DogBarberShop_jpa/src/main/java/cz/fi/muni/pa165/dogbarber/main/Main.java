@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.main;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -13,7 +14,8 @@ public class Main {
 
     private static EntityManagerFactory emf;
 
-    public static void main(String[] args) {
+    @SuppressWarnings("resource")
+	public static void main(String[] args) {
         new AnnotationConfigApplicationContext(InMemoryDB.class);
         
         emf = Persistence.createEntityManagerFactory("default");

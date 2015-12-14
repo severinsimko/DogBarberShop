@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.tests;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-import javax.inject.Inject;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDaoImpl;
@@ -22,8 +15,6 @@ import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolationException;
 import org.testng.Assert;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
@@ -44,6 +35,8 @@ public class CustomerTest extends AbstractTransactionalTestNGSpringContextTests 
     private Customer c1;
     private Customer c2;
     private Dog d1;
+    
+    @SuppressWarnings("unused")
     private Dog d2;
     
     @BeforeMethod

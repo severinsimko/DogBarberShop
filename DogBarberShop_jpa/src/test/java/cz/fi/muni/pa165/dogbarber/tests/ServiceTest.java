@@ -8,7 +8,6 @@ import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;

@@ -4,7 +4,6 @@ import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
-import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import java.util.Calendar;
 import java.util.List;

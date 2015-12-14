@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.exception;
 
 /**
@@ -11,7 +6,9 @@ package cz.fi.muni.pa165.dogbarber.exception;
  */
 public class DogBarberException extends RuntimeException{
     
-    public DogBarberException() {
+    private static final long serialVersionUID = 1210696011208789269L;
+
+	public DogBarberException() {
     }
 
     public DogBarberException(String message) {
