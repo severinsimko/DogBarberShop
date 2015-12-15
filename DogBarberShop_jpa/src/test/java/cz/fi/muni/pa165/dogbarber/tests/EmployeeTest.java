@@ -42,7 +42,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
               setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","eemail@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
            
 
 
@@ -83,7 +83,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
               setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","eemail@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -103,7 +103,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
               setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","eemail@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);
@@ -131,7 +131,7 @@ public class EmployeeTest extends AbstractTestNGSpringContextTests {
               setEmployee(new Employee(),"Miso","Brath","email@email.cz","Pohranice","3636569",BigDecimal.valueOf(10000));
            
             Employee emp2 =   
-              setEmployee(new Employee(),"Lukas","Korec","email@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
+              setEmployee(new Employee(),"Lukas","Korec","eemail@email.cz","Brno","5556569",BigDecimal.valueOf(30000));
          
             employeeDao.addEmployee(emp1);
             employeeDao.addEmployee(emp2);

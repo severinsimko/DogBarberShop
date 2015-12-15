@@ -53,7 +53,7 @@ public class CustomerTest extends AbstractTransactionalTestNGSpringContextTests 
         c2.setSurname("Frajer");
         c2.setAdress("Brno");
         c2.setPhoneNumber("123456789");
-        c2.setEmail("email@email.cz");
+        c2.setEmail("eemail@email.cz");
         
         d1 = new Dog("Rex", "Vlcak", new GregorianCalendar(2013, Calendar.JANUARY, 10), Color.BLACK);
         d1.setCustomer(c1);

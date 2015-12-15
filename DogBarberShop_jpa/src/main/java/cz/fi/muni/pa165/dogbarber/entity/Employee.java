@@ -58,7 +58,7 @@ public class Employee {
     private BigDecimal salary;
 
     @NotNull
-    @Column(nullable=false)
+    @Column(nullable=false, unique=true)
     private String email;
     
     //set of services, on which the employee is working    
