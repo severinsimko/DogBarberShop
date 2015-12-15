@@ -43,14 +43,14 @@ public class CustomerTest extends AbstractTransactionalTestNGSpringContextTests 
     public void iniTest(){
         c1 = new Customer();
         c1.setName("Petr");
-        c1.setSurName("Frajer");
+        c1.setSurname("Frajer");
         c1.setAdress("Brno");
         c1.setPhoneNumber("123456789");
         c1.setEmail("email@email.cz");
         
         c2 = new Customer();
         c2.setName("Petr");
-        c2.setSurName("Frajer");
+        c2.setSurname("Frajer");
         c2.setAdress("Brno");
         c2.setPhoneNumber("123456789");
         c2.setEmail("email@email.cz");

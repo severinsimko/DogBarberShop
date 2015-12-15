@@ -82,7 +82,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
      private Customer customer(String name, String surname, String pass, String email, String address, String phoneNum){
          Customer customer = new Customer();
          customer.setName(name);
-         customer.setSurName(surname);
+         customer.setSurname(surname);
          customer.setEmail(email);
          customer.setPhoneNumber(phoneNum);
          customer.setAdress(address);

@@ -65,14 +65,14 @@ public class CustomerServiceTest {
     public void initCustomers(){
         c1 = new Customer();
         c1.setName("Petr");
-        c1.setSurName("Hruska");
+        c1.setSurname("Hruska");
         c1.setAdress("Brno");
         c1.setPhoneNumber("123456789");
         c1.setId(new Long(1));
         
         c2 = new Customer();
         c2.setName("Adam");
-        c2.setSurName("Svestka");
+        c2.setSurname("Svestka");
         c2.setAdress("Brno");
         c2.setPhoneNumber("123456789");
         

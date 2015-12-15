@@ -65,7 +65,7 @@ public class CustomerController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("customerCreate") CustomerCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder){
-        log.debug("create customer(formBean={})", formBean);
+        log.error("create customer(formBean={})", formBean);
         
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
@@ -76,7 +76,7 @@ public class CustomerController {
         }
         Long id = customerFacade.registerCustomer(formBean, "pepa");
         
-        return "redirect:" + uriBuilder.path("/product/view/{id}").buildAndExpand(id).encode().toUriString();
+        return "customer/view";
     }
     
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

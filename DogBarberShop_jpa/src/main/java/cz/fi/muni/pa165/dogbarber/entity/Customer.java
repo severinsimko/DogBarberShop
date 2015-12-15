@@ -15,7 +15,6 @@ import javax.persistence.*;
 
 @Entity
 public class Customer {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -85,11 +84,11 @@ public class Customer {
         return this.name;
     }
     
-    public void setSurName(String surname){
+    public void setSurname(String surname){
         this.surname = surname;
     }
     
-    public String getSurName(){
+    public String getSurname(){
         return this.surname;
     }
     
