@@ -19,7 +19,7 @@ public interface CustomerFacade {
     Collection<CustomerDTO> getAllCustomers();
     CustomerDTO getCustomerById(Long Id);    
     CustomerDTO getCustomerByEmail(String email);
-    public void registerCustomer(CustomerCreateDTO c, String password);
+    public Long registerCustomer(CustomerCreateDTO c, String password);
     public void addDog(Long CustomerId, Long DogId);
     public void removeDog(Long CustomerId, Long DogId);
     public void deleteCustomer(Long CustomerId);    

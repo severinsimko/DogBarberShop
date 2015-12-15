@@ -38,8 +38,6 @@ public class CustomerCreateDTO {
     
     private Set<DogDTO> dogs = new HashSet<>();
     
-    @NotNull
-    @Size(min = 5, max = 10)
     private String password;
     
     @NotNull
