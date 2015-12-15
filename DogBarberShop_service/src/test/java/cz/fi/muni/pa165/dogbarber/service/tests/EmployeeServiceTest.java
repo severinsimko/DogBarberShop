@@ -1,25 +1,13 @@
 package cz.fi.muni.pa165.dogbarber.service.tests;
 
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
-import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
-import cz.fi.muni.pa165.dogbarber.dao.DogDao;
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
-import cz.fi.muni.pa165.dogbarber.entity.Customer;
-import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import cz.fi.muni.pa165.dogbarber.enums.Color;
-import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
-import cz.fi.muni.pa165.dogbarber.service.CustomerServiceImpl;
-import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeServiceImpl;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
@@ -31,9 +19,7 @@ import org.mockito.MockitoAnnotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;

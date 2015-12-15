@@ -1,4 +1,3 @@
-
 package cz.fi.muni.pa165.dogbarber.tests;
 
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
@@ -9,21 +8,13 @@ import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Iterator;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.testng.Assert;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
 

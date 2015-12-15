@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>dog_barber_shop</artifactId>
         <groupId>cz.fi.muni.pa165</groupId>
+        <artifactId>dog_barber_shop</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>cz.fi.muni.pa165</groupId>
     <artifactId>DogBarberShop_spring_mvc</artifactId>
-    <version>1.0</version>
     <packaging>war</packaging>
-
-    <name>DogBarberShop_spring_mvc</name>
+	<name>DogBarberShop_spring_mvc</name>
     
     <dependencies>
         <dependency>
@@ -30,7 +32,6 @@
             <artifactId>DogBarberShop_sampleData</artifactId>
             <version>${project.version}</version>
         </dependency>
-    
         
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -54,13 +55,17 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
-
-        <dependency>
+		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
-        
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>jsp-api</artifactId>
+        	<version>2.0</version>
+        	<scope>provided</scope>
+    	</dependency>
     </dependencies>
 
     <build>
@@ -87,5 +92,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

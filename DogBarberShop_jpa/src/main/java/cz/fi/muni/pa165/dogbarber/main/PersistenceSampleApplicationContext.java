@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.main;
 
 import javax.sql.DataSource;
@@ -21,7 +16,6 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import org.springframework.test.context.ContextConfiguration;
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 
 /**

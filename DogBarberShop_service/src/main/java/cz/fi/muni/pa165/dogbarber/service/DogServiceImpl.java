@@ -30,9 +30,13 @@ public class DogServiceImpl implements DogService {
         try{
             dogDao.addDog(dog);
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to add dog: there is an error on persistence layer. ", e) {};
+            throw new DataAccessException("Failed to add dog: there is an error on persistence layer. ", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            	};
         } catch(Exception e) {
-            throw new DataAccessException("Failed to add dog: " + e.getMessage(), e) {};
+            throw new DataAccessException("Failed to add dog: " + e.getMessage(), e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 
@@ -41,9 +45,13 @@ public class DogServiceImpl implements DogService {
         try{
             dogDao.removeDog(dog);
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to remove dog: there is an error on persistence layer. ", e) {};
+            throw new DataAccessException("Failed to remove dog: there is an error on persistence layer. ", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         } catch(Exception e) {
-            throw new DataAccessException("Failed to remove dog: " + e.getMessage(), e) {};
+            throw new DataAccessException("Failed to remove dog: " + e.getMessage(), e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 
@@ -52,9 +60,13 @@ public class DogServiceImpl implements DogService {
         try{
             return dogDao.getDogByID(dogId);
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to get dog by id: there is an error on persistence layer. ", e) {};
+            throw new DataAccessException("Failed to get dog by id: there is an error on persistence layer. ", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         } catch(Exception e) {
-            throw new DataAccessException("Failed to get dog by id: " + e.getMessage(), e) {};
+            throw new DataAccessException("Failed to get dog by id: " + e.getMessage(), e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 
@@ -63,9 +75,13 @@ public class DogServiceImpl implements DogService {
         try{
             return dogDao.getAllDogs();
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to get all dogs: there is an error on persistence layer. ", e) {};
+            throw new DataAccessException("Failed to get all dogs: there is an error on persistence layer. ", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         } catch(Exception e) {
-            throw new DataAccessException("Failed to get all dogs: " + e.getMessage(), e) {};
+            throw new DataAccessException("Failed to get all dogs: " + e.getMessage(), e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 
@@ -80,7 +96,9 @@ public class DogServiceImpl implements DogService {
                 throw new DogBarberException("No such service in database!");
             }
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to subscribe dog for a service: there is an error on persistence layer. ", e) {};
+            throw new DataAccessException("Failed to subscribe dog for a service: there is an error on persistence layer. ", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 
@@ -99,7 +117,9 @@ public class DogServiceImpl implements DogService {
                 throw new DogBarberException("Dog is not subscribed for this service!");
             }
         } catch(PersistenceException e){
-            throw new DataAccessException("Failed to add dog", e) {};
+            throw new DataAccessException("Failed to add dog", e) {
+            	private static final long serialVersionUID = 1954956024288924798L;
+            };
         }
     }
 

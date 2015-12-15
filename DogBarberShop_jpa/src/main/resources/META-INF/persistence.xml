@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-             version="1.0">
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
 
 
     <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>cz.muni.fi.pa165.musiclib.entity.Song</class>
-        <class>cz.muni.fi.pa165.musiclib.entity.Album</class>
-        <class>cz.muni.fi.pa165.musiclib.entity.Musician</class>
-        <class>cz.muni.fi.pa165.musiclib.entity.Genre</class>
+        <class>cz.fi.muni.pa165.dogbarber.entity.Customer</class>
+        <class>cz.fi.muni.pa165.dogbarber.entity.Dog</class>
+        <class>cz.fi.muni.pa165.dogbarber.entity.Employee</class>
+        <class>cz.fi.muni.pa165.dogbarber.entity.Service</class>
 
 
         <properties>
