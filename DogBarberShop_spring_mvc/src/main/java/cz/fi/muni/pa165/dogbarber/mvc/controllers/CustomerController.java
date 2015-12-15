@@ -58,7 +58,7 @@ public class CustomerController {
        
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model){
-        model.addAttribute("customerCreate", new CustomerDTO());
+        model.addAttribute("customerCreate", new CustomerCreateDTO());
         return "customer/create";
     }
     
@@ -76,7 +76,7 @@ public class CustomerController {
         }
         Long id = customerFacade.registerCustomer(formBean, formBean.getPassword());
         
-        return "customer/view";
+        return "/customer";
     }
     
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

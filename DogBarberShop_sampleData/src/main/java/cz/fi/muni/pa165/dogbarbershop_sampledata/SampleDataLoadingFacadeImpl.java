@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
+import cz.fi.muni.pa165.dogbarber.enums.Color;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 /**
@@ -52,6 +54,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Employee employee2= employee("Meno","Priezvisko",false,"meno","email@email.cz","addressa","1921654546",new BigDecimal("1200"),services);
        
        Customer customer1 = customer("Pepa","Novak", "pepa", "pepa@pepa.cz", "adresa123", "123456789");
+       
+       Dog dog1 = dog("test","test",Calendar.getInstance(),Color.BLACK,customer1,true);
     }
     
      private Service service(int lengthInMinutes, BigDecimal price, String name) {
@@ -90,11 +94,31 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
          return customer;
      }
      
+    private Dog dog(String name,String breed,Calendar bornDate, Color color,Customer customer, boolean takenByShop){
+    
+        Dog dog = new Dog();
+        dog.setBreed(breed);
+        dog.setBornDate(bornDate);
+        dog.setColor(color);
+        dog.setName(name);
+        dog.setCustomer(customer);
+        dog.setTaken_by_shop(takenByShop);
+        dogService.createDog(dog);
+        return dog;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
      
      
      
-     }
+}
     
     
 

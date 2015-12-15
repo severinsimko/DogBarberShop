@@ -56,7 +56,7 @@ public class Dog {
         taken_by_shop = t;
     }
     
-    protected Dog() {
+    public Dog() {
     }
     
     public Dog(String name, String breed, Calendar bornDate, Color color) {
@@ -134,6 +134,33 @@ public class Dog {
     public String getBreed() {
         return breed;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setBornDate(Calendar bornDate) {
+        this.bornDate = bornDate;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setServices(Set<Service> services) {
+        this.services = services;
+    }
+
+    public void setTaken_by_shop(boolean taken_by_shop) {
+        this.taken_by_shop = taken_by_shop;
+    }
+    
+    
+    
     
     @Override
     public int hashCode() {

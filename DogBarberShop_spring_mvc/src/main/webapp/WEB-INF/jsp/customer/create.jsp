@@ -51,13 +51,14 @@
                 <form:errors path="adress" cssClass="help-block"/>
             </div>
         </div>
-        <div class="form-group ${adress_error?'has-error':''}">
+        <div class="form-group ${password_error?'has-error':''}">
             <form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
             <div class="col-sm-10">
                 <form:input path="password" cssClass="form-control"/>
                 <form:errors path="password" cssClass="help-block"/>
             </div>
         </div>
+        
 
 
         <button class="btn btn-primary" type="submit">Create customer</button>
