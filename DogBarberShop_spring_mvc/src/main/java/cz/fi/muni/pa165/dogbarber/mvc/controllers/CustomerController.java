@@ -74,7 +74,7 @@ public class CustomerController {
             }
             return "/customer/create";
         }
-        Long id = customerFacade.registerCustomer(formBean, "pepa");
+        Long id = customerFacade.registerCustomer(formBean, formBean.getPassword());
         
         return "customer/view";
     }
