@@ -94,8 +94,5 @@ public class AuthController {
         sessionLogOut.removeAttribute("employeeDTO");        
         red.addFlashAttribute("Info"," Successfully logged out");
         return "redirect:/auth/login";
-    }
-    
-    
-    
+    }   
 }

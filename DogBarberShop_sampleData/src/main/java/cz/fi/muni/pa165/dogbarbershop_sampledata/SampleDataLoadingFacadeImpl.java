@@ -56,6 +56,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Employee employee2= employee("Meno","Priezvisko",false,"meno","email@email.cz","addressa","1921654546",new BigDecimal("1200"),services);
        
        Customer customer1 = customer("Pepa","Novak", "pepa", "pepa@pepa.cz", "adresa123", "123456789");
+       Customer customer2 = customer("Uzivatel", "Prijmeni", "heslo", "mail@mail.cz", "address", "987654321");
        
        Dog dog1 = dog("test","test",Calendar.getInstance(),Color.BLACK,customer1,true);
     }
