@@ -46,24 +46,31 @@ public class AuthController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(@RequestParam String password, @RequestParam String email,Model model,RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {       
        EmployeeDTO employeeDTO = null;
+       CustomerDTO customerDTO = null;
        try{
            employeeDTO = employee.findEmployeeByEmail(email);
        }
-       catch(Exception ex){
-           
+       catch(Exception ex){           
+       }
+       try{
+           customerDTO = customer.getCustomerByEmail(email);
+       }
+       catch(Exception ex){           
+       }   
+       if(customerDTO == null && employeeDTO == null){
+           return "redirect:/auth/login";
        }
        
        if(employeeDTO == null){       
            log.error("login found employee null ");
-            CustomerAuthenticateDTO authCust = new CustomerAuthenticateDTO();
-            CustomerDTO customerDTO = customer.getCustomerByEmail(email);
+            CustomerAuthenticateDTO authCust = new CustomerAuthenticateDTO();            
             authCust.setCustomerId(customerDTO.getId());
             authCust.setPassword(password);
             boolean authenticatedCustomer = customer.authenticate(authCust) ;
             if(authenticatedCustomer){                
                 HttpSession session= request.getSession(true);
                 session.setAttribute("customerDTO", customerDTO);
-                return "redirect:/shopping";
+                return "redirect:/customer";
                 
             }else{
                 red.addFlashAttribute("Allert","Wrong email or password");
@@ -74,7 +81,7 @@ public class AuthController {
             if(authenticatedEmployee){
                 HttpSession session= request.getSession(true);
                 session.setAttribute("employeeDTO", employeeDTO);
-                return "redirect:/shopping";
+                return "redirect:/customer";
            
             }else{
                red.addFlashAttribute("Allert","Wrong email or password");
@@ -91,8 +98,5 @@ public class AuthController {
         sessionLogOut.removeAttribute("employeeDTO");        
         red.addFlashAttribute("Info"," Successfully logged out");
         return "redirect:/auth/login";
-    }
-    
-    
-    
+    }   
 }
