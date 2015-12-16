@@ -33,7 +33,7 @@ public class Service {
     @Column(nullable=false)
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(mappedBy = "services",fetch = FetchType.EAGER)
     private Set<Employee> employees = new HashSet<>();
 
     

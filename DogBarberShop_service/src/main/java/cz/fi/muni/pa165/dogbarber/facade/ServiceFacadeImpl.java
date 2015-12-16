@@ -46,6 +46,12 @@ public class ServiceFacadeImpl implements ServiceFacade {
     }
     
     @Override
+    public List<ServiceDTO> getSortedServices(){
+    
+        return beanMappingService.mapTo(service.sortedServicesByPrice(), ServiceDTO.class);
+    }
+    
+    @Override
     public List<ServiceDTO> getAllServices(){
     
         return beanMappingService.mapTo(service.getAllServices(), ServiceDTO.class);

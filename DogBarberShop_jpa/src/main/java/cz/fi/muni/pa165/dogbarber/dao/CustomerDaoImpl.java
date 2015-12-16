@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.dogbarber.dao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,13 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer findByEmail(String email) {
-        return em.createQuery("SELECT c FROM Customer c where email=:email", Customer.class).setParameter("email", email).getSingleResult();
+        
+       try{ 
+           Customer cust= em.createQuery("SELECT c FROM Customer c where email=:email", Customer.class).setParameter("email", email).getSingleResult();
+           return cust;
+       }catch(NoResultException e){          
+           return null;
+       }
     }
     
 }

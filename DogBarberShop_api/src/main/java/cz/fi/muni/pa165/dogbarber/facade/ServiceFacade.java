@@ -34,6 +34,8 @@ public interface ServiceFacade {
     List<ServiceDTO> getAllServices();
     
     
+    List<ServiceDTO> getSortedServices();
+    
     /*
     Will return list of services by surName
     */

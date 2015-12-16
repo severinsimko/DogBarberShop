@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.List;
+import javax.persistence.NoResultException;
 /**
  *
  * @author artur
@@ -63,7 +64,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Employee getEmployeeByEmail(String email) {
+        
+       try{ 
         return em.createQuery("SELECT e FROM Employee e where email=:email", Employee.class).setParameter("email", email).getSingleResult();
+       }catch(NoResultException e){
+        return null;
+    
     }
     
-}
+    }
+    
+}    

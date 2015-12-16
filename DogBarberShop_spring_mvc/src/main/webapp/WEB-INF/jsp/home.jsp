@@ -9,22 +9,14 @@
 <jsp:attribute name="body">
 
     <div class="jumbotron">
-        <h1>Welcome to SpringMVC !</h1>
-        <p class="lead">In this seminar, the mysteries of Spring MVC will be revealed to you. </p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/example/foo/1/platypus55?b=42"
-              role="button">Call ExampleController</a></p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/shopping/show"
-              role="button">Go shopping</a></p>
+        <h1>Welcome to our Dog Barber Shop</h1>
+        <p class="lead"> Please log in </p>
+        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/auth/login"
+              role="button">Go login</a></p>
+        
     </div>
 
 
-    <div class="row">
-        <c:forEach begin="1" end="12" var="i">
-        <div class="col-xs-12 col-sm-6 col-md-2 col-lg-1">
-            <p><button class="btn btn-default">Button ${i}</button></p>
-        </div>
-        </c:forEach>
-    </div>
 
 </jsp:attribute>
 </my:pagetemplate>

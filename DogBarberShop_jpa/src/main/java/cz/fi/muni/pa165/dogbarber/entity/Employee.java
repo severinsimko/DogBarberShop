@@ -5,12 +5,12 @@
  */
 package cz.fi.muni.pa165.dogbarber.entity;
 
-import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

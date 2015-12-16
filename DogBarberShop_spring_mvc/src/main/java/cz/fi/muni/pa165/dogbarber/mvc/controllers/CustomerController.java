@@ -44,6 +44,8 @@ public class CustomerController {
         return "customer/home";
     }
     
+    //treba zmenit na POST
+    
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         customerFacade.deleteCustomer(id);

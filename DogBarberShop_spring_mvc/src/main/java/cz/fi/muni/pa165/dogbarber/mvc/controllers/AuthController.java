@@ -38,32 +38,34 @@ public class AuthController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String loginFormular(Model model) {
         
-        //return jsp ako zobrazenie stranky
         return "/auth/login";
     }
     
     
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(@RequestParam String password, @RequestParam String email,Model model,RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {       
-       EmployeeDTO employeeDTO = null;
-       try{
-           employeeDTO = employee.findEmployeeByEmail(email);
-       }
-       catch(Exception ex){
-           
-       }
-       
+      
+       EmployeeDTO employeeDTO = employee.findEmployeeByEmail(email);
+     
        if(employeeDTO == null){       
            log.error("login found employee null ");
             CustomerAuthenticateDTO authCust = new CustomerAuthenticateDTO();
             CustomerDTO customerDTO = customer.getCustomerByEmail(email);
-            authCust.setCustomerId(customerDTO.getId());
+           
+            
+           try{ 
+               authCust.setCustomerId(customerDTO.getId());
+           }catch(NullPointerException e){
+               red.addFlashAttribute("Allert","Wrong email or password");
+               return "redirect:/auth/login";
+           }
             authCust.setPassword(password);
             boolean authenticatedCustomer = customer.authenticate(authCust) ;
             if(authenticatedCustomer){                
                 HttpSession session= request.getSession(true);
                 session.setAttribute("customerDTO", customerDTO);
-                return "redirect:/shopping";
+                request.setAttribute("customerDTO", customerDTO);
+                return "redirect:/service";
                 
             }else{
                 red.addFlashAttribute("Allert","Wrong email or password");
@@ -74,7 +76,8 @@ public class AuthController {
             if(authenticatedEmployee){
                 HttpSession session= request.getSession(true);
                 session.setAttribute("employeeDTO", employeeDTO);
-                return "redirect:/shopping";
+                request.setAttribute("employeeDTOsss", employeeDTO);
+                return "redirect:/service";
            
             }else{
                red.addFlashAttribute("Allert","Wrong email or password");
@@ -82,7 +85,7 @@ public class AuthController {
             }
        }
        
-      // return "redirect:/auth/login";
+      
     }
     
     @RequestMapping(value = "/logout",method = RequestMethod.GET)

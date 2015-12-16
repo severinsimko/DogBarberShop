@@ -44,9 +44,11 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     @SuppressWarnings("unused")
     public void loadData() throws IOException{
         
-       Service service= service(90,new BigDecimal(BigInteger.ONE),"Test");
-       Service service1= service(120,new BigDecimal(BigInteger.TEN),"Test1");
-       Service service2= service(180,new BigDecimal("120"),"Test2");
+       Employee employee112= employeeNoService("Example","TestPriezvisko",true,"example","example@email","address","1921654",new BigDecimal("120")); 
+        
+       Service service= service(90,new BigDecimal("1000"),"Test",employee112);
+       Service service1= service(120,new BigDecimal("150"),"Test1",employee112);
+       Service service2= service(180,new BigDecimal("120"),"Test2",employee112);
     
        Set<Service> services = new HashSet<>();
        services.add(service);
@@ -58,11 +60,12 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Dog dog1 = dog("test","test",Calendar.getInstance(),Color.BLACK,customer1,true);
     }
     
-     private Service service(int lengthInMinutes, BigDecimal price, String name) {
+     private Service service(int lengthInMinutes, BigDecimal price, String name, Employee emp) {
         Service ser = new Service();
         ser.setLengthInMinutes(lengthInMinutes);
         ser.setPrice(price);
         ser.setServiceName(name);
+        ser.addEmployee(emp);
         serviceService.create(ser);
         return ser;
     }
@@ -82,6 +85,21 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         employeeService.registerEmployee(employee, pass);
         return employee;    
     }
+     
+     private Employee employeeNoService(String name, String surname,boolean root,String pass,String email, String address,String phoneNum,BigDecimal salary) {
+        Employee employee = new Employee();
+        employee.setAddress(address);
+        employee.setName(name);
+        employee.setPassword_hash(pass);
+        employee.setPhone_number(phoneNum);
+        employee.setRoot(root);
+        employee.setSurname(surname);
+        employee.setSalary(salary); 
+        employee.setEmail(email);
+        employeeService.registerEmployee(employee, pass);
+        return employee;    
+    } 
+     
      
      private Customer customer(String name, String surname, String pass, String email, String address, String phoneNum){
          Customer customer = new Customer();

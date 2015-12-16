@@ -32,6 +32,8 @@
             </button>
             <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
         </div>
+        
+            <c:if test="${ not empty employeeDTO}">
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><my:a href="/shopping/show"><f:message key="navigation.eshop"/></my:a></li>
@@ -69,6 +71,7 @@
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
+        </c:if>
     </div>
 </nav>
 
