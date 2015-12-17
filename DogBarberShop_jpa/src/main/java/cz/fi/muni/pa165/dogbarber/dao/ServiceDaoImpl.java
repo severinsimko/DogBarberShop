@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
+import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -55,5 +56,5 @@ public class ServiceDaoImpl implements ServiceDao {
     return em.createQuery("select s from Service s where s.serviceName =:serviceName", Service.class).setParameter("serviceName", serviceName).getResultList();
     }
     
-
+    
 }

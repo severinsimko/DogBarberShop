@@ -42,6 +42,15 @@
             </ul>
         </div><!--/.nav-collapse -->
         </c:if>
+        <c:if test="${ not empty admin}">
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><my:a href="/customer">Customers</my:a></li>
+                <li><my:a href="/service">Services</my:a></li>
+                <li><my:a href="/dog/list">Dogs</my:a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        </c:if>
     </div>
 </nav>
 

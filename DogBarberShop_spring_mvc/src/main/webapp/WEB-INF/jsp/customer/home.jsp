@@ -7,12 +7,12 @@
 
 <my:pagetemplate title="Customers">
 <jsp:attribute name="body">
-
+    <c:if test="${not empty admin}">
     <my:a href="/customer/create" class="btn btn-primary">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         New Customer
     </my:a>
-
+</c:if>
     <table class="table">
         <thead>
         <tr>
@@ -36,11 +36,13 @@
                 <td>
                     <my:a href="/customer/view/${customer.id}" class="btn btn-primary">View</my:a>
                 </td>
+                <c:if test="${not empty admin}">
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/customer/delete/${customer.id}">
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
                 </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>

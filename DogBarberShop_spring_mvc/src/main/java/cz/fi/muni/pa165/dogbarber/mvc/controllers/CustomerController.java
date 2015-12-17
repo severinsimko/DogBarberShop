@@ -44,12 +44,10 @@ public class CustomerController {
         return "customer/home";
     }
     
-    //treba zmenit na POST
-    
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
         customerFacade.deleteCustomer(id);
-        return "customer/list";
+        return "redirect:" + uriBuilder.path("/customer").buildAndExpand(id).encode().toUriString();
     }
     
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
@@ -78,7 +76,7 @@ public class CustomerController {
         }
         Long id = customerFacade.registerCustomer(formBean, formBean.getPassword());
         
-        return "/customer";
+        return "redirect:" + uriBuilder.path("/customer").buildAndExpand(id).encode().toUriString();
     }
     
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

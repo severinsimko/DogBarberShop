@@ -7,7 +7,15 @@
 
 <my:pagetemplate title="Services">
     
+    
+    
     <jsp:attribute name="body">
+        
+        <c:if test="${not empty admin}"><my:a href="/service/create" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        New Service
+    </my:a>
+    </c:if>    
      <table class="table table-bordered">
         <thead>
         <tr>
@@ -26,7 +34,13 @@
                 <td><a href="/pa165/service/view/${service.id}"><c:out value="${service.serviceName}"/></a></td>
                 <td><c:out value="${service.lengthInMinutes}"/></td>
                 <td><c:out value="${service.price}"/></td>
-                
+                <c:if test="${not empty admin}">
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/service/delete/${service.id}">
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
+                </td>
+                </c:if>
                                
                 
             </tr>

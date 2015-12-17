@@ -28,7 +28,7 @@
         <thead>
         <tr>
             
-            <th>name</th>
+            <th>email</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
             <tr>
                 
                 
-                <td><c:out value="${employee.surname}"/></td>
+                <td><c:out value="${employee.email}"/></td>
                 
                
             </tr>

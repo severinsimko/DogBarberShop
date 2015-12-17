@@ -4,12 +4,39 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+
+
+<my:pagetemplate title="Customer ${customer.name} ${customer.surname} has following dogs">
+    
+    <jsp:attribute name="body">
+        
+   
+            <h3>List of dogs </h3>
+     <table class="table table-bordered">
+        
+         
+        <thead>
+        <tr>
+            
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${customer.dogs}" var="dog">
+            <tr>
+                
+                
+                <td><c:out value="${dog.name}"/></td>
+                
+               
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>    
+        
+      
+        
+    </jsp:attribute>
+    
+</my:pagetemplate>  

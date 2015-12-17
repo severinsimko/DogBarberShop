@@ -33,7 +33,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public void deleteCustomer(Customer customer) {
         if(customer == null)
             throw new IllegalArgumentException("Tried to delete null entity.");
-        em.remove(customer);
+        em.remove(findById(customer.getId()));
     }
     
     @Override

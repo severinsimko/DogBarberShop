@@ -28,7 +28,7 @@ public class DogController {
     @Autowired
     private DogFacade dogFacade;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/", "/list"}, method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("dogs", dogFacade.getAllDogs());
         return "dog/list";

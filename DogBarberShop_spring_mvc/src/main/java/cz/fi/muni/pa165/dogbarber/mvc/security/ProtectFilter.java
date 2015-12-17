@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
+import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
 import javax.servlet.http.HttpSession;
 
 
@@ -25,14 +26,16 @@ public class ProtectFilter implements Filter {
    
         HttpSession session = request.getSession(true);
         
-        Object employee = session.getAttribute("authUser");
+        EmployeeDTO employee = (EmployeeDTO)session.getAttribute("admin");
         if(employee ==null){
             CustomerDTO customer = (CustomerDTO)session.getAttribute("authUser");
+            request.setAttribute("authUser", session.getAttribute("authUser"));
             if(customer==null){ response401(response);}          
             
         
+        }else{
+        request.setAttribute("admin", session.getAttribute("admin"));
         }
-        request.setAttribute("authUser", session.getAttribute("authUser"));
         chain.doFilter(request, response);
         
        

@@ -80,8 +80,8 @@ public class AuthController {
            boolean authenticatedEmployee = employee.authenticate(employeeDTO, password);
             if(authenticatedEmployee){
                 HttpSession session= request.getSession(true);
-                session.setAttribute("authUser", employeeDTO);
-                request.setAttribute("authUser", employeeDTO);
+                session.setAttribute("admin", employeeDTO);
+                request.setAttribute("admin", employeeDTO);
                 return "redirect:/service";
            
             }else{
@@ -96,7 +96,8 @@ public class AuthController {
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {
         HttpSession sessionLogOut = request.getSession(true);
-        sessionLogOut.removeAttribute("authUser");        
+        sessionLogOut.removeAttribute("authUser");
+        sessionLogOut.removeAttribute("admin"); 
         red.addFlashAttribute("Info"," Successfully logged out");
         return "redirect:/auth/login";
     }   
