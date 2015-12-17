@@ -11,12 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import cz.fi.muni.pa165.dogbarber.dto.DogCreatedDTO;
+import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
 import cz.fi.muni.pa165.dogbarber.facade.DogFacade;
 
 @Controller
@@ -34,6 +36,15 @@ public class DogController {
         return "dog/list";
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+        DogDTO dog = dogFacade.getDogByID(id);
+        dogFacade.deleteDog(dog);
+        
+        redirectAttributes.addFlashAttribute("alert_success", "Dog \"" + dog.getName() + "\" was removed from database.");
+        return "redirect:" + uriBuilder.path("/dog/list").build().toUriString();
+    }
+    
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newDog(Model model) {
         LOGGER.debug("new()");

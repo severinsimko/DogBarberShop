@@ -120,7 +120,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         dog.setColor(color);
         dog.setName(name);
         dog.setCustomer(customer);
-        dog.setTaken_by_shop(takenByShop);
+        dog.setTakenByShop(takenByShop);
         dogService.createDog(dog);
         return dog;
     }
