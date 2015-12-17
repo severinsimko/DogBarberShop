@@ -57,7 +57,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Customer customer1 = customer("Pepa","Novak", "pepa", "pepa@pepa.cz", "adresa123", "123456789");
        Customer customer2 = customer("Uzivatel", "Prijmeni", "heslo", "mail@mail.cz", "address", "987654321");
        
-       Dog dog1 = dog("test","test",Calendar.getInstance(),Color.BLACK,customer1,true);
+       Dog dog1 = dog("Nemo", "Husky", Calendar.getInstance(), Color.BLACK, customer1, true);
+       Dog dog2 = dog("Alfred", "Buldog", Calendar.getInstance(), Color.BROWN, customer2, true);
     }
     
      private Service service(int lengthInMinutes, BigDecimal price, String name, Employee emp) {
