@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,16 +43,16 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     @SuppressWarnings("unused")
     public void loadData() throws IOException{
         
-       Employee employee112= employeeNoService("Example","TestPriezvisko",true,"example","example@email","address","1921654",new BigDecimal("120")); 
+       Employee employee112 = employeeNoService("Example","TestPriezvisko",true,"example","example@email.cz","address","1921654",new BigDecimal("120")); 
         
-       Service service= service(90,new BigDecimal("1000"),"Test",employee112);
-       Service service1= service(120,new BigDecimal("150"),"Test1",employee112);
-       Service service2= service(180,new BigDecimal("120"),"Test2",employee112);
+       Service service = service(90, new BigDecimal("1000"), "Washing", employee112);
+       Service service1 = service(120, new BigDecimal("150"), "Cutting", employee112);
+       Service service2 = service(180, new BigDecimal("120"), "Massage", employee112);
     
        Set<Service> services = new HashSet<>();
        services.add(service);
-       Employee employee1= employee("Admin","TestPriezvisko",true,"admin","admin@admin.cz","address","1921654",new BigDecimal("120"),services);
-       Employee employee2= employee("Meno","Priezvisko",false,"meno","email@email.cz","addressa","1921654546",new BigDecimal("1200"),services);
+       Employee employee1 = employee("Admin","TestPriezvisko",true,"admin","admin@admin.cz","address","1921654",new BigDecimal("120"),services);
+       Employee employee2 = employee("Meno","Priezvisko",false,"meno","email@email.cz","addressa","1921654546",new BigDecimal("1200"),services);
        
        Customer customer1 = customer("Pepa","Novak", "pepa", "pepa@pepa.cz", "adresa123", "123456789");
        Customer customer2 = customer("Uzivatel", "Prijmeni", "heslo", "mail@mail.cz", "address", "987654321");
@@ -114,8 +113,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
      }
      
     private Dog dog(String name,String breed,Calendar bornDate, Color color,Customer customer, boolean takenByShop){
-    
-        Dog dog = new Dog();
+    	Dog dog = new Dog();
         dog.setBreed(breed);
         dog.setBornDate(bornDate);
         dog.setColor(color);
@@ -125,19 +123,4 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         dogService.createDog(dog);
         return dog;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-     
-     
 }
-    
-    
-
