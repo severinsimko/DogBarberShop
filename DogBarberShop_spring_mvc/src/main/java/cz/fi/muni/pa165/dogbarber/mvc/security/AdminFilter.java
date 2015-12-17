@@ -49,7 +49,7 @@ public class AdminFilter implements Filter{
         if(employeeDTO ==null){
             response401(response);
         }        
-     
+       request.setAttribute("authUser", http.getAttribute("authUser"));
         chain.doFilter(request, response);
     }   
     

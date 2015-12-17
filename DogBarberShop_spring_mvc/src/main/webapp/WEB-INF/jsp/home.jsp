@@ -12,13 +12,7 @@
     <title>Cover Template for Bootstrap</title>
 
 
-    <div class="jumbotron">
-        <h1>Welcome to our Dog Barber Shop</h1>
-        <p class="lead"> Please log in </p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/auth/login"
-              role="button">Go login</a></p>
-        
-    </div>
+    
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -41,7 +35,8 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
+                <a href="https://github.com/severinsimko/DogBarberShop">Check our github.com</a>
+              
               <nav>
                 <!--<ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
@@ -52,13 +47,14 @@
             </div>
           </div>
 
-          <div class="inner cover">
-            <h1 class="cover-heading">Dog barber shop</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="${pageContext.request.contextPath}/auth/login" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-          </div>
+            <div class="jumbotron">
+        <h1>Welcome to our Dog Barber Shop</h1>
+        <br>
+        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/auth/login"
+              role="button">Go login</a></p>
+        
+    </div>
+         
 
           <div class="mastfoot">
             <div class="inner">
@@ -77,3 +73,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
 </html>
+
+

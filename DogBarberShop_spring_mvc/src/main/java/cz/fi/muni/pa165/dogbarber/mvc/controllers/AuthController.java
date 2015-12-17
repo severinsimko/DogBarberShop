@@ -36,7 +36,12 @@ public class AuthController {
     
     
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String loginFormular(Model model) {
+    public String loginFormular(Model model,HttpServletRequest req,
+            HttpServletResponse res) {
+        HttpSession session = req.getSession(true);
+        if (session.getAttribute("authUser") != null) {
+            return "redirect:/service";
+        }
         
         return "/auth/login";
     }
@@ -63,8 +68,8 @@ public class AuthController {
             boolean authenticatedCustomer = customer.authenticate(authCust) ;
             if(authenticatedCustomer){                
                 HttpSession session= request.getSession(true);
-                session.setAttribute("customerDTO", customerDTO);
-                request.setAttribute("customerDTO", customerDTO);
+                session.setAttribute("authUser", customerDTO);
+                request.setAttribute("authUser", customerDTO);
                 return "redirect:/service";
                 
             }else{
@@ -75,8 +80,8 @@ public class AuthController {
            boolean authenticatedEmployee = employee.authenticate(employeeDTO, password);
             if(authenticatedEmployee){
                 HttpSession session= request.getSession(true);
-                session.setAttribute("employeeDTO", employeeDTO);
-                request.setAttribute("employeeDTOsss", employeeDTO);
+                session.setAttribute("authUser", employeeDTO);
+                request.setAttribute("authUser", employeeDTO);
                 return "redirect:/service";
            
             }else{
@@ -91,7 +96,7 @@ public class AuthController {
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(RedirectAttributes red, HttpServletRequest request, HttpServletResponse response) {
         HttpSession sessionLogOut = request.getSession(true);
-        sessionLogOut.removeAttribute("employeeDTO");        
+        sessionLogOut.removeAttribute("authUser");        
         red.addFlashAttribute("Info"," Successfully logged out");
         return "redirect:/auth/login";
     }   

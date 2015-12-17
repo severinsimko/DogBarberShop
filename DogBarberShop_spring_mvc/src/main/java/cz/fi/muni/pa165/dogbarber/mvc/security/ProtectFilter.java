@@ -25,14 +25,14 @@ public class ProtectFilter implements Filter {
    
         HttpSession session = request.getSession(true);
         
-        Object employee = session.getAttribute("employeeDTO");
+        Object employee = session.getAttribute("authUser");
         if(employee ==null){
-            CustomerDTO customer = (CustomerDTO)session.getAttribute("customerDTO");
+            CustomerDTO customer = (CustomerDTO)session.getAttribute("authUser");
             if(customer==null){ response401(response);}          
             
         
         }
-     
+        request.setAttribute("authUser", session.getAttribute("authUser"));
         chain.doFilter(request, response);
         
        
