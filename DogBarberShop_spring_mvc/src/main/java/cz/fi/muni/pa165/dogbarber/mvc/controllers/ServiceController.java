@@ -29,40 +29,30 @@ public class ServiceController {
     
     @Autowired
     private ServiceFacade serviceFacade;
-    
-    
+
     final static Logger log = LoggerFactory.getLogger(ServiceController.class);
     
      @RequestMapping(value = {"", "/", "/shopping"}, method = RequestMethod.GET)
     public String index(Model model){
         Collection<ServiceDTO> allServices = serviceFacade.getAllServices();
-        log.error("All the services",allServices);
+        log.info("All the services",allServices);
         model.addAttribute("services", allServices);
         
-        Collection<ServiceDTO> sortedServices =serviceFacade.getSortedServices();
+        Collection<ServiceDTO> sortedServices = serviceFacade.getSortedServices();
         model.addAttribute("sorted", sortedServices);
         
-        return "service/shopping";        
-        
+        return "service/shopping";
     }
-    
-    
-    
-    
-    
+
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model){
         model.addAttribute("serviceView", serviceFacade.getServiceById(id));
-        log.error("EROOOOR",serviceFacade.getServiceById(id));
+        model.addAttribute("serviceEmployees", serviceFacade.getServiceById(id).getAllEmployees());
+        log.info("ERROR: " + serviceFacade.getServiceById(id).getAllEmployees().toString());
         return "service/view";
     }
-    
-    
-    
-    
-    
-    
-     @RequestMapping(value = "/create", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model){
         model.addAttribute("customerCreate", new ServiceDTO());
         return "service/create";
@@ -82,9 +72,8 @@ public class ServiceController {
         }
         Long id = serviceFacade.createService(formBean);
         
-       return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
+        return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
     }
-    
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){

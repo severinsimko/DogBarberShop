@@ -26,7 +26,6 @@ import cz.fi.muni.pa165.dogbarber.facade.DogFacade;
 public class DogController {
     final static Logger LOGGER = LoggerFactory.getLogger(DogController.class);
 
-
     @Autowired
     private DogFacade dogFacade;
 
@@ -36,6 +35,12 @@ public class DogController {
         return "dog/list";
     }
 
+    @RequestMapping
+    public String view(Model model) {
+    	
+    	return "dog/view";
+    }
+    
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         DogDTO dog = dogFacade.getDogByID(id);
@@ -47,7 +52,6 @@ public class DogController {
     
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newDog(Model model) {
-        LOGGER.debug("new()");
         model.addAttribute("dogCreate", new DogCreatedDTO());
         return "dog/new";
     }
@@ -55,8 +59,6 @@ public class DogController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("dogCreate") DogCreatedDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
-        LOGGER.debug("create(formBean={})", formBean);
-        
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
                 LOGGER.trace("ObjectError: {}", ge);
@@ -70,6 +72,6 @@ public class DogController {
         
         dogFacade.createDog(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Dog " + formBean.getName() + " was created");
-        return "redirect:" + uriBuilder.path("/dog/list").toString();
+        return "redirect:" + uriBuilder.path("/dog/list").build().toUriString();
     }
 }

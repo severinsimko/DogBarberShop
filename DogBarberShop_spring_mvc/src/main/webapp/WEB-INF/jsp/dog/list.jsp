@@ -18,7 +18,9 @@
             <th>id</th>
             <th>name</th>
             <th>breed</th>
+            <th>born date</th>
             <th>color</th>
+            <th>customer</th>
             <th>taken</th>
         </tr>
         </thead>
@@ -28,8 +30,10 @@
                 <td>${dog.id}</td>
                 <td><c:out value="${dog.name}"/></td>
                 <td><c:out value="${dog.breed}"/></td>
+                <td><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></td>
                 <td><c:out value="${dog.color}"/></td>
-                <td><c:out value="${dog.takenByShop}"/></td>
+                <td><c:out value="${dog.customer.name}"/></td>
+                <td><c:out value="${dog.takenByShop}" /></td>
                 <td>
                     <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>
                 </td>

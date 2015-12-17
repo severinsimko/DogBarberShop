@@ -45,7 +45,7 @@ public class DogDTO {
         this.takenByShop = takenByShop;
     }
 
-    public void setCustom(CustomerDTO customer){
+    public void setCustomer(CustomerDTO customer){
         this.customer = customer;
     }
     
