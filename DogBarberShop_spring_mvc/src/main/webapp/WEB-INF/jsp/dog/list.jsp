@@ -5,6 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<c:choose>
+	<c:when test="${not empty authUser || not empty admin}">
 <my:pagetemplate title="Dogs">
 	<jsp:attribute name="body">
 		<my:a href="/dog/new" class="btn btn-primary">
@@ -37,11 +39,13 @@
                 <td>
                     <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>
                 </td>
-                <td>
-                    <form method="post" action="${pageContext.request.contextPath}/dog/delete/${dog.id}">
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
-                </td>
+                <c:if test="${ not empty admin }">
+	                <td>
+	                    <form method="post" action="${pageContext.request.contextPath}/dog/delete/${dog.id}">
+	                        <button type="submit" class="btn btn-primary">Delete</button>
+	                    </form>
+	                </td>
+	            </c:if>
             </tr>
         </c:forEach>
         </tbody>
@@ -49,3 +53,9 @@
     
 	</jsp:attribute>
 </my:pagetemplate>
+</c:when>
+	<c:otherwise>
+		<h1>Unauthorized access!</h1>
+		<a href="http://localhost:8080/pa165"> Homepage </a>
+	</c:otherwise>
+</c:choose>
