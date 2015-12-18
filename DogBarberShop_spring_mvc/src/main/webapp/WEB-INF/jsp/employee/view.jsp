@@ -9,31 +9,16 @@
     <jsp:attribute name="body">
         
     <div class="row">
-        	<div class="col-xs-6">
-            	<p><c:out value="Employee name:  ${employee.name}"/></p>
-            	<p><c:out value="Employee email: ${employee.email} "/></p>
-            	<p><c:out value="Employee address: ${employee.address}"/></p>
+         <div class="col-xs-6">
+             <p><c:out value="Employee name:  ${employee.name}"/></p>
+             <p><c:out value="Employee email: ${employee.email} "/></p>
+             <p><c:out value="Employee address: ${employee.address}"/></p>
                 <p><c:out value="Employee salary: ${employee.salary} $"/></p>
                 <p><c:out value="Employee phone number: ${employee.phone_number}"/></p>
-        	</div>
-    	</div>
+         </div>
+     </div>
         
-        
-        
-    	<h3>List of his services </h3>
-		<table class="table table-bordered">
-        	<thead>
-        		<tr>
-            		<th>Service name:</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<c:forEach items="${employeService}" var="services">
-            		<tr>
-            			<td><c:out value="${services.serviceName}"/></td>
-            		</tr>
-        		</c:forEach>
-        	</tbody>
-    	</table>    
+       
+     
     </jsp:attribute>
-</my:pagetemplate>    
+</my:pagetemplate>

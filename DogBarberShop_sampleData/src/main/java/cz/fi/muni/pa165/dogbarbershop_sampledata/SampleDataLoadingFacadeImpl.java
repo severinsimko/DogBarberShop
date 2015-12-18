@@ -45,10 +45,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         
        Employee employee112 = employeeNoService("Example","TestPriezvisko",true,"example","example@email.cz","address","1921654",new BigDecimal("120")); 
        
-       Service service = service(90, new BigDecimal("1000"), "Washing", employee112);
-       Service service1 = service(120, new BigDecimal("150"), "Cutting", employee112);
-       Service service2 = service(180, new BigDecimal("120"), "Massage", employee112);
+       Service service = service(90, new BigDecimal("1000"), "Washing");
+       Service service1 = service(120, new BigDecimal("150"), "Cutting");
+       Service service2 = service(180, new BigDecimal("120"), "Massage");
     
+       employee112.addService(service);
+       employee112.addService(service1);
+       employee112.addService(service2);
+       
        Set<Service> services = new HashSet<>();
        services.add(service);
        Employee employee1 = employee("Admin", "Admin", true, "admin", "admin@dogbarber.cz", "Úzka 216, Brno", "+420 773 261 333", new BigDecimal("28000"), services);
@@ -60,7 +64,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Dog dog1 = dog("Nemo", "Husky", Calendar.getInstance(), Color.BLACK, customer1, true);
        Dog dog2 = dog("Alfred", "Buldog", Calendar.getInstance(), Color.BROWN, customer2, true);
        
-       // Customers doesn't show their dogs
        customer1.addDog(dog1);
        customer2.addDog(dog2);
        
@@ -71,12 +74,11 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        dog2.addService(service);
     }
     
-     private Service service(int lengthInMinutes, BigDecimal price, String name, Employee emp) {
+     private Service service(int lengthInMinutes, BigDecimal price, String name) {
         Service ser = new Service();
         ser.setLengthInMinutes(lengthInMinutes);
         ser.setPrice(price);
         ser.setServiceName(name);
-        ser.addEmployee(emp);
         serviceService.create(ser);
         return ser;
     }
@@ -129,7 +131,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         dog.setBornDate(bornDate);
         dog.setColor(color);
         dog.setName(name);
-        dog.setCustomer(customer); // Should work without this line
+        dog.setCustomer(customer);
         dog.setTakenByShop(takenByShop);
         dogService.createDog(dog);
         return dog;
