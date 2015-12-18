@@ -47,8 +47,6 @@ public class ServiceController {
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model){
         model.addAttribute("serviceView", serviceFacade.getServiceById(id));
-        model.addAttribute("serviceEmployees", serviceFacade.getServiceById(id).getAllEmployees());
-        log.info("ERROR: " + serviceFacade.getServiceById(id).getAllEmployees().toString());
         return "service/view";
     }
 

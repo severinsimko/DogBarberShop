@@ -19,11 +19,11 @@
 		<table class="table table-bordered">
         	<thead>
         		<tr>
-            		<th>email</th>
+            		<th>name</th>
         		</tr>
         	</thead>
         	<tbody>
-        		<c:forEach items="${serviceEmployees}" var="employee">
+        		<c:forEach items="${serviceView.allEmployees}" var="employee">
             		<tr>
             			<td><c:out value="${employee.name}"/></td>
             		</tr>

@@ -77,7 +77,10 @@ public class ServiceDTO {
 
     public Set<EmployeeDTO> getAllEmployees() {
         return employees;
-
+    }
+    
+    public void setAllEmployees(Set<EmployeeDTO> employees) {
+    	this.employees = employees;
     }
 
     //hashCode and equals methods 
