@@ -13,6 +13,9 @@
         	<div class="col-xs-6">
         		<p><c:out value="ID   : ${customer.id}"/></p>
             	<p><c:out value="Name : ${customer.name} ${customer.surname}"/></p>
+                <p><c:out value="Email : ${customer.email}"/></p>
+                <p><c:out value="Address : ${customer.adress} "/></p>
+                <p><c:out value="Phone Number : ${customer.phoneNumber}"/></p>
         	</div>
     	</div>
    
