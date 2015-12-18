@@ -13,7 +13,7 @@
             	<p>Owner: <a href="/pa165/customer/view/${dog.customer.id}"><c:out value="${dog.customer.name} ${dog.customer.surname}"/></a></p>
             	<p><c:out value="Breed: ${dog.breed}"/></p>
             	<p><c:out value="Color: ${dog.color}"/></p>
-            	<p><c:out value="Born : "/><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></p>
+            	<p><c:out value="Registration: "/><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></p>
         	</div>
     	</div>
     	
@@ -35,7 +35,7 @@
 		            			<td><c:out value="${service.lengthInMinutes}"/></td>
 		            			<td><c:out value="${service.price}"/></td>
 		            			<td>
-		                    		<my:a href="/dog/unsubscribe/${dog.id}/${service.id}" class="btn btn-primary">Unsubscribe</my:a>
+		                    		<my:a href="/dog/unsubscribe/${dog.id}/${service.serviceName}" class="btn btn-primary">Unsubscribe</my:a>
 		                		</td>
 		            		</tr>
 		        		</c:forEach>
@@ -43,10 +43,10 @@
 		    	</table>
 		    	
 		    	<h4>Subscribe for another service</h4>
-		    	<form action="/dog/subscribe/${service.id}">
+		    	<form action="${pageContext.request.contextPath}/dog/subscribe/${dog.id}/" method="post">
 		    		<select name="services">
 		    			<c:forEach items="${services}" var="service">
-		    				<option value="${ service.id }">${ service.serviceName }</option>
+		    				<option value="${service.id}">${ service.serviceName }</option>
 		    			</c:forEach>
 		    		</select>
 		    		<input type="submit" value="Subscribe" class="btn btn-primary">

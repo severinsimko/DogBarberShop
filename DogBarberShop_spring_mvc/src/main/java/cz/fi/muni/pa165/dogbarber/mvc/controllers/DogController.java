@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
 import java.util.EnumSet;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,7 +21,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import cz.fi.muni.pa165.dogbarber.dto.DogCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
+import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.enums.Color;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.facade.DogFacade;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacade;
@@ -65,6 +68,35 @@ public class DogController {
         return "redirect:" + uriBuilder.path("/dog/list").build().toUriString();
     }
     
+    @RequestMapping(value = "/subscribe/{id}/", method = RequestMethod.POST)
+    public String subscribe(@PathVariable long id, HttpServletRequest request, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    	Long serviceId = Long.valueOf(request.getParameter("services"));
+        DogDTO dog = dogFacade.getDogByID(id);
+        ServiceDTO service = serviceFacade.getServiceById(serviceId);
+        
+        try {
+        	dogFacade.subscribeDogForAService(dog, service);
+        } catch ( DogBarberException e) {
+        	LOGGER.info(e.getMessage());
+        	redirectAttributes.addFlashAttribute("alert_warning", "Dog \"" + dog.getName() + "\" is already subscribed for " + service.getServiceName() + " service");
+            return "redirect:" + uriBuilder.path("/dog/view/{id}").build().toUriString();
+        }
+        redirectAttributes.addFlashAttribute("alert_success", "Dog \"" + dog.getName() + "\" was succesfully subscribed for " + service.getServiceName() + " service");
+        return "redirect:" + uriBuilder.path("/dog/view/{id}").build().toUriString();
+    }
+    
+    @RequestMapping(value = "/unsubscribe/{id}/{serviceName}", method = RequestMethod.GET)
+    public String unsubscribe(@PathVariable Long id, @PathVariable String serviceName, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+    	ServiceDTO service = serviceFacade.getServicesByName(serviceName).get(0);
+    	DogDTO dog = dogFacade.getDogByID(id);
+        //ServiceDTO service = serviceFacade.getServiceById(Long.valueOf(idds[1]));
+        
+        dogFacade.unsubscribeDogForAService(dog, service);
+        
+        redirectAttributes.addFlashAttribute("alert_success", "Dog \"" + dog.getName() + "\" was succesfully unsubscribed from " + service.getServiceName() + " service");
+        return "redirect:" + uriBuilder.path("/dog/view/{id}").build().toUriString();
+    }
+    
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newDog(Model model) {
         model.addAttribute("dogCreate", new DogCreateDTO());
@@ -87,7 +119,7 @@ public class DogController {
         }
         
         dogFacade.createDog(formBean);
-        redirectAttributes.addFlashAttribute("alert_success", "Dog " + formBean.getName() + " was created");
+        redirectAttributes.addFlashAttribute("alert_success", "Dog " + formBean.getName() + " was added to database");
         return "redirect:" + uriBuilder.path("/dog/list").build().toUriString();
     }
 }

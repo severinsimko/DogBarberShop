@@ -18,7 +18,7 @@
             <th>id</th>
             <th>name</th>
             <th>breed</th>
-            <th>born date</th>
+            <th>registered</th>
             <th>color</th>
             <th>customer</th>
             <th>taken</th>
