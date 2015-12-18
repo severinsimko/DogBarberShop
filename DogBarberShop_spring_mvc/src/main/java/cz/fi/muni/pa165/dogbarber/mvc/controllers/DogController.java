@@ -89,7 +89,6 @@ public class DogController {
     public String unsubscribe(@PathVariable Long id, @PathVariable String serviceName, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
     	ServiceDTO service = serviceFacade.getServicesByName(serviceName).get(0);
     	DogDTO dog = dogFacade.getDogByID(id);
-        //ServiceDTO service = serviceFacade.getServiceById(Long.valueOf(idds[1]));
         
         dogFacade.unsubscribeDogForAService(dog, service);
         

@@ -13,10 +13,14 @@ import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
+
 import java.math.BigDecimal;
 import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  *
@@ -26,13 +30,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerFacadeImpl implements CustomerFacade {
 
-    @Inject
+    @Autowired
     private CustomerService customerService;
 
-    @Inject
+    @Autowired
     private DogService dogService;
     
-    @Inject
+    @Autowired
     private BeanMappingService beanMappingService;
     
     @Override

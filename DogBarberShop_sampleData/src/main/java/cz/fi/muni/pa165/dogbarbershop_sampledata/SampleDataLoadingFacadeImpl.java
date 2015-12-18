@@ -44,7 +44,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     public void loadData() throws IOException{
         
        Employee employee112 = employeeNoService("Example","TestPriezvisko",true,"example","example@email.cz","address","1921654",new BigDecimal("120")); 
-        
+       
        Service service = service(90, new BigDecimal("1000"), "Washing", employee112);
        Service service1 = service(120, new BigDecimal("150"), "Cutting", employee112);
        Service service2 = service(180, new BigDecimal("120"), "Massage", employee112);

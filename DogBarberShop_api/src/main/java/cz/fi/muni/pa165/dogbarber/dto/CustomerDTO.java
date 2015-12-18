@@ -81,7 +81,7 @@ public class CustomerDTO {
         this.phoneNumber = phoneNumber;
     }
     
-    public void setDogs(Set <DogDTO> dogs){
+    public void setAllDogs(Set<DogDTO> dogs){
         this.dogs = dogs;
     }
     

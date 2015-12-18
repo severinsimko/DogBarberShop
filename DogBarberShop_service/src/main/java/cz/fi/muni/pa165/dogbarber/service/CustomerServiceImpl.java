@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Inject
     private CustomerDao customerDao;
     
-    @Autowired
+    @Inject
     private DogService dogService;
     
     @Override

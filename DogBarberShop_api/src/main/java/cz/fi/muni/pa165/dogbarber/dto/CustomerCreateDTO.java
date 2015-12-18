@@ -40,7 +40,7 @@ public class CustomerCreateDTO {
     private String password;
     
     @NotNull
-    @Size(min = 5, max = 10)
+    @Size(min = 5, max = 60)
     private String email;
     
     public String getEmail(){
