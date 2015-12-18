@@ -35,9 +35,9 @@ public class DogController {
         return "dog/list";
     }
 
-    @RequestMapping
-    public String view(Model model) {
-    	
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(@PathVariable long id, Model model) {
+    	model.addAttribute("dog", dogFacade.getDogByID(id));
     	return "dog/view";
     }
     

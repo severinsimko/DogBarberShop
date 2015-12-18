@@ -51,14 +51,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     
        Set<Service> services = new HashSet<>();
        services.add(service);
-       Employee employee1 = employee("Admin","TestPriezvisko",true,"admin","admin@admin.cz","address","1921654",new BigDecimal("120"),services);
-       Employee employee2 = employee("Meno","Priezvisko",false,"meno","email@email.cz","addressa","1921654546",new BigDecimal("1200"),services);
+       Employee employee1 = employee("Admin", "Admin", true, "admin", "admin@dogbarber.cz", "Úzka 216, Brno", "+420 773 261 333", new BigDecimal("28000"), services);
+       Employee employee2 = employee("Martin", "Novotný", false, "heslo", "email@email.cz", "Údolní 13, Brno", "+420 605 213 222", new BigDecimal("30000"), services);
        
-       Customer customer1 = customer("Pepa","Novak", "pepa", "pepa@pepa.cz", "adresa123", "123456789");
-       Customer customer2 = customer("Uzivatel", "Prijmeni", "heslo", "mail@mail.cz", "address", "987654321");
+       Customer customer1 = customer("Pepa", "Novák", "heslo", "pepa@email.cz", "T.G.Masaryka 28, Brno", "+420 608 810 313");
+       Customer customer2 = customer("Osvald", "Starý", "heslo", "osvald@email.cz", "Úvozní 225, Praha", "+420 604 404 500");
        
        Dog dog1 = dog("Nemo", "Husky", Calendar.getInstance(), Color.BLACK, customer1, true);
        Dog dog2 = dog("Alfred", "Buldog", Calendar.getInstance(), Color.BROWN, customer2, true);
+       dog1.addService(service2);
+       dog1.addService(service1);
+       
+       dog2.addService(service2);
+       dog2.addService(service);
     }
     
      private Service service(int lengthInMinutes, BigDecimal price, String name, Employee emp) {

@@ -32,7 +32,7 @@
                 <td><c:out value="${dog.breed}"/></td>
                 <td><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></td>
                 <td><c:out value="${dog.color}"/></td>
-                <td><c:out value="${dog.customer.name}"/></td>
+                <td><c:out value="${dog.customer.name} ${dog.customer.surname}"/></td>
                 <td><c:out value="${dog.takenByShop}" /></td>
                 <td>
                     <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>

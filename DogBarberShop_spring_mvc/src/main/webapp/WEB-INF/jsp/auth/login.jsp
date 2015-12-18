@@ -10,10 +10,10 @@
 <jsp:attribute name="body">
    
      <div class="jumbotron">
-          <h5>Admin email: admin@admin.cz  pass: admin</h5>
-          <h5>Customer email: pepa@pepa.cz  pass: pepa</h5>
+          <h5>Admin email: admin@dogbarber.cz  pass: admin</h5>
+          <h5>Customer email: pepa@email.cz  pass: heslo</h5>
         <form method="POST" action="/pa165/auth/login">
-            Email: <input type="text" name="email" value="admin@admin.cz"/><br/>
+            Email: <input type="text" name="email" value="admin@dogbarber.cz"/><br/>
             Password: <input type="password" name="password" value="admin"/><br/>
             <input value="GO" type="submit"/>
         </form>
