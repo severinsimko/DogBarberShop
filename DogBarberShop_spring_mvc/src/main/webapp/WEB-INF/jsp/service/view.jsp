@@ -20,12 +20,16 @@
         	<thead>
         		<tr>
             		<th>name</th>
+                        <th>surname</th>
+                        <th>cell phone number</th>
         		</tr>
         	</thead>
         	<tbody>
         		<c:forEach items="${serviceView.allEmployees}" var="employee">
             		<tr>
-            			<td><c:out value="${employee.name}"/></td>
+            			<td><a href="/pa165/employee/view/${employee.id}"><c:out value="${employee.name}"/></a></td>
+                                <td><a href="/pa165/employee/view/${employee.id}"><c:out value="${employee.surname}"/></a></td>
+                                <td><c:out value="${employee.phone_number}"/></td>
             		</tr>
         		</c:forEach>
         	</tbody>

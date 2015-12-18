@@ -49,7 +49,7 @@
                 <li><my:a href="/customer">Customers</my:a></li>
                 <li><my:a href="/service">Services</my:a></li>
                 <li><my:a href="/dog/list">Dogs</my:a></li>
-                <li><my:a href="/employee/employee">Admin</my:a></li>
+                <li><my:a href="/employee">Employees</my:a></li>
             </ul>
         </div><!--/.nav-collapse -->
         </c:if>
@@ -73,6 +73,19 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <c:out value="${authUser.name} ${authUser.surname}"/>
+                </div>
+                    <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
+            </div>
+        </div>
+    </div>
+    </c:if>
+    <c:if test="${not empty admin}">
+    <div class="row">
+        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <c:out value="Admin: ${admin.name} ${admin.surname}"/>                    
                 </div>
                     <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
             </div>
