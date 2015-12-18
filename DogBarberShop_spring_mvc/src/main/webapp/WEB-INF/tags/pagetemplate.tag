@@ -49,6 +49,7 @@
                 <li><my:a href="/customer">Customers</my:a></li>
                 <li><my:a href="/service">Services</my:a></li>
                 <li><my:a href="/dog/list">Dogs</my:a></li>
+                <li><my:a href="/employee/employee">Admin</my:a></li>
             </ul>
         </div><!--/.nav-collapse -->
         </c:if>
@@ -100,10 +101,7 @@
 
     
     
-    <!-- footer -->
-    <footer class="footer">
-        <p>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;Masaryk University</p>
-    </footer>
+   
 </div>
 <!-- javascripts placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -35,7 +35,7 @@
         
 
 
-        <button class="btn btn-primary" type="submit">Create customer</button>
+        <button class="btn btn-primary" type="submit">Create!</button>
     </form:form>
 
 </jsp:attribute>

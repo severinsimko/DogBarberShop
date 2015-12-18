@@ -198,7 +198,7 @@ public class Employee {
                ", services=" + services + '}';
     }
 
-    public void addService(org.springframework.stereotype.Service s) {
+  /*  public void addService(org.springframework.stereotype.Service s) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }
