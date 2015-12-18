@@ -20,6 +20,7 @@
     <jsp:invoke fragment="head"/>
 </head>
 <body>
+
 <!-- navigation bar -->
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">

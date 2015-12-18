@@ -84,7 +84,7 @@ public class CustomerController {
         CustomerDTO customer = customerFacade.getCustomerById(id);
         CustomerDTO update = new CustomerDTO();
         update.setId(id);
-        update.setDogs(customer.getDogs());
+        update.setDogs(customer.getAllDogs());
         model.addAttribute("customerUpdate", update);
         return "customer/update";
     }

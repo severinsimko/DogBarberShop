@@ -40,7 +40,7 @@ public class Customer {
     private String email;
     
     @OneToMany(mappedBy = "customer")
-    private Set<Dog> dogs = new HashSet<>();
+    private Set<Dog> dogs;
     
     private String password;
     
@@ -65,7 +65,7 @@ public class Customer {
     }
     
     public Customer(){
-        
+    	 dogs = new HashSet<>();
     }
     
     public void setId(Long customerId){

@@ -57,7 +57,7 @@ public class CustomerDTO {
         return phoneNumber;
     }
     
-    public Set<DogDTO> getDogs(){
+    public Set<DogDTO> getAllDogs(){
         return dogs;
     }
     
@@ -125,5 +125,10 @@ public class CustomerDTO {
         hash = 89 * hash + Objects.hashCode(this.phoneNumber);
         hash = 89 * hash + Objects.hashCode(this.dogs);
         return hash;
+    }
+    
+    @Override
+    public String toString() {
+    	return name + " " + surname + ", " + adress;
     }
 }

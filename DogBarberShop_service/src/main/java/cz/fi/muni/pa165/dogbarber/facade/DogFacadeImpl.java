@@ -1,15 +1,19 @@
 package cz.fi.muni.pa165.dogbarber.facade;
 
-import cz.fi.muni.pa165.dogbarber.dto.DogCreatedDTO;
+import cz.fi.muni.pa165.dogbarber.dto.DogCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
+import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
+
 import java.math.BigDecimal;
 import java.util.List;
+
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +33,15 @@ public class DogFacadeImpl implements DogFacade {
     private ServiceService serviceService;
     
     @Autowired
+    private CustomerService customerService;
+    
+    @Autowired
     private BeanMappingService beanMappingService;
     
     @Override
-    public void createDog(DogCreatedDTO dog) {
+    public void createDog(DogCreateDTO dog) {
         Dog dogy = new Dog(dog.getName(), dog.getBreed(), dog.getBornDate(), dog.getColor());
+        dogy.setCustomer(customerService.findById(dog.getCustomerId()));
         dogService.createDog(dogy);
     }
     

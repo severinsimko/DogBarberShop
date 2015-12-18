@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${customer.dogs}" var="dog">
+        <c:forEach items="${customer.allDogs}" var="dog">
             <tr>
                 
                 

@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -46,7 +45,6 @@ public class Dog {
     @ManyToOne
     private Customer customer;
     
-    //@OneToMany
     @ManyToMany
     private Set<Service> services;
     

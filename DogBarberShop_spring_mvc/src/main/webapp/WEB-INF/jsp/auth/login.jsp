@@ -8,7 +8,6 @@
 
 <my:pagetemplate>
 <jsp:attribute name="body">
-   
      <div class="jumbotron">
           <h5>Admin email: admin@dogbarber.cz  pass: admin</h5>
           <h5>Customer email: pepa@email.cz  pass: heslo</h5>

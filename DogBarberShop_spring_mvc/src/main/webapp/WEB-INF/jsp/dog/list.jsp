@@ -7,7 +7,7 @@
 
 <my:pagetemplate title="Dogs">
 	<jsp:attribute name="body">
-		<my:a href="/dog/create" class="btn btn-primary">
+		<my:a href="/dog/new" class="btn btn-primary">
         	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         	Add Dog
     	</my:a>
@@ -32,7 +32,7 @@
                 <td><c:out value="${dog.breed}"/></td>
                 <td><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></td>
                 <td><c:out value="${dog.color}"/></td>
-                <td><c:out value="${dog.customer.name} ${dog.customer.surname}"/></td>
+                <td><a href="/pa165/customer/view/${dog.customer.id}"><c:out value="${dog.customer.name} ${dog.customer.surname}"/></a></td>
                 <td><c:out value="${dog.takenByShop}" /></td>
                 <td>
                     <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>

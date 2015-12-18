@@ -59,6 +59,11 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        
        Dog dog1 = dog("Nemo", "Husky", Calendar.getInstance(), Color.BLACK, customer1, true);
        Dog dog2 = dog("Alfred", "Buldog", Calendar.getInstance(), Color.BROWN, customer2, true);
+       
+       // Customers doesn't show their dogs
+       customer1.addDog(dog1);
+       customer2.addDog(dog2);
+       
        dog1.addService(service2);
        dog1.addService(service1);
        
@@ -124,7 +129,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         dog.setBornDate(bornDate);
         dog.setColor(color);
         dog.setName(name);
-        dog.setCustomer(customer);
+        dog.setCustomer(customer); // Should work without this line
         dog.setTakenByShop(takenByShop);
         dogService.createDog(dog);
         return dog;

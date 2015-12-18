@@ -1,7 +1,9 @@
 package cz.fi.muni.pa165.dogbarber.dto;
 
 import cz.fi.muni.pa165.dogbarber.enums.Color;
+
 import java.util.Calendar;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -9,7 +11,7 @@ import javax.validation.constraints.Size;
  *
  * @author Pavel Drobek
  */
-public class DogCreatedDTO {
+public class DogCreateDTO {
 
     @NotNull
     @Size(min=2, max=20)
@@ -23,19 +25,19 @@ public class DogCreatedDTO {
     private Color color;
 
     @NotNull
-    private Calendar bornDate;
+    private Calendar bornDate = Calendar.getInstance();
 
     @NotNull
-    private CustomerDTO customer;
+    private Long customerId;
     
-    public DogCreatedDTO() {}
+    public DogCreateDTO() {}
     
-    public DogCreatedDTO(String name, String breed, Color color, Calendar bornDate, CustomerDTO customer){
+    public DogCreateDTO(String name, String breed, Color color, Calendar bornDate, Long customerId){
         this.name = name;
         this.breed = breed;
         this.bornDate = bornDate;
         this.color = color;
-        this.customer = customer;
+        this.customerId = customerId;
     }
     
     public void setName(String name) {
@@ -54,8 +56,8 @@ public class DogCreatedDTO {
         this.bornDate = bornDate;
     }
 
-    public void setCustom(CustomerDTO customer){
-        this.customer = customer;
+    public void setCustomerId(Long customerId){
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -74,8 +76,8 @@ public class DogCreatedDTO {
         return bornDate;
     }
 
-    public CustomerDTO getCustom(){
-        return customer;
+    public Long getCustomerId(){
+        return customerId;
     }
     
     @Override
@@ -94,8 +96,8 @@ public class DogCreatedDTO {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof DogCreatedDTO) {
-            DogCreatedDTO other = (DogCreatedDTO) obj;
+        if (obj instanceof DogCreateDTO) {
+            DogCreateDTO other = (DogCreateDTO) obj;
 
             return name.equals(other.name)
                     && bornDate.equals(other.bornDate)
