@@ -20,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
+import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
+import cz.fi.muni.pa165.dogbarbershop_rest.mixin.EmployeeDTOMixin;
 import cz.fi.muni.pa165.dogbarbershop_sampledata.DogBarbershopSampleDataConfig;
 
 @EnableWebMvc
@@ -47,7 +49,7 @@ public class RootWebContext extends WebMvcConfigurerAdapter {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
         
-  //      objectMapper.addMixIn(ProductDTO.class, ProductDTOMixin.class);
+        objectMapper.addMixIn(EmployeeDTO.class, EmployeeDTOMixin.class);
 //        objectMapper.addMixIn(UserDTO.class,    UserDTOMixin.class);
         
         objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);

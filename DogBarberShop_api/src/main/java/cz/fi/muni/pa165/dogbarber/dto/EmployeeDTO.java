@@ -144,7 +144,6 @@ public class EmployeeDTO {
                ", surname=" + surname + 
                ", address=" + address + 
                ", phone_number=" + phone_number + 
-               ", salary=" + salary + 
-               ", services=" + services + '}';
+               ", salary=" + salary +  '}';
     }
 }
