@@ -12,8 +12,8 @@
           <h5>Admin email: admin@dogbarber.cz  pass: admin</h5>
           <h5>Customer email: pepa@email.cz  pass: heslo</h5>
         <form method="POST" action="/pa165/auth/login">
-            Email: <input type="text" name="email" value="admin@dogbarber.cz"/><br/>
-            Password: <input type="password" name="password" value="admin"/><br/>
+            Email: <input type="text" name="email"/><br/>
+            Password: <input type="password" name="password"/><br/>
             <input value="GO" type="submit"/>
         </form>
     </div>

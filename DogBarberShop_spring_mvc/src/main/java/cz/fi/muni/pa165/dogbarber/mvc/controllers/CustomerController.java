@@ -8,22 +8,21 @@ import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import java.util.Collection;
-import java.util.List;
+import javax.persistence.PersistenceException;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.validation.BindingResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 /**
  *
  * @author Martin Penaz
@@ -74,7 +73,15 @@ public class CustomerController {
             }
             return "/customer/create";
         }
-        Long id = customerFacade.registerCustomer(formBean, formBean.getPassword());
+        
+       
+        try{
+            Long id = customerFacade.registerCustomer(formBean, formBean.getPassword());
+           }catch(PersistenceException e){
+               redirectAttributes.addFlashAttribute("alert_danger", "!This email is already in use!");
+               redirectAttributes.addFlashAttribute("alert_info", "Please use the other email for registration!");
+                return "redirect:/customer/create";
+            }
         
         return "redirect:" + uriBuilder.path("/customer").buildAndExpand(id).encode().toUriString();
     }

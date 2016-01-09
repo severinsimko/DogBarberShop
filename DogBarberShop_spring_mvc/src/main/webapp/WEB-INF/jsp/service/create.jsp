@@ -9,7 +9,7 @@
 <jsp:attribute name="body">
 
     <form:form method="POST" action="${pageContext.request.contextPath}/service/create"
-               modelAttribute="customerCreate" cssClass="form-horizontal">
+               modelAttribute="serviceCreate" cssClass="form-horizontal">
         <div class="form-group ${serviceName_error?'has-error':''}">
             <form:label path="serviceName" cssClass="col-sm-2 control-label">ServiceName</form:label>
             <div class="col-sm-10">

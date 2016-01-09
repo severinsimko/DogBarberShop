@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacade;
+//import cz.fi.muni.pa165.dogbarber.mvc.forms.CreateServiceValidator;
 import java.util.Collection;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping("/service")
 public class ServiceController {
+    
+    
+    
+    
+    
     
     @Autowired
     private ServiceFacade serviceFacade;
@@ -49,15 +57,27 @@ public class ServiceController {
         model.addAttribute("serviceView", serviceFacade.getServiceById(id));
         return "service/view";
     }
+    
+    
+    
+    
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String create(Model model){
-        model.addAttribute("customerCreate", new ServiceDTO());
+        model.addAttribute("serviceCreate", new ServiceDTO());
         return "service/create";
     }
     
+    
+   /* @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        if (binder.getTarget() instanceof ServiceDTO) {
+            binder.addValidators(new CreateServiceValidator());
+        }
+    }*/
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("customerCreate") ServiceDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("serviceCreate") ServiceDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder){
         log.error("Create service(formBean={})", formBean);
         
@@ -68,6 +88,9 @@ public class ServiceController {
             }
             return "/service/create";
         }
+        
+       
+        
         Long id = serviceFacade.createService(formBean);
         
         return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();

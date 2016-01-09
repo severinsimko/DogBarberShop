@@ -11,7 +11,7 @@
     
     <jsp:attribute name="body">
         
-        <c:if test="${not empty admin}"><my:a href="/service/create" class="btn btn-primary">
+        <c:if test="${not empty admin}"><my:a href="/service/new" class="btn btn-primary">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         New Service
     </my:a>

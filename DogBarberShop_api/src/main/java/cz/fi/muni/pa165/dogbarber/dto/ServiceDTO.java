@@ -10,7 +10,10 @@ import java.security.Provider.Service;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -21,12 +24,15 @@ public class ServiceDTO {
     private Long id;
 
     @NotNull
+    @Size(min=1,message="Service name cannot be null!")
     private String serviceName;
 
     @NotNull
+    @Min(value=1)
     private int lengthInMinutes;
 
-    @NotNull
+    @NotNull    
+    @DecimalMin("0")
     private BigDecimal price;
 
     private Set<EmployeeDTO> employees = new HashSet<>();

@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -21,15 +22,15 @@ public class CustomerCreateDTO {
     private Long Id;
     
     @NotNull
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String name;
     
     @NotNull
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String surname;
 
     @NotNull
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     private String adress;
     
     @NotNull
@@ -37,10 +38,13 @@ public class CustomerCreateDTO {
     
     private Set<DogDTO> dogs = new HashSet<>();
     
+    @NotNull
+    @Size(min = 1, max = 50)
     private String password;
     
     @NotNull
-    @Size(min = 5, max = 60)
+    //@Size(min = 5, max = 60)
+    @Email
     private String email;
     
     public String getEmail(){
