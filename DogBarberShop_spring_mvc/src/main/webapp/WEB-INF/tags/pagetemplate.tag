@@ -8,116 +8,119 @@
 
 <!DOCTYPE html>
 <html lang="${pageContext.request.locale}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><c:out value="${title}"/></title>
-    <!-- bootstrap loaded from content delivery network -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
-    <jsp:invoke fragment="head"/>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><c:out value="${title}"/></title>
+        <!-- bootstrap loaded from content delivery network -->
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
+        <jsp:invoke fragment="head"/>
+    </head>
+    <body>
 
-<!-- navigation bar -->
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
-        </div>
-        
-            <c:if test="${ not empty authUser}">
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><my:a href="/customer">Customers</my:a></li>
-                <li><my:a href="/service">Services</my:a></li>
-                <li><my:a href="/dog/list">Dogs</my:a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-        </c:if>
-        <c:if test="${ not empty admin}">
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><my:a href="/customer">Customers</my:a></li>
-                <li><my:a href="/service">Services</my:a></li>
-                <li><my:a href="/dog/list">Dogs</my:a></li>
-                <li><my:a href="/employee">Employees</my:a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-        </c:if>
-    </div>
-</nav>
-
-<div class="container">
-
-    <!-- page title -->
-    <c:if test="${not empty title}">
-        <div class="page-header">
-            <h1><c:out value="${title}"/></h1>
-        </div>
-    </c:if>
-
-    <!-- authenticated user info -->
-    <c:if test="${not empty authUser}">
-    <div class="row">
-        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:out value="${authUser.name} ${authUser.surname}"/>
+        <!-- navigation bar -->
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
                 </div>
-                    <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
+
+                <c:if test="${ not empty authUser}">
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><my:a href="/customer">Customers</my:a></li>
+                            <li><my:a href="/service">Services</my:a></li>
+                            <li><my:a href="/dog/list">Dogs</my:a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown" id="menuLogin">
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+                                        <span class="userName">${authUser.surname}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" style="padding:17px;">                                
+                                    <my:a href="${request.contextPath}/auth/logout">logout</my:a>
+
+
+                                    </div>
+                                </li>
+
+                            </ul>
+                            
+                        </div><!--/.nav-collapse -->
+                </c:if>
+                <c:if test="${ not empty admin}">
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><my:a href="/customer">Customers</my:a></li>
+                            <li><my:a href="/service">Services</my:a></li>
+                            <li><my:a href="/dog/list">Dogs</my:a></li>
+                            <li><my:a href="/employee">Employees</my:a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown" id="menuLogin">
+                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+                                        <span class="userName">${admin.name}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" style="padding:17px;">                                
+                                    <my:a href="${request.contextPath}/auth/logout">logout</my:a>
+
+
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                </c:if>
             </div>
-        </div>
-    </div>
-    </c:if>
-    <c:if test="${not empty admin}">
-    <div class="row">
-        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:out value="Admin: ${admin.name} ${admin.surname}"/>                    
+        </nav>
+
+        <div class="container">
+
+            <!-- page title -->
+            <c:if test="${not empty title}">
+                <div class="page-header">
+                    <h1><c:out value="${title}"/></h1>
                 </div>
-                    <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
-            </div>
+            </c:if>
+
+           
+
+            <!-- alerts -->
+            <c:if test="${not empty alert_danger}">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <c:out value="${alert_danger}"/></div>
+                </c:if>
+                <c:if test="${not empty alert_info}">
+                <div class="alert alert-info" role="alert"><c:out value="${alert_info}"/></div>
+            </c:if>
+            <c:if test="${not empty alert_success}">
+                <div class="alert alert-success" role="alert"><c:out value="${alert_success}"/></div>
+            </c:if>
+            <c:if test="${not empty alert_warning}">
+                <div class="alert alert-warning" role="alert"><c:out value="${alert_warning}"/></div>
+            </c:if>
+
+            <!-- page body -->
+            <jsp:invoke fragment="body"/>
+
+
+
+
         </div>
-    </div>
-    </c:if>
-
-    <!-- alerts -->
-    <c:if test="${not empty alert_danger}">
-        <div class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <c:out value="${alert_danger}"/></div>
-    </c:if>
-    <c:if test="${not empty alert_info}">
-        <div class="alert alert-info" role="alert"><c:out value="${alert_info}"/></div>
-    </c:if>
-    <c:if test="${not empty alert_success}">
-        <div class="alert alert-success" role="alert"><c:out value="${alert_success}"/></div>
-    </c:if>
-    <c:if test="${not empty alert_warning}">
-        <div class="alert alert-warning" role="alert"><c:out value="${alert_warning}"/></div>
-    </c:if>
-
-    <!-- page body -->
-    <jsp:invoke fragment="body"/>
-
-    
-    
-   
-</div>
-<!-- javascripts placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
+        <!-- javascripts placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
 </html>
