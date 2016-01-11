@@ -9,6 +9,7 @@ import cz.fi.muni.pa165.dogbarber.dto.CustomerAuthenticateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
@@ -62,6 +63,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public void deleteCustomer(Long CustomerId) {
+         if(customerService.findById(CustomerId)==null){
+            throw new DogBarberException("Customer does not exist!");
+        }
+        
         customerService.deleteCustomer(new Customer(CustomerId));
     }
 

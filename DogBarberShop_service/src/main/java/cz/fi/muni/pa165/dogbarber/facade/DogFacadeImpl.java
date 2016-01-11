@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.dogbarber.dto.DogCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
+import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
@@ -40,6 +41,9 @@ public class DogFacadeImpl implements DogFacade {
     
     @Override
     public void createDog(DogCreateDTO dog) {
+        if(dog == null){
+            throw new IllegalArgumentException("Dog cannot be null!");
+        }
         Dog dogy = new Dog(dog.getName(), dog.getBreed(), dog.getBornDate(), dog.getColor());
         dogy.setCustomer(customerService.findById(dog.getCustomerId()));
         dogService.createDog(dogy);
@@ -47,11 +51,19 @@ public class DogFacadeImpl implements DogFacade {
     
     @Override
     public void deleteDog(DogDTO dog) {
+        if(dog ==null){
+            throw new DogBarberException("A dog does not exist.");
+        }
         dogService.deleteDog(dogService.getDogByID(dog.getId()));
     }
     
     @Override
     public DogDTO getDogByID(Long dogId) {
+        Dog dog = dogService.getDogByID(dogId);
+        
+        if(dog == null){
+            throw new DogBarberException("A dog does not exist.");
+        }
         return beanMappingService.mapTo(dogService.getDogByID(dogId), DogDTO.class);
     }
     

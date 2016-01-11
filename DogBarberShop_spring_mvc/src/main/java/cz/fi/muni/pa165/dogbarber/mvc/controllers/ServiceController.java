@@ -28,7 +28,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RequestMapping("/service")
-public class ServiceController {
+public class ServiceController{
     
     
     
