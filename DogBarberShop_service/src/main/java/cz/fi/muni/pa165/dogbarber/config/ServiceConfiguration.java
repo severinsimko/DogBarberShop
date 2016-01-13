@@ -12,18 +12,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
 @ComponentScan(basePackageClasses={ServiceServiceImpl.class, ServiceFacadeImpl.class, DogServiceImpl.class, DogFacadeImpl.class})
 public class ServiceConfiguration {
-	
-
 	@Bean
 	public Mapper dozer(){
 		return new DozerBeanMapper();
 	}
-	
-
-	
 }
