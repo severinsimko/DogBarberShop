@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 //import javax.inject.Inject;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import static cz.fi.muni.pa165.dogbarber.service.CustomerServiceImpl.validatePassword;
 import javax.inject.Inject;
 
 /**

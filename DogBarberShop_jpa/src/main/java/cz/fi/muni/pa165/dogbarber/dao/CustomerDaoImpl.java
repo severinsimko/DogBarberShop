@@ -1,12 +1,10 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
-import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

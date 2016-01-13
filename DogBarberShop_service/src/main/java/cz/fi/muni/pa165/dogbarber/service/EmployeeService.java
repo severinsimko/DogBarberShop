@@ -1,6 +1,5 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
-import cz.fi.muni.pa165.dogbarber.dto.EmployeeDTO;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.List;

@@ -1,9 +1,7 @@
 package cz.fi.muni.pa165.dogbarber.dao;
 
-import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.exception.ConstraintViolationException;
 
 /**

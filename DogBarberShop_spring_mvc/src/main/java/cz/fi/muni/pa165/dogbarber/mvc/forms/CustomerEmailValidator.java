@@ -1,11 +1,6 @@
 package cz.fi.muni.pa165.dogbarber.mvc.forms;
 
-import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
-import cz.fi.muni.pa165.dogbarber.entity.Customer;
-import cz.fi.muni.pa165.dogbarber.service.CustomerService;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
 

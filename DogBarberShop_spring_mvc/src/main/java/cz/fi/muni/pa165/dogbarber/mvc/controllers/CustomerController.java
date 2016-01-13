@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import java.util.Collection;
 import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
