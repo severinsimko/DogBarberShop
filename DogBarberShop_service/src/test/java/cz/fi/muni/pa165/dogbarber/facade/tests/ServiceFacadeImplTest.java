@@ -21,7 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
@@ -113,7 +113,7 @@ public class ServiceFacadeImplTest {
         ServiceDTO returnedDTO = facade.getServiceById(1l);
 
         Assert.assertEquals(returnedDTO, serviceDTO);
-        verify(service).findById(1l);
+        verify(service, times(2)).findById(1l);
     }
     
     @Test
