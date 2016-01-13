@@ -70,11 +70,9 @@ public class ServicesController {
         try {
             Long id = serviceFacade.createService(service);
             return serviceFacade.getServiceById(id);
-
         } catch (Exception ex) {
             throw new ResourceAlreadyExistingException();
         }
-
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,8 +80,7 @@ public class ServicesController {
         logger.debug("Updating service" + updatedService);
 
         try {
-            ServiceDTO service = serviceFacade.getServiceById(id);
-
+            serviceFacade.getServiceById(id);
         } catch (Exception ex) {
             throw new ResourceNotFoundException();
         }
@@ -97,9 +94,7 @@ public class ServicesController {
 
         }
         return updatedService;
-
     }
-    
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public final void deleteService(@PathVariable("id") long id) throws Exception {
@@ -107,12 +102,8 @@ public class ServicesController {
 
         try {
             serviceFacade.deleteService(id);
-
         } catch (Exception ex) {
            throw new ResourceNotFoundException();
         }
-
     } 
-   
-
 }

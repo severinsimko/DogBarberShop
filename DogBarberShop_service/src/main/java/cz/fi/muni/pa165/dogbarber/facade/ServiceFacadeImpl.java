@@ -1,4 +1,3 @@
-
 package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
@@ -10,7 +9,6 @@ import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 /**
  *
@@ -36,7 +34,6 @@ public class ServiceFacadeImpl implements ServiceFacade {
         }
         
         service.changeServiceName(service.findById(newName.getServiceId()), newName.getServiceName());
-    
     }
     
     @Override
@@ -49,7 +46,7 @@ public class ServiceFacadeImpl implements ServiceFacade {
             throw new DogBarberException("Employee does not exist!");
         }
         
-    service.addEmployee(service.findById(serviceId),employeeService.findEmployeeById(employeeId) );
+        service.addEmployee(service.findById(serviceId),employeeService.findEmployeeById(employeeId) );
     }
     
     @Override
@@ -68,23 +65,19 @@ public class ServiceFacadeImpl implements ServiceFacade {
     
     @Override
     public List<ServiceDTO> getSortedServices(){
-    
         return beanMappingService.mapTo(service.sortedServicesByPrice(), ServiceDTO.class);
     }
     
     @Override
     public List<ServiceDTO> getAllServices(){
-    
         return beanMappingService.mapTo(service.getAllServices(), ServiceDTO.class);
     }
     
     @Override
     public List<ServiceDTO> getServicesByName(String surName){
-     return beanMappingService.mapTo(service.getServicesByName(surName), ServiceDTO.class);
-        
+    	return beanMappingService.mapTo(service.getServicesByName(surName), ServiceDTO.class);
     }
-    
-    
+
     @Override
     public ServiceDTO getServiceById(Long id){
         
@@ -100,20 +93,16 @@ public class ServiceFacadeImpl implements ServiceFacade {
         if(s==null){
             throw new IllegalArgumentException("Service cannot be null!");
         }
-        
     
         cz.fi.muni.pa165.dogbarber.entity.Service serv = new cz.fi.muni.pa165.dogbarber.entity.Service();
         serv.setServiceName(s.getServiceName());
         serv.setLengthInMinutes(s.getLengthInMinutes());
         serv.setPrice(s.getPrice());
         service.create(serv);
-        
-        
+
         return serv.getId();
     }
-    
-    
-    
+
     @Override
     public void deleteService(Long serviceId){
         

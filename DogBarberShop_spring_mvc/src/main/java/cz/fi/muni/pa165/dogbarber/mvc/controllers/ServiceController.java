@@ -54,8 +54,7 @@ public class ServiceController{
         model.addAttribute("serviceCreate", new ServiceDTO());
         return "service/create";
     }
-    
-    
+
    /* @InitBinder
     protected void initBinder(WebDataBinder binder) {
         if (binder.getTarget() instanceof ServiceDTO) {
@@ -76,8 +75,6 @@ public class ServiceController{
             return "/service/create";
         }
         
-       
-        
         Long id = serviceFacade.createService(formBean);
         
         return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
@@ -85,14 +82,13 @@ public class ServiceController{
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
-        serviceFacade.deleteService(id);
-       return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
+    	serviceFacade.deleteService(id);
+    	return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
     }
     
     @RequestMapping(value = "/order/{id}", method = RequestMethod.POST)
     public String order(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
-        serviceFacade.addEmployee(id, id);
-       return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
+    	serviceFacade.addEmployee(id, id);
+    	return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
     }
-    
 }

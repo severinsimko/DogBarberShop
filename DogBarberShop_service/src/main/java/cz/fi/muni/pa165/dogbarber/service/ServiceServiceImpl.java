@@ -1,7 +1,5 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
-import cz.fi.muni.pa165.dogbarber.dao.DogDao;
-import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
@@ -22,15 +20,8 @@ public class ServiceServiceImpl implements ServiceService {
     @Inject
     private ServiceDao serviceDao;
 
-    @Inject
-    private EmployeeDao employeeDao;
-
-    @Inject
-    private DogDao dogDao;
-
     @Override
     public void create(cz.fi.muni.pa165.dogbarber.entity.Service service) {
-
         serviceDao.createService(service);
     }
 
@@ -42,19 +33,16 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public cz.fi.muni.pa165.dogbarber.entity.Service update(cz.fi.muni.pa165.dogbarber.entity.Service serv) {
         return serviceDao.updateService(serv);
-
     }
 
     @Override
     public cz.fi.muni.pa165.dogbarber.entity.Service findById(Long id) {
         return serviceDao.findbyId(id);
-
     }
 
     @Override
     public List<cz.fi.muni.pa165.dogbarber.entity.Service> getAllServices() {
         return serviceDao.getAllServices();
-
     }
 
     @Override
@@ -80,7 +68,6 @@ public class ServiceServiceImpl implements ServiceService {
         } else {
             serv.removeEmployee(emp);
         }
-
     }
 
     @Override
@@ -101,7 +88,7 @@ public class ServiceServiceImpl implements ServiceService {
         allServices = serviceDao.getAllServices();
 
         //sorting
-        BeanComparator fieldComparator = new BeanComparator(
+        BeanComparator<cz.fi.muni.pa165.dogbarber.entity.Service> fieldComparator = new BeanComparator<>(
                 "price");
 
         Collections.sort(allServices, fieldComparator);

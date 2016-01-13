@@ -48,7 +48,6 @@ public class CustomerFacadeImplTest {
     private Customer c1;
     private Customer c2;
     private Dog d1;
-    private Dog d2;
     
     @InjectMocks
     private CustomerFacade customerFacade = new CustomerFacadeImpl();
@@ -96,7 +95,6 @@ public class CustomerFacadeImplTest {
         
         d1 = new Dog("Rex", "Vlcak", new GregorianCalendar(2013, Calendar.JANUARY, 10), Color.BLACK); 
         d1.setId(2l);
-        d2 = new Dog("Dasenka", "Pudl", new GregorianCalendar(2013, Calendar.DECEMBER, 10), Color.WHITE);  
         
         mockCustomerService();
         mockMappingService();
@@ -137,7 +135,6 @@ public class CustomerFacadeImplTest {
         
         Mockito.when(dogService.getDogByID(Matchers.anyLong()))
                 .thenReturn(d1);
-        
     }
 
     private void mockMappingService() {

@@ -54,9 +54,7 @@ public class EmployeeFacadeImplTest {
     
     @InjectMocks
     private EmployeeFacade facade = new EmployeeFacadeImpl();
-    
-    private Service sA;
-    
+
     private EmployeeDTO empDTOA;
     private EmployeeDTO empDTOB;
     
@@ -75,7 +73,6 @@ public class EmployeeFacadeImplTest {
         listEmpDTOs = new ArrayList<>();
     
         empA=setEmployee(new Employee(), "name1", "surname1", "address xxxxxxx", "02135645569", BigDecimal.ONE);
-        sA = setService(new Service(), 15, BigDecimal.TEN, "washing");
         empA.setPassword_hash("aaa");
         empB=setEmployee(new Employee(), "name2", "surname2", "address yyyyyyy", "02145444569", BigDecimal.TEN);
         

@@ -98,7 +98,6 @@ public class EmployeeDTO {
     }
 
     public Set<ServiceDTO> getServices(){
-        log.error("EMPLOYEE GET SERVICES",services);
        return services;
     }
     

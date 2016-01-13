@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.facade.tests;
 
 import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
@@ -47,9 +42,7 @@ public class ServiceFacadeImplTest {
     @Mock
     private BeanMappingService beanMappingService;
     
-    
     private Service service1;
-    private Service service2;
     
     @InjectMocks
     private ServiceFacade facade = new ServiceFacadeImpl();
@@ -59,7 +52,6 @@ public class ServiceFacadeImplTest {
     private List<Service> services = new ArrayList<>();
     private List<ServiceDTO> listServiceDTO = new ArrayList<ServiceDTO>();
    // private ServiceDTO serviceDTO = new TroopDTO();
-    
     
     @BeforeClass
     public void setup() throws ServiceException {
@@ -75,19 +67,11 @@ public class ServiceFacadeImplTest {
         serviceDTO.setPrice(new BigDecimal(90));
         serviceDTO.setServiceName("Test1");
         listServiceDTO.add(serviceDTO);
-        
-        
     }
     
     @BeforeMethod
     public void setUpMethod() throws Exception {
-
         service1 = new Service();
-        service1.setLengthInMinutes(90);
-        service1.setPrice(new BigDecimal("120"));
-        service1.setServiceName("TestName1");
-
-        service2  = new Service();
         service1.setLengthInMinutes(120);
         service1.setPrice(new BigDecimal("90"));
         service1.setServiceName("TestName2");
@@ -98,13 +82,9 @@ public class ServiceFacadeImplTest {
     
     @Test
     public void testFindAllTest(){
-    
-        
         List<ServiceDTO> list = facade.getAllServices();
         assertTrue(list.contains(serviceDTO));
         verify(service).getAllServices();
-       
-    
     }
     
    
@@ -118,23 +98,16 @@ public class ServiceFacadeImplTest {
     
     @Test
     public void deleteService() {
-        
         facade.deleteService(Long.MIN_VALUE);
-        
         verify(service).remove(Matchers.eq(service1));
     }
- 
-    
-    
-    
+
     private void mockServiceService() {
         Mockito.when(service.getAllServices())
                 .thenReturn(services);
 
         Mockito.when(service.findById(Matchers.anyLong()))
-                .thenReturn(service1);
-        
-        
+                .thenReturn(service1); 
     }
 
     private void mockMappingService() {
@@ -144,5 +117,4 @@ public class ServiceFacadeImplTest {
         Mockito.when(beanMappingService.mapTo(Matchers.anyCollection(), Matchers.eq(ServiceDTO.class)))
                 .thenReturn(listServiceDTO);
     }
-    
 }

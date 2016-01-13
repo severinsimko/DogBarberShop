@@ -19,7 +19,6 @@
                     <span style="color: red; font-weight: bold;"><c:out value="${employee.email}"/> </span>
                 </div>
                 </div>
-                </a>
             </div>
         </c:forEach>
     </div>

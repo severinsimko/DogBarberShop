@@ -5,8 +5,9 @@ package cz.fi.muni.pa165.dogbarber.mvc.exceptions;
  * @author Severin Simko
  */
 public class CustomGenericException extends RuntimeException {
-
-    private String errCode;
+	private static final long serialVersionUID = -1116361905230645321L;
+	
+	private String errCode;
     private String errMsg;
 
     public String getErrCode() {
