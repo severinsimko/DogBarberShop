@@ -33,26 +33,32 @@
             </button>
             <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
         </div>
-        
-            <c:if test="${ not empty authUser}">
         <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><my:a href="/customer">Customers</my:a></li>
-                <li><my:a href="/service">Services</my:a></li>
-                <li><my:a href="/dog/list">Dogs</my:a></li>
+	        <ul class="nav navbar-nav">
+	            <li><my:a href="/customer">Customers</my:a></li>
+	            <li><my:a href="/service">Services</my:a></li>
+	            <li><my:a href="/dog/list">Dogs</my:a></li>
+	            <c:if test="${ not empty admin}">
+	            	<li><my:a href="/employee">Employees</my:a></li>
+	            </c:if>
+	        </ul>
+	        <ul class="nav navbar-nav navbar-right pull-right">
+                <li class="dropdown" id="menuLogin">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+                    	<c:if test="${ not empty admin}">
+	                        <span class="userName">${admin.surname}</span>
+                        </c:if>
+                        <c:if test="${ not empty authUser}">
+	                        <span class="userName">${authUser.surname}</span>
+                        </c:if>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" style="padding:17px;">                                
+                        <my:a href="${request.contextPath}/auth/logout">logout</my:a>
+                    </div>
+                </li>
             </ul>
-        </div><!--/.nav-collapse -->
-        </c:if>
-        <c:if test="${ not empty admin}">
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><my:a href="/customer">Customers</my:a></li>
-                <li><my:a href="/service">Services</my:a></li>
-                <li><my:a href="/dog/list">Dogs</my:a></li>
-                <li><my:a href="/employee">Employees</my:a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-        </c:if>
+	    </div>
     </div>
 </nav>
 
@@ -63,34 +69,6 @@
         <div class="page-header">
             <h1><c:out value="${title}"/></h1>
         </div>
-    </c:if>
-
-    <!-- authenticated user info -->
-    <c:if test="${not empty authUser}">
-    <div class="row">
-        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:out value="${authUser.name} ${authUser.surname}"/>
-                </div>
-                    <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
-            </div>
-        </div>
-    </div>
-    </c:if>
-    <c:if test="${not empty admin}">
-    <div class="row">
-        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:out value="Admin: ${admin.name} ${admin.surname}"/>                    
-                </div>
-                    <a href="${pageContext.request.contextPath}/auth/logout">logout</a>
-            </div>
-        </div>
-    </div>
     </c:if>
 
     <!-- alerts -->

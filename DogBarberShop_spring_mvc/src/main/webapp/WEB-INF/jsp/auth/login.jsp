@@ -32,8 +32,8 @@
                     Sign in</button>          
             
     </div>
-            <h10 class="text-center login-title"> For project defense purposes only, you can use one of the following accounts to sign in.<br></h10>
-            <h10 class="text-center login-title"> 1, Admin email: admin@dogbarber.cz pass: admin<br</h10>
+            <h10 class="text-center login-title"> For project defense purposes only, you can use one of the following accounts to sign in.</h10><br>
+            <h10 class="text-center login-title"> 1, Admin email: admin@dogbarber.cz pass: admin</h10><br>
             <h10 class="text-center login-title"> 2, Customer email: pepa@email.cz pass: heslo</h10>
 </div>
  
