@@ -13,6 +13,10 @@ public class Utils {
 		return isAdmin(session) || isAuthUser(session);
 	}
 	
+	public static boolean isUnauthorized(HttpSession session){
+		return !isAuthorized(session);
+	}
+	
 	public static boolean isAdmin(HttpSession session){
 		return session.getAttribute("admin") != null;
 	}

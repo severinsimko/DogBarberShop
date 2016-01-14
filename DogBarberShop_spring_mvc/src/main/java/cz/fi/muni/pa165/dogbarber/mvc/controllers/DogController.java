@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 import java.util.EnumSet;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.facade.DogFacade;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacade;
+import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
 
 /**
 *
@@ -47,7 +49,10 @@ public class DogController {
     private CustomerFacade customerFacade;
     
     @RequestMapping(value = {"", "/", "/list"}, method = RequestMethod.GET)
-    public String list(Model model) {
+    public String list(Model model, HttpServletRequest req,
+            HttpServletResponse res) {
+    	if(Utils.isUnauthorized(req.getSession()))
+    		return "redirect:/auth/login";
         model.addAttribute("dogs", dogFacade.getAllDogs());
         return "dog/list";
     }

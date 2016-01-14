@@ -33,32 +33,34 @@
             </button>
             <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-	        <ul class="nav navbar-nav">
-	            <li><my:a href="/customer">Customers</my:a></li>
-	            <li><my:a href="/service">Services</my:a></li>
-	            <li><my:a href="/dog/list">Dogs</my:a></li>
-	            <c:if test="${ not empty admin}">
-	            	<li><my:a href="/employee">Employees</my:a></li>
-	            </c:if>
-	        </ul>
-	        <ul class="nav navbar-nav navbar-right pull-right">
-                <li class="dropdown" id="menuLogin">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
-                    	<c:if test="${ not empty admin}">
-	                        <span class="userName">${admin.surname}</span>
-                        </c:if>
-                        <c:if test="${ not empty authUser}">
-	                        <span class="userName">${authUser.surname}</span>
-                        </c:if>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" style="padding:17px;">                                
-                        <my:a href="${request.contextPath}/auth/logout">logout</my:a>
-                    </div>
-                </li>
-            </ul>
-	    </div>
+        <c:if test="${ not empty admin}">
+	        <div id="navbar" class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		            <li><my:a href="/customer">Customers</my:a></li>
+		            <li><my:a href="/service">Services</my:a></li>
+		            <li><my:a href="/dog/list">Dogs</my:a></li>
+		            <c:if test="${ not empty admin}">
+		            	<li><my:a href="/employee">Employees</my:a></li>
+		            </c:if>
+		        </ul>
+		        <ul class="nav navbar-nav navbar-right pull-right">
+	                <li class="dropdown" id="menuLogin">
+	                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+	                    	<c:if test="${ not empty admin}">
+		                        <span class="userName">${admin.surname}</span>
+	                        </c:if>
+	                        <c:if test="${ not empty authUser}">
+		                        <span class="userName">${authUser.surname}</span>
+	                        </c:if>
+	                        <span class="caret"></span>
+	                    </a>
+	                    <div class="dropdown-menu" style="padding:17px;">                                
+	                        <my:a href="${request.contextPath}/auth/logout">logout</my:a>
+	                    </div>
+	                </li>
+	            </ul>
+		    </div>
+		</c:if>
     </div>
 </nav>
 
