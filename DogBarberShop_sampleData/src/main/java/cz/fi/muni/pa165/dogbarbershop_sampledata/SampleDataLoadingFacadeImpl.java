@@ -43,7 +43,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     @SuppressWarnings("unused")
     public void loadData() throws IOException{
         
-       Employee employee112 = employeeNoService("Example","TestPriezvisko",true,"example","example@email.cz","address","1921654",new BigDecimal("120")); 
+       Employee employee112 = employeeNoService("Roman","Hlavaty",true,"example","example@email.cz","address","+420 995 423 122",new BigDecimal("120")); 
        
        Service service = service(90, new BigDecimal("1000"), "Washing");
        Service service1 = service(120, new BigDecimal("150"), "Cutting");
