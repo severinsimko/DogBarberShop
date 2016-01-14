@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,10 +86,34 @@ public class ServiceController{
     	serviceFacade.deleteService(id);
     	return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
     }
-    
-    @RequestMapping(value = "/order/{id}", method = RequestMethod.POST)
-    public String order(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes){
-    	serviceFacade.addEmployee(id, id);
-    	return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
+
+    @RequestMapping(value = {"/update/{id}"}, method = RequestMethod.GET)
+    public String update(@PathVariable long id, Model model) {
+        ServiceDTO service = serviceFacade.getServiceById(id);
+        model.addAttribute("updatedService",service);
+        return "service/edit";
     }
+    
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String update(
+            @Valid @ModelAttribute("updatedService") ServiceDTO formBean,
+            BindingResult bindingResult,
+            @PathVariable long id,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder) {
+    
+     if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "service/edit";
+        }
+     serviceFacade.updateService(formBean);
+        redirectAttributes.addFlashAttribute("alert_success", "Service " + formBean.getServiceName()+ " was updated");
+        return "redirect:" + uriBuilder.path("/service").buildAndExpand(id).encode().toUriString();
+    }
+    
+    
 }

@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
 import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
+import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import java.util.Collection;
 import javax.persistence.PersistenceException;
@@ -92,13 +93,4 @@ public class CustomerController {
 						.toUriString();
 	}
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable long id, Model model) {
-		CustomerDTO customer = customerFacade.getCustomerById(id);
-		CustomerDTO update = new CustomerDTO();
-		update.setId(id);
-		update.setAllDogs(customer.getAllDogs());
-		model.addAttribute("customerUpdate", update);
-		return "customer/update";
-	}
 }

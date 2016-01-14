@@ -40,7 +40,7 @@ public class DogDaoImpl implements DogDao {
     }
 
     @Override
-    public void updateDog(Dog dog) {
-        em.merge(dog);
+    public Dog updateDog(Dog dog) {
+       return em.merge(dog);
     }
 }

@@ -39,7 +39,7 @@ public class ExceptionController {
     public ModelAndView handleAllException(Exception ex) {
 
         ModelAndView model = new ModelAndView("/error");
-        model.addObject("errMsg", "Any other error happened.");
+        model.addObject("errMsg", ex);
 
         return model;
 

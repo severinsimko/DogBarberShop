@@ -89,7 +89,7 @@ public class Dog {
     }
     
     public Set<Service> getServices(){
-        return java.util.Collections.unmodifiableSet(services);
+        return services;
     }
     
     public Long getId() {

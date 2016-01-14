@@ -23,10 +23,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Inject
     private CustomerDao customerDao;
-    
+
     @Inject
     private DogService dogService;
-    
+
     @Override
     public Customer findById(Long Id) {
         return customerDao.findById(Id);
@@ -39,10 +39,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addDog(Dog dog, Customer customer) {
-        if(customer.getAllDogs().contains(dog)){
+        if (customer.getAllDogs().contains(dog)) {
             throw new DogBarberException("Customer already has this dog. Customer: " + customer.getId() + ", dog: " + dog.getId());
-        }
-        else{            
+        } else {
             customer.addDog(dog);
             customerDao.updateCustomer(customer);
         }
@@ -50,13 +49,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void removeDog(Dog dog, Customer customer) {
-        if(customer.getAllDogs().contains(dog)){
+        if (customer.getAllDogs().contains(dog)) {
             customer.removeDog(dog);
             customerDao.updateCustomer(customer);
-        }
-        else{
+        } else {
             throw new DogBarberException("Customer doesnt own this dog. Customer: " + customer.getId() + ", dog: " + dog.getId());
-        }        
+        }
     }
 
     @Override
@@ -66,25 +64,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void registerCustomer(Customer c, String password) {
-       c.setPassword(createHash(password));
-       customerDao.createCustomer(c);
+        c.setPassword(createHash(password));
+        customerDao.createCustomer(c);
     }
 
     @Override
     public boolean authenticate(Customer c, String password) {
-       return validatePassword(password, c.getPassword());
+        return validatePassword(password, c.getPassword());
     }
-    
+
     @Override
     public BigDecimal getTotalPrice(Customer customer) {
         BigDecimal price = new BigDecimal("0.00");
         Set<Dog> dogs = customerDao.findById(customer.getId()).getAllDogs();
-        for(Dog d : dogs){
+        for (Dog d : dogs) {
             price.add(dogService.getTotalPrice(d.getId()));
         }
         return price;
     }
-    
+
     //see  https://crackstation.net/hashing-security.htm#javasourcecode
     private static String createHash(String password) {
         final int SALT_BYTE_SIZE = 24;
@@ -110,8 +108,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public static boolean validatePassword(String password, String correctHash) {
-        if(password==null) return false;
-        if(correctHash==null) throw new IllegalArgumentException("password hash is null");
+        if (password == null) {
+            return false;
+        }
+        if (correctHash == null) {
+            throw new IllegalArgumentException("password hash is null");
+        }
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[0]);
         byte[] salt = fromHex(params[1]);
@@ -131,8 +133,9 @@ public class CustomerServiceImpl implements CustomerService {
      */
     private static boolean slowEquals(byte[] a, byte[] b) {
         int diff = a.length ^ b.length;
-        for (int i = 0; i < a.length && i < b.length; i++)
+        for (int i = 0; i < a.length && i < b.length; i++) {
             diff |= a[i] ^ b[i];
+        }
         return diff == 0;
     }
 
@@ -154,5 +157,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByEmail(String email) {
         return customerDao.findByEmail(email);
+    }
+
+    @Override
+    public Customer update(Customer cust) {
+
+        return customerDao.updateCustomer(cust);
+
     }
 }

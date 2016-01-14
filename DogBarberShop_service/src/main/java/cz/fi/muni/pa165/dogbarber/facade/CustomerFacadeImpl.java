@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Martin Penaz
@@ -30,10 +31,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Autowired
     private DogService dogService;
-    
+
     @Autowired
     private BeanMappingService beanMappingService;
-    
+
     @Override
     public Collection<CustomerDTO> getAllCustomers() {
         return beanMappingService.mapTo(customerService.findAll(), CustomerDTO.class);
@@ -57,10 +58,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public void deleteCustomer(Long CustomerId) {
-         if(customerService.findById(CustomerId)==null){
+        if (customerService.findById(CustomerId) == null) {
             throw new DogBarberException("Customer does not exist!");
         }
-        
+
         customerService.deleteCustomer(new Customer(CustomerId));
     }
 
@@ -75,7 +76,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public boolean authenticate(CustomerAuthenticateDTO c) {
         return customerService.authenticate(customerService.findById(c.getCustomerId()), c.getPassword());
-    }    
+    }
 
     @Override
     public BigDecimal getTotalPrice(Long Id) {
@@ -86,6 +87,17 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public CustomerDTO getCustomerByEmail(String email) {
         Customer c = customerService.findByEmail(email);
         return (c == null) ? null : beanMappingService.mapTo(c, CustomerDTO.class);
+    }
+
+    @Override
+    public void updateCustomer(CustomerDTO c) {
+
+        if (c == null) {
+            throw new DogBarberException("Customer does not exist!");
+        }
+
+        customerService.update(beanMappingService.mapTo(c, Customer.class));
+
     }
 
 }

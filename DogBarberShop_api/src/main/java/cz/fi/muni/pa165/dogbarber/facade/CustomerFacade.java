@@ -25,4 +25,5 @@ public interface CustomerFacade {
     public void deleteCustomer(Long CustomerId);    
     boolean authenticate(CustomerAuthenticateDTO c);
     BigDecimal getTotalPrice(Long Id);
+    void updateCustomer(CustomerDTO c);
 }

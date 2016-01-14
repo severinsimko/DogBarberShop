@@ -38,6 +38,11 @@
                     <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>
                 </td>
                 <c:if test="${ not empty admin }">
+                    <td>
+	                    <form method="post" action="${pageContext.request.contextPath}/dog/update/${dog.id}">
+	                        <button type="submit" class="btn btn-primary">Edit</button>
+	                    </form>
+	                </td>
 	                <td>
 	                    <form method="post" action="${pageContext.request.contextPath}/dog/delete/${dog.id}">
 	                        <button type="submit" class="btn btn-primary">Delete</button>

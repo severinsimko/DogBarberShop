@@ -24,4 +24,5 @@ public interface DogService {
     void unsubscribeDogForAService(Dog dog, Service service);
     
     BigDecimal getTotalPrice(Long dogId);
+    Dog update(Dog dog);
 }

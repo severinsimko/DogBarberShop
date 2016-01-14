@@ -133,4 +133,9 @@ public class DogServiceImpl implements DogService {
         return totalPrice;
     }
 
+    
+     @Override
+    public Dog update(Dog dog) {
+       return dogDao.updateDog(dog);
+    }
 }

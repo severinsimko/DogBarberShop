@@ -10,7 +10,7 @@ import java.util.List;
 public interface DogDao {
     void addDog(Dog dog);
     void removeDog(Dog dog);
-    void updateDog(Dog dog);
+    Dog updateDog(Dog dog);
     Dog getDogByID(Long Id);
     List<Dog> getAllDogs();
 }
