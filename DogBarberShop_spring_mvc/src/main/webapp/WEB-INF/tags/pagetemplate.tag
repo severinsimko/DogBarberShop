@@ -31,7 +31,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
+                    <c:if test="${ not empty auth }">
+                    	<a class="navbar-brand" href="${pageContext.request.contextPath}/service"><f:message key="navigation.project"/></a>
+                    </c:if>
+                    <c:if test="${ empty auth }">
+                    	<a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
+                    </c:if>
                 </div>        
                 <c:if test="${ not empty auth }">
                     <div id="navbar" class="collapse navbar-collapse">
