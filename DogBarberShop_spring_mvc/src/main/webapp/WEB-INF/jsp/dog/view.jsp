@@ -5,8 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<c:choose>
-	<c:when test="${not empty authUser || not empty admin}">
 <my:pagetemplate title="${dog.name}">
 	<jsp:attribute name="body">
 		<div class="row">
@@ -67,9 +65,3 @@
     	</c:if>
 	</jsp:attribute>
 </my:pagetemplate>
-</c:when>
-	<c:otherwise>
-		<h1>Unauthorized access!</h1>
-		<a href="http://localhost:8080/pa165"> Homepage </a>
-	</c:otherwise>
-</c:choose>

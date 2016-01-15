@@ -10,7 +10,6 @@ import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.transaction.Transactional;

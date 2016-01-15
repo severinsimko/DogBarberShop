@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**

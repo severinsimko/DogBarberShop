@@ -2,16 +2,12 @@ package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
-import cz.fi.muni.pa165.dogbarber.entity.Dog;
-import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 

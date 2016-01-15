@@ -10,7 +10,6 @@ import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.CustomerService;
 import cz.fi.muni.pa165.dogbarber.service.DogService;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 
 import javax.transaction.Transactional;

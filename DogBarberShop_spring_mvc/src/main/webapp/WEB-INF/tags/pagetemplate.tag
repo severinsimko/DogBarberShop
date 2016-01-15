@@ -55,32 +55,21 @@
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
                                     <c:if test="${ not empty admin}">
                                         <span class="userName">${admin.surname}</span>
-
-
                                     </c:if>
                                     <c:if test="${ not empty authUser}">
                                         <span class="userName">${authUser.surname}</span>
-
-
                                     </c:if>
                                     <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" style="padding:17px;"> 
                                     <span class="userName">${auth.name} ${auth.surname}</span><br>
-                                    <p>Email: <span class="userName">${auth.email}</span></p<br>
+                                    <p>Email: <span class="userName">${auth.email}</span></p><br>
                                     <FORM METHOD="LINK" ACTION="${pageContext.request.contextPath}/auth/logout">
                                         <INPUT TYPE="submit" VALUE="logout">
                                     </FORM>
-                                    
                                     </div>
                                 </li>
-
                             </ul>
-
-
-
-
-
                         </div>
                 </c:if>	
             </div>
@@ -113,10 +102,6 @@
 
             <!-- page body -->
             <jsp:invoke fragment="body"/>
-
-
-
-
         </div>
         <!-- javascripts placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

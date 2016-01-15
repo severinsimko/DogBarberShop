@@ -5,7 +5,6 @@ import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
@@ -94,8 +93,12 @@ public class DogServiceImpl implements DogService {
         try{    
             List<Service> services = serviceDao.findByName(service.getServiceName());
             if (services.contains(service)) {
-                dog.addService(service);
-                dogDao.updateDog(dog);
+                if(!dog.getServices().contains(service)){
+	            	dog.addService(service);
+	                dogDao.updateDog(dog);
+                } else {
+                	throw new DogBarberException("Dog already subscribed!");
+                }
             } else {
                 throw new DogBarberException("No such service in database!");
             }
@@ -129,26 +132,15 @@ public class DogServiceImpl implements DogService {
 
     @Override
     public double getTotalPrice(Long dogId) {
-        log.error("GET TOTAL PRICE FOR DOG DOG SERVICE IMPL CLASS");
-       // BigDecimal totalPrice = new BigDecimal("0.00");
-        
-        
         Set<Service> services = dogDao.getDogByID(dogId).getServices();
-        log.error("Set of the services for a dog"+ services);
         double priceAll = 0;
         for(Service s : services){
-            
             priceAll += s.getPrice().doubleValue();
-            log.error("PRICE FOR A SERVICE IS "+s.getPrice().doubleValue());
-           // totalPrice.add(s.getPrice());
         }
-        log.error("TOTAL PRICE COMING FROM GET TOTAL DOG SERVICE IMPL IS:"+ priceAll);
         return priceAll;
-        
     }
 
-    
-     @Override
+    @Override
     public Dog update(Dog dog) {
        return dogDao.updateDog(dog);
     }

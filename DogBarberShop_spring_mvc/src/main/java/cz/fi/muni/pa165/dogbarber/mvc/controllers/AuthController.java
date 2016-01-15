@@ -7,7 +7,6 @@ import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacade;
 import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
-import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
