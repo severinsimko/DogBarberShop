@@ -12,6 +12,8 @@ import java.util.Set;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +23,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    
+    final static Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
+    
     @Inject
     private CustomerDao customerDao;
 
@@ -74,11 +79,18 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public BigDecimal getTotalPrice(Customer customer) {
-        BigDecimal price = new BigDecimal("0.00");
+    public double getTotalPrice(Customer customer) {
+        log.error("GET TOTAL PRICE METHOD CUSTOMER SERVICE IMPL");
+        double price = 0;
+       // BigDecimal price = new BigDecimal("1.00");
         Set<Dog> dogs = customerDao.findById(customer.getId()).getAllDogs();
         for (Dog d : dogs) {
-            price.add(dogService.getTotalPrice(d.getId()));
+            
+          // BigDecimal dec = (dogService.getTotalPrice(d.getId()));
+            double priceDec = dogService.getTotalPrice(d.getId());
+            log.error("CUSTOMER SERV IMPL price for a dog is:"+priceDec);
+            price +=priceDec;
+           // price.add(dogService.getTotalPrice(d.getId()));
         }
         return price;
     }

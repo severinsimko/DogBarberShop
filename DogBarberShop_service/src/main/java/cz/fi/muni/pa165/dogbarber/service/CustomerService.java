@@ -24,6 +24,6 @@ public interface CustomerService {
     public void removeDog(Dog dog, Customer customer);
     public void deleteCustomer(Customer c);
     boolean authenticate(Customer c, String password);
-    public BigDecimal getTotalPrice(Customer customer);
+    public double getTotalPrice(Customer customer);
     Customer update(Customer cust);
 }

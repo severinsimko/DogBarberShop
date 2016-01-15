@@ -25,79 +25,82 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
  *
  * @author Martin Penaz
  */
-
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-	@Autowired
-	private CustomerFacade customerFacade;
 
-	final static Logger log = LoggerFactory.getLogger(CustomerController.class);
+    @Autowired
+    private CustomerFacade customerFacade;
 
-	@RequestMapping(value = { "", "/", "/home" }, method = RequestMethod.GET)
-	public String index(Model model, HttpServletRequest req) {
-                if(!Utils.isAdmin(req.getSession()))
-                    return "redirect:/auth/login";
-		Collection<CustomerDTO> customers = customerFacade.getAllCustomers();
-		model.addAttribute("customers", customers);
-		return "customer/home";
-	}
+    final static Logger log = LoggerFactory.getLogger(CustomerController.class);
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-	public String delete(@PathVariable long id, Model model,
-			UriComponentsBuilder uriBuilder,
-			RedirectAttributes redirectAttributes) {
-		customerFacade.deleteCustomer(id);
-		return "redirect:"
-				+ uriBuilder.path("/customer").buildAndExpand(id).encode()
-						.toUriString();
-	}
+    @RequestMapping(value = {"", "/", "/home"}, method = RequestMethod.GET)
+    public String index(Model model, HttpServletRequest req) {
+        if (!Utils.isAdmin(req.getSession())) {
+            return "redirect:/auth/login";
+        }
+        Collection<CustomerDTO> customers = customerFacade.getAllCustomers();
+        model.addAttribute("customers", customers);
+        return "customer/home";
+    }
 
-	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String view(@PathVariable long id, Model model, HttpServletRequest req) {
-                if(!Utils.isAdmin(req.getSession()))
-                    return "redirect:/auth/login";
-		model.addAttribute("customer", customerFacade.getCustomerById(id));
-		return "customer/view";
-	}
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable long id, Model model,
+            UriComponentsBuilder uriBuilder,
+            RedirectAttributes redirectAttributes) {
+        customerFacade.deleteCustomer(id);
+        return "redirect:"
+                + uriBuilder.path("/customer").buildAndExpand(id).encode()
+                .toUriString();
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String create(Model model, HttpServletRequest req) {
-                if(!Utils.isAdmin(req.getSession()))
-                    return "redirect:/auth/login";
-		model.addAttribute("customerCreate", new CustomerCreateDTO());
-		return "customer/create";
-	}
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    public String view(@PathVariable long id, Model model, HttpServletRequest req) {
+        if (!Utils.isAdmin(req.getSession())) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("customer", customerFacade.getCustomerById(id));
+        return "customer/view";
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(
-			@Valid @ModelAttribute("customerCreate") CustomerCreateDTO formBean,
-			BindingResult bindingResult, Model model,
-			RedirectAttributes redirectAttributes,
-			UriComponentsBuilder uriBuilder) {
-		log.debug("create customer(formBean={})", formBean);
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model, HttpServletRequest req) {
+        if (!Utils.isAdmin(req.getSession())) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("customerCreate", new CustomerCreateDTO());
+        return "customer/create";
+    }
 
-		if (bindingResult.hasErrors()) {
-			for (FieldError fe : bindingResult.getFieldErrors()) {
-				model.addAttribute(fe.getField() + "_error", true);
-				log.trace("FieldError: {}", fe);
-			}
-			return "/customer/create";
-		}
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(
+            @Valid @ModelAttribute("customerCreate") CustomerCreateDTO formBean,
+            BindingResult bindingResult, Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder) {
+        log.debug("create customer(formBean={})", formBean);
 
-		try {
-			customerFacade.registerCustomer(formBean, formBean.getPassword());
-		} catch (PersistenceException e) {
-			redirectAttributes.addFlashAttribute("alert_danger",
-					"!This email is already in use!");
-			redirectAttributes.addFlashAttribute("alert_info",
-					"Please use the other email for registration!");
-			return "redirect:/customer/create";
-		}
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "/customer/create";
+        }
 
-		return "redirect:"
-				+ uriBuilder.path("/customer").buildAndExpand(id).encode()
-						.toUriString();
-	}
+        try {
+            customerFacade.registerCustomer(formBean, formBean.getPassword());
+        } catch (PersistenceException e) {
+            redirectAttributes.addFlashAttribute("alert_danger",
+                    "!This email is already in use!");
+            redirectAttributes.addFlashAttribute("alert_info",
+                    "Please use the other email for registration!");
+            return "redirect:/customer/create";
+        }
+
+        return "redirect:"
+                + uriBuilder.path("/customer").buildAndExpand(id).encode()
+                .toUriString();
+    }
 
 }

@@ -24,7 +24,7 @@ public interface DogFacade {
     
     void unsubscribeDogForAService(DogDTO dog, ServiceDTO service);
     
-    BigDecimal getTotalPrice(Long dogId);
+    double getTotalPrice(Long dogId);
     
     void update(DogDTO d);
     

@@ -88,9 +88,9 @@ public class DogServiceTest extends AbstractDogServiceTest {
         dogService.unsubscribeDogForAService(dog1, nonExistingService);
     }
     
-    public void getTotalPriceTest(){
+   /* public void getTotalPriceTest(){
         when(dogDao.getDogByID(dog4.getId())).thenReturn(dog4);
         BigDecimal price = dogService.getTotalPrice(dog4.getId());
         assertEquals(price, new BigDecimal("20.00"));
-    }
+    }*/
 }

@@ -46,7 +46,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
        Employee employee112 = employeeNoService("Roman","Hlavaty",true,"example","example@email.cz","address","+420 995 423 122",new BigDecimal("120")); 
        
        Service service = service(90, new BigDecimal("1000"), "Washing");
-       Service service1 = service(120, new BigDecimal("150"), "Cutting");
+       Service service1 = service(120, new BigDecimal("150.5"), "Cutting");
        Service service2 = service(180, new BigDecimal("120"), "Massage");
     
        employee112.addService(service);

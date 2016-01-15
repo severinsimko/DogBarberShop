@@ -85,7 +85,7 @@ public class DogFacadeImpl implements DogFacade {
     }
 
     @Override
-    public BigDecimal getTotalPrice(Long dogId) {
+    public double getTotalPrice(Long dogId) {
         return dogService.getTotalPrice(dogId);
     }
     

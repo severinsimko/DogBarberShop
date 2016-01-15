@@ -71,8 +71,8 @@ public class DogController {
     public String view(@PathVariable long id, Model model) {
     	model.addAttribute("dog", dogFacade.getDogByID(id));
     	model.addAttribute("services", serviceFacade.getAllServices());
-        BigDecimal price = dogFacade.getTotalPrice(id);
-        model.addAttribute("price", price);
+       // BigDecimal price = dogFacade.getTotalPrice(id);
+       // model.addAttribute("price", price);
     	return "dog/view";
     }
     

@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
 /**
@@ -18,6 +20,8 @@ import org.springframework.dao.DataAccessException;
  */
 @org.springframework.stereotype.Service
 public class DogServiceImpl implements DogService {
+    
+     final static Logger log = LoggerFactory.getLogger(DogServiceImpl.class);
 
     @Inject
     DogDao dogDao;
@@ -124,13 +128,23 @@ public class DogServiceImpl implements DogService {
     }
 
     @Override
-    public BigDecimal getTotalPrice(Long dogId) {
-        BigDecimal totalPrice = new BigDecimal("0.00");
+    public double getTotalPrice(Long dogId) {
+        log.error("GET TOTAL PRICE FOR DOG DOG SERVICE IMPL CLASS");
+       // BigDecimal totalPrice = new BigDecimal("0.00");
+        
+        
         Set<Service> services = dogDao.getDogByID(dogId).getServices();
+        log.error("Set of the services for a dog"+ services);
+        double priceAll = 0;
         for(Service s : services){
-            totalPrice.add(s.getPrice());
+            
+            priceAll += s.getPrice().doubleValue();
+            log.error("PRICE FOR A SERVICE IS "+s.getPrice().doubleValue());
+           // totalPrice.add(s.getPrice());
         }
-        return totalPrice;
+        log.error("TOTAL PRICE COMING FROM GET TOTAL DOG SERVICE IMPL IS:"+ priceAll);
+        return priceAll;
+        
     }
 
     

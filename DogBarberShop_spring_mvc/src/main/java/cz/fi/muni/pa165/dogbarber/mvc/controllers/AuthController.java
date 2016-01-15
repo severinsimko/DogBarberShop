@@ -7,6 +7,7 @@ import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacade;
 import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
+import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -73,8 +74,13 @@ public class AuthController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("authUser", customerDTO);
                 request.setAttribute("authUser", customerDTO);
-                session.setAttribute("auth", true);
-                request.setAttribute("auth", true);
+                session.setAttribute("auth", customerDTO);
+                request.setAttribute("auth", customerDTO);
+                
+                double i = customer.getTotalPrice(customerDTO.getId());
+                session.setAttribute("total", i);
+                request.setAttribute("total", i);
+                
                 return "redirect:/service";
 
             } else {
@@ -87,8 +93,8 @@ public class AuthController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("admin", employeeDTO);
                 request.setAttribute("admin", employeeDTO);
-                session.setAttribute("auth", true);
-                request.setAttribute("auth", true);
+                session.setAttribute("auth", employeeDTO);
+                request.setAttribute("auth", employeeDTO);
                 return "redirect:/service";
 
             } else {

@@ -79,7 +79,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public BigDecimal getTotalPrice(Long Id) {
+    public double getTotalPrice(Long Id) {
         return customerService.getTotalPrice(customerService.findById(Id));
     }
 
