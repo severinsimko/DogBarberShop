@@ -1,11 +1,15 @@
 package cz.fi.muni.pa165.dogbarber.service;
 
+import cz.fi.muni.pa165.dogbarber.dao.DogDao;
+import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
+import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import org.apache.commons.beanutils.BeanComparator;
 import org.springframework.stereotype.Service;
@@ -19,6 +23,12 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Inject
     private ServiceDao serviceDao;
+    
+    @Inject
+    private EmployeeDao employeeDao;
+    
+    @Inject
+    private DogDao dogDao;
 
     @Override
     public void create(cz.fi.muni.pa165.dogbarber.entity.Service service) {
@@ -27,6 +37,16 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public void remove(cz.fi.muni.pa165.dogbarber.entity.Service serv) {
+        Set<Employee> employees = employeeDao.getAllEmployees();
+        List<Dog> dogs = dogDao.getAllDogs();
+        for(Employee e : employees){
+            if(e.getServices().contains(serv))
+                e.removeService(serv);
+        }
+        for(Dog d : dogs){
+            if(d.getServices().contains(serv))
+                d.removeService(serv);
+        }
         serviceDao.removeService(serv);
     }
 

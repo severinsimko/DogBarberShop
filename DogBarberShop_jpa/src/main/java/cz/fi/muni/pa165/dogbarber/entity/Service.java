@@ -36,6 +36,9 @@ public class Service {
     @ManyToMany(mappedBy = "services",fetch = FetchType.EAGER)
     private Set<Employee> employees = new HashSet<>();
 
+    @ManyToMany(mappedBy = "services",fetch = FetchType.EAGER)
+    private Set<Dog> dogs = new HashSet<>();
+    
     
     //Constructors
     

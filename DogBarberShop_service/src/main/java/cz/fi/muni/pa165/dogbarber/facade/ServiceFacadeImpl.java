@@ -2,11 +2,16 @@ package cz.fi.muni.pa165.dogbarber.facade;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceChangeNameDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
+import cz.fi.muni.pa165.dogbarber.entity.Dog;
+import cz.fi.muni.pa165.dogbarber.entity.Employee;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
+import cz.fi.muni.pa165.dogbarber.service.DogService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +31,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
     
     @Autowired
     private EmployeeService employeeService;
+    
+    @Autowired
+    private DogService dogService;
     
     @Override
     public void changeServiceName(ServiceChangeNameDTO newName){
@@ -105,12 +113,11 @@ public class ServiceFacadeImpl implements ServiceFacade {
 
     @Override
     public void deleteService(Long serviceId){
-        
-        if(service.findById(serviceId)==null){
-            throw new DogBarberException("Service does not exist!");
+        cz.fi.muni.pa165.dogbarber.entity.Service deleteService =  service.findById(serviceId);
+        if(deleteService==null){
+            throw new DogBarberException("Service does not exist!");            
         }
-    
-        service.remove(service.findById(serviceId));
+        service.remove(deleteService);
     }
     
     @Override

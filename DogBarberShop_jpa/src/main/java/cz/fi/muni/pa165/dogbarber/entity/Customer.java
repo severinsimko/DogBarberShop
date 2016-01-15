@@ -39,7 +39,7 @@ public class Customer {
     @Column(nullable=false, unique=true)
     private String email;
     
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(cascade=CascadeType.REMOVE, mappedBy = "customer")
     private Set<Dog> dogs;
     
     private String password;
