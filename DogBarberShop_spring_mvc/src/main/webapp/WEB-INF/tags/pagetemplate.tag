@@ -32,14 +32,18 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${pageContext.request.contextPath}"><f:message key="navigation.project"/></a>
-        </div>
-        <c:if test="${ not empty admin}">
+        </div>        
+        <c:if test="${ not empty auth }">
 	        <div id="navbar" class="collapse navbar-collapse">
 		        <ul class="nav navbar-nav">
-		            <li><my:a href="/customer">Customers</my:a></li>
-		            <li><my:a href="/service">Services</my:a></li>
-		            <li><my:a href="/dog/list">Dogs</my:a></li>
-		            <c:if test="${ not empty admin}">
+                            <c:if test="${ not empty authUser}">
+                                <li><my:a href="/dog/list">My dogs</my:a></li>
+                                <li><my:a href="/service">Services</my:a></li>
+                            </c:if>
+                            <c:if test="${ not empty admin}">
+                                <li><my:a href="/customer">Customers</my:a></li>
+                                <li><my:a href="/service">Services</my:a></li>
+                                <li><my:a href="/dog/list">Dogs</my:a></li>		            
 		            	<li><my:a href="/employee">Employees</my:a></li>
 		            </c:if>
 		        </ul>
@@ -60,7 +64,7 @@
 	                </li>
 	            </ul>
 		    </div>
-		</c:if>
+	</c:if>	
     </div>
 </nav>
 

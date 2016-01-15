@@ -29,7 +29,7 @@
 	        <tbody>
 	        	<c:forEach items="${customer.allDogs}" var="dog">
 		            <tr>
-		                <td><c:out value="${dog.name}"/></td>
+                                <td><p><a href="/pa165/dog/view/${dog.id}"><c:out value="${dog.name}"/></a></p></td>
 		            </tr>
 		        </c:forEach>
 	        </tbody>

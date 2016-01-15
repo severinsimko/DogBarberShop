@@ -73,6 +73,8 @@ public class AuthController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("authUser", customerDTO);
                 request.setAttribute("authUser", customerDTO);
+                session.setAttribute("auth", true);
+                request.setAttribute("auth", true);
                 return "redirect:/service";
 
             } else {
@@ -85,6 +87,8 @@ public class AuthController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("admin", employeeDTO);
                 request.setAttribute("admin", employeeDTO);
+                session.setAttribute("auth", true);
+                request.setAttribute("auth", true);
                 return "redirect:/service";
 
             } else {
@@ -100,6 +104,7 @@ public class AuthController {
         HttpSession sessionLogOut = request.getSession(true);
         sessionLogOut.removeAttribute("authUser");
         sessionLogOut.removeAttribute("admin");
+        sessionLogOut.removeAttribute("auth");
         red.addFlashAttribute("alert_success", " Successfully logged out");
         return "redirect:/auth/login";
     }

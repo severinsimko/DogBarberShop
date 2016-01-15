@@ -2,10 +2,11 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
 import cz.fi.muni.pa165.dogbarber.dto.CustomerCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
-import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
+import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
 import java.util.Collection;
 import javax.persistence.PersistenceException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class CustomerController {
 	final static Logger log = LoggerFactory.getLogger(CustomerController.class);
 
 	@RequestMapping(value = { "", "/", "/home" }, method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model, HttpServletRequest req) {
+                if(!Utils.isAdmin(req.getSession()))
+                    return "redirect:/auth/login";
 		Collection<CustomerDTO> customers = customerFacade.getAllCustomers();
 		model.addAttribute("customers", customers);
 		return "customer/home";
@@ -51,13 +54,17 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String view(@PathVariable long id, Model model) {
+	public String view(@PathVariable long id, Model model, HttpServletRequest req) {
+                if(!Utils.isAdmin(req.getSession()))
+                    return "redirect:/auth/login";
 		model.addAttribute("customer", customerFacade.getCustomerById(id));
 		return "customer/view";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String create(Model model) {
+	public String create(Model model, HttpServletRequest req) {
+                if(!Utils.isAdmin(req.getSession()))
+                    return "redirect:/auth/login";
 		model.addAttribute("customerCreate", new CustomerCreateDTO());
 		return "customer/create";
 	}

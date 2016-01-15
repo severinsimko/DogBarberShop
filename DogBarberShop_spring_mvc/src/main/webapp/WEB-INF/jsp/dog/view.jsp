@@ -11,7 +11,9 @@
 	<jsp:attribute name="body">
 		<div class="row">
         	<div class="col-xs-6">
+                    <c:if test="${ not empty admin }">
         		<p><c:out value="ID   : ${dog.id}"/></p>
+                    </c:if>
             	<p>Owner: <a href="/pa165/customer/view/${dog.customer.id}"><c:out value="${dog.customer.name} ${dog.customer.surname}"/></a></p>
             	<p><c:out value="Breed: ${dog.breed}"/></p>
             	<p><c:out value="Color: ${dog.color}"/></p>
@@ -43,7 +45,8 @@
 		        		</c:forEach>
 		        	</tbody>
 		    	</table>
-		    	
+                        <h4>Total price for all dogs: ${price} </h4>
+                        
 		    	<h4>Subscribe for another service</h4>
 		    	<form action="${pageContext.request.contextPath}/dog/subscribe/${dog.id}/" method="post">
 		    		<select name="services">

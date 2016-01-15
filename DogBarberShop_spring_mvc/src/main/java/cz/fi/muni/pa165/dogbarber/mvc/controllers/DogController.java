@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
+import cz.fi.muni.pa165.dogbarber.dto.CustomerDTO;
 import java.util.EnumSet;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ import cz.fi.muni.pa165.dogbarber.facade.CustomerFacade;
 import cz.fi.muni.pa165.dogbarber.facade.DogFacade;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacade;
 import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
+import java.math.BigDecimal;
+import java.util.Map;
 
 /**
 *
@@ -53,14 +56,23 @@ public class DogController {
             HttpServletResponse res) {
     	if(Utils.isUnauthorized(req.getSession()))
     		return "redirect:/auth/login";
-        model.addAttribute("dogs", dogFacade.getAllDogs());
-        return "dog/list";
+        else if(!Utils.isAdmin(req.getSession())){
+            CustomerDTO customerDTO = (CustomerDTO) req.getSession().getAttribute("authUser");
+            model.addAttribute("dogs", customerDTO.getAllDogs());
+            return "dog/list";
+        }
+        else{
+            model.addAttribute("dogs", dogFacade.getAllDogs());
+            return "dog/list";
+        } 
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
     	model.addAttribute("dog", dogFacade.getDogByID(id));
     	model.addAttribute("services", serviceFacade.getAllServices());
+        BigDecimal price = dogFacade.getTotalPrice(id);
+        model.addAttribute("price", price);
     	return "dog/view";
     }
     

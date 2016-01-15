@@ -2,7 +2,9 @@ package cz.fi.muni.pa165.dogbarber.mvc.controllers;
 
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacade;
+import cz.fi.muni.pa165.dogbarber.mvc.utils.Utils;
 import java.util.Collection;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,9 @@ public class ServiceController{
     final static Logger log = LoggerFactory.getLogger(ServiceController.class);
     
      @RequestMapping(value = {"", "/", "/shopping"}, method = RequestMethod.GET)
-    public String index(Model model){
+    public String index(Model model, HttpServletRequest req){
+        if(Utils.isUnauthorized(req.getSession()))
+            return "redirect:/auth/login";
         Collection<ServiceDTO> allServices = serviceFacade.getAllServices();
         log.info("All the services",allServices);
         model.addAttribute("services", allServices);
@@ -45,13 +49,17 @@ public class ServiceController{
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable long id, Model model){
+    public String view(@PathVariable long id, Model model, HttpServletRequest req){
+        if(Utils.isUnauthorized(req.getSession()))
+            return "redirect:/auth/login";
         model.addAttribute("serviceView", serviceFacade.getServiceById(id));
         return "service/view";
     }
   
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String create(Model model){
+    public String create(Model model, HttpServletRequest req){
+        if(Utils.isUnauthorized(req.getSession()))
+            return "redirect:/auth/login";
         model.addAttribute("serviceCreate", new ServiceDTO());
         return "service/create";
     }
