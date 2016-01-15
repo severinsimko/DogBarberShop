@@ -42,17 +42,26 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public CustomerDTO getCustomerById(Long Id) {
-        Customer c = customerService.findById(Id);
-        return (c == null) ? null : beanMappingService.mapTo(c, CustomerDTO.class);
+        if(customerService.findById(Id) == null)
+            throw new DogBarberException("Customer does not exist!");
+        return beanMappingService.mapTo(customerService.findById(Id), CustomerDTO.class);
     }
 
     @Override
     public void addDog(Long CustomerId, Long DogId) {
+        if(customerService.findById(CustomerId) == null)
+            throw new DogBarberException("Customer does not exist!");
+        if(dogService.getDogByID(DogId) == null)
+            throw new DogBarberException("Dog does not exist!");
         customerService.addDog(dogService.getDogByID(DogId), customerService.findById(CustomerId));
     }
 
     @Override
     public void removeDog(Long CustomerId, Long DogId) {
+        if(customerService.findById(CustomerId) == null)
+            throw new DogBarberException("Customer does not exist!");
+        if(dogService.getDogByID(DogId) == null)
+            throw new DogBarberException("Dog does not exist!");
         customerService.removeDog(dogService.getDogByID(DogId), customerService.findById(CustomerId));
     }
 

@@ -37,7 +37,7 @@
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <c:if test="${ not empty authUser}">
-                                <li><my:a href="/dog/list">Dogs</my:a></li>
+                                <li><my:a href="/dog/list">My Dogs</my:a></li>
                                 <li><my:a href="/service">Services</my:a></li>
                                 </c:if>
                                 <c:if test="${ not empty admin}">

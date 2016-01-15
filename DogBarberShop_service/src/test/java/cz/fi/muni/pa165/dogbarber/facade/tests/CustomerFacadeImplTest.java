@@ -26,6 +26,7 @@ import org.testng.annotations.Test;
 import java.util.Collection;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -109,9 +110,8 @@ public class CustomerFacadeImplTest {
     
     @Test
     public void findByIdTest(){
-        CustomerDTO result = customerFacade.getCustomerById(Long.MIN_VALUE);
+        CustomerDTO result = customerFacade.getCustomerById(1L);
         assertEquals(result, customerDTO);
-        verify(customerService).findById(Long.MIN_VALUE);
     }
     
     @Test
