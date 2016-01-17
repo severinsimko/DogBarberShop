@@ -36,7 +36,7 @@
                         <td><c:out value="${service.price}"/></td>
                         <c:if test="${not empty admin}">
                             <td>
-                                <form method="post" action="${pageContext.request.contextPath}/service/update/${service.id}">
+                                <form method="get" action="${pageContext.request.contextPath}/service/update/${service.id}">
                                     <button type="submit" class="btn btn-primary">Edit</button>
                                 </form>
                             </td>
