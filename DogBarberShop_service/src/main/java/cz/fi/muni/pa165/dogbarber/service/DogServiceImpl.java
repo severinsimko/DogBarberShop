@@ -138,6 +138,16 @@ public class DogServiceImpl implements DogService {
         }
         return priceAll;
     }
+    
+    @Override
+    public int getServicesLenght(Long dogId) {
+        Set<Service> services = dogDao.getDogByID(dogId).getServices();
+        int totalLenght = 0;
+        for(Service s : services){
+            totalLenght += s.getLengthInMinutes();
+        }
+        return totalLenght;
+    }
 
     @Override
     public Dog update(Dog dog) {

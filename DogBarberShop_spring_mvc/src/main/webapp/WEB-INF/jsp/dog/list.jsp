@@ -28,21 +28,13 @@
         <c:forEach items="${dogs}" var="dog">
             <tr>
                 <td>${dog.id}</td>
-                <td><c:out value="${dog.name}"/></td>
+                <td><a href="/pa165/dog/view/${dog.id}"><c:out value="${dog.name}"/></a></td>
                 <td><c:out value="${dog.breed}"/></td>
                 <td><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></td>
                 <td><c:out value="${dog.color}"/></td>
                 <td><a href="/pa165/customer/view/${dog.customer.id}"><c:out value="${dog.customer.name} ${dog.customer.surname}"/></a></td>
                 <td><c:out value="${dog.takenByShop}" /></td>
-                <td>
-                    <my:a href="/dog/view/${dog.id}" class="btn btn-primary">View</my:a>
-                </td>
                 <c:if test="${ not empty admin }">
-                    <td>
-	                    <form method="post" action="${pageContext.request.contextPath}/dog/update/${dog.id}">
-	                        <button type="submit" class="btn btn-primary">Edit</button>
-	                    </form>
-	                </td>
 	                <td>
 	                    <form method="post" action="${pageContext.request.contextPath}/dog/delete/${dog.id}">
 	                        <button type="submit" class="btn btn-primary">Delete</button>

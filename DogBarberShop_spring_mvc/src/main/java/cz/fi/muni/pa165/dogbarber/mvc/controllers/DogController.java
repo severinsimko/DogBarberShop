@@ -71,6 +71,8 @@ public class DogController {
 		if (Utils.isUnauthorized(req.getSession()))
 			return "redirect:/auth/login";
 		model.addAttribute("dog", dogFacade.getDogByID(id));
+		model.addAttribute("price", dogFacade.getTotalPrice(id));
+		model.addAttribute("length", dogFacade.getServicesLength(id));
 		model.addAttribute("services", serviceFacade.getAllServices());
 		return "dog/view";
 	}
@@ -174,25 +176,5 @@ public class DogController {
 		redirectAttributes.addFlashAttribute("alert_success",
 				"Dog " + formBean.getName() + " was added to database");
 		return "redirect:" + uriBuilder.path("/dog/list").build().toUriString();
-	}
-
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("updatedDog") DogDTO formBean,
-			BindingResult bindingResult, @PathVariable long id, Model model,
-			RedirectAttributes redirectAttributes,
-			UriComponentsBuilder uriBuilder) {
-
-		if (bindingResult.hasErrors()) {
-			for (FieldError fe : bindingResult.getFieldErrors()) {
-				model.addAttribute(fe.getField() + "_error", true);
-			}
-			return "dog/edit";
-		}
-		dogFacade.update(formBean);
-		redirectAttributes.addFlashAttribute("alert_success",
-				"Dog" + formBean.getName() + " was updated");
-		return "redirect:"
-				+ uriBuilder.path("/dog").buildAndExpand(id).encode()
-						.toUriString();
 	}
 }

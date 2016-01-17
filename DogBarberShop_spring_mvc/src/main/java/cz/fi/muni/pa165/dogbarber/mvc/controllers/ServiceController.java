@@ -62,19 +62,10 @@ public class ServiceController{
         model.addAttribute("serviceCreate", new ServiceDTO());
         return "service/create";
     }
-
-   /* @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        if (binder.getTarget() instanceof ServiceDTO) {
-            binder.addValidators(new CreateServiceValidator());
-        }
-    }*/
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("serviceCreate") ServiceDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder){
-        log.error("Create service(formBean={})", formBean);
-        
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);

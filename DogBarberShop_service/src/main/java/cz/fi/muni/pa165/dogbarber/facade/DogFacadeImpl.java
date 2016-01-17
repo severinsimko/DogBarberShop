@@ -88,13 +88,16 @@ public class DogFacadeImpl implements DogFacade {
         return dogService.getTotalPrice(dogId);
     }
     
+    @Override
+    public int getServicesLength(Long dogId) {
+        return dogService.getServicesLenght(dogId);
+    }
+    
     public void update(DogDTO d){
         if(d==null){
             throw new DogBarberException("Dog does not exist!");
         }
         
         dogService.update(beanMappingService.mapTo(d, Dog.class));
-    
     }
-    
 }

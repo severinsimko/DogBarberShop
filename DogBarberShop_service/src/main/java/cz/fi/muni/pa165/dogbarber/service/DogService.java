@@ -23,5 +23,8 @@ public interface DogService {
     void unsubscribeDogForAService(Dog dog, Service service);
     
     double getTotalPrice(Long dogId);
+    
+    int getServicesLenght(Long dogId);
+    
     Dog update(Dog dog);
 }

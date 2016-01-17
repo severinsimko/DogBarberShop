@@ -18,6 +18,7 @@
             	<p><c:out value="Registration: "/><fmt:formatDate value="${dog.bornDate.time}" pattern="yyyy-MM-dd"/></p>
         	</div>
     	</div>
+    	<br />
     	
     	<div class="row">
 	    	<div class="col-xs-6">
@@ -35,7 +36,7 @@
 		            		<tr>
 		            			<td><a href="/pa165/service/view/${service.id}"><c:out value="${service.serviceName}"/></a></td>
 		            			<td><c:out value="${service.lengthInMinutes}"/></td>
-		            			<td><c:out value="${service.price}"/></td>
+		            			<td><c:out value="${service.price},-"/></td>
 		            			<td>
 		                    		<my:a href="/dog/unsubscribe/${dog.id}/${service.serviceName}" class="btn btn-primary">Unsubscribe</my:a>
 		                		</td>
@@ -43,9 +44,11 @@
 		        		</c:forEach>
 		        	</tbody>
 		    	</table>
-                        <h4>Total price for all dogs: ${price} </h4>
-                        
-		    	<h4>Subscribe for another service</h4>
+                <h4>Total price for subscribed services: ${price},-</h4>
+                <h4>Total length of subscribed services: ${length} minutes</h4>
+                <br />
+                
+		    	<h3>Subscribe for another service</h3>
 		    	<form action="${pageContext.request.contextPath}/dog/subscribe/${dog.id}/" method="post">
 		    		<select name="services">
 		    			<c:forEach items="${services}" var="service">
@@ -56,6 +59,7 @@
 		    	</form>
 	    	</div>
     	</div>
+    	<br />
     	
     	<c:if test="${not empty admin}">
 	    	<h3>In case that dog passed out</h3>

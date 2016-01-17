@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.dogbarber.facade;
 import cz.fi.muni.pa165.dogbarber.dto.DogCreateDTO;
 import cz.fi.muni.pa165.dogbarber.dto.DogDTO;
 import cz.fi.muni.pa165.dogbarber.dto.ServiceDTO;
+
 import java.util.List;
 
 /**
@@ -26,5 +27,7 @@ public interface DogFacade {
     double getTotalPrice(Long dogId);
     
     void update(DogDTO d);
+
+	int getServicesLength(Long dogId);
     
 }
