@@ -7,7 +7,7 @@
 
 
 
-<my:pagetemplate title="Customer ${customer.name} ${customer.surname} has following dogs">
+<my:pagetemplate title="Customer ${customer.name} ${customer.surname} details">
     <jsp:attribute name="body">
         <div class="row">
         	<div class="col-xs-6">
@@ -24,12 +24,18 @@
 	        <thead>
 		        <tr>
 		            <th>name</th>
+                            <th>breed</th>
+                            <th>color</th>
+                            <th>taken</th>
 		        </tr>
 	        </thead>
 	        <tbody>
 	        	<c:forEach items="${customer.allDogs}" var="dog">
 		            <tr>
                                 <td><p><a href="/pa165/dog/view/${dog.id}"><c:out value="${dog.name}"/></a></p></td>
+                                <td><c:out value="${dog.breed}"/></td>
+                                <td><c:out value="${dog.color}"/></td>
+                                <td><c:out value="${dog.takenByShop}"/></td>
 		            </tr>
 		        </c:forEach>
 	        </tbody>
