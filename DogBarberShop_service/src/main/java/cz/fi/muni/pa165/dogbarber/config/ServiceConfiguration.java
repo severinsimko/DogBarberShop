@@ -1,10 +1,15 @@
 package cz.fi.muni.pa165.dogbarber.config;
 
+import cz.fi.muni.pa165.dogbarber.facade.CustomerFacadeImpl;
 import cz.fi.muni.pa165.dogbarber.facade.DogFacadeImpl;
+import cz.fi.muni.pa165.dogbarber.facade.EmployeeFacadeImpl;
 import cz.fi.muni.pa165.dogbarber.facade.ServiceFacadeImpl;
 import cz.fi.muni.pa165.dogbarber.main.PersistenceSampleApplicationContext;
+import cz.fi.muni.pa165.dogbarber.service.CustomerServiceImpl;
 import cz.fi.muni.pa165.dogbarber.service.DogServiceImpl;
+import cz.fi.muni.pa165.dogbarber.service.EmployeeServiceImpl;
 import cz.fi.muni.pa165.dogbarber.service.ServiceServiceImpl;
+
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +19,15 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-@ComponentScan(basePackageClasses={ServiceServiceImpl.class, ServiceFacadeImpl.class, DogServiceImpl.class, DogFacadeImpl.class})
+@ComponentScan(basePackageClasses = { 
+		ServiceServiceImpl.class, ServiceFacadeImpl.class,
+		DogServiceImpl.class, DogFacadeImpl.class,
+		CustomerServiceImpl.class, CustomerFacadeImpl.class,
+		EmployeeServiceImpl.class, EmployeeFacadeImpl.class
+		})
 public class ServiceConfiguration {
 	@Bean
-	public Mapper dozer(){
+	public Mapper dozer() {
 		return new DozerBeanMapper();
 	}
 }

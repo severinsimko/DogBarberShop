@@ -132,27 +132,23 @@ public class Customer {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Customer other = (Customer) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.surname, other.surname)) {
-            return false;
-        }
-        if (!Objects.equals(this.adress, other.adress)) {
-            return false;
-        }
-        if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
-            return false;
-        }
-        return true;
+        if (obj instanceof Customer) {
+	        final Customer other = (Customer) obj;
+	        
+	        if (!Objects.equals(this.name, other.name)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.surname, other.surname)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.adress, other.adress)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
+	            return false;
+	        }
+	        return true;
+	    }
+        return false;
     }
-
-    
 }

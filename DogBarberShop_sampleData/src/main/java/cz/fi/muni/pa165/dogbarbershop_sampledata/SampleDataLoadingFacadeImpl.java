@@ -11,8 +11,6 @@ import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.fi.muni.pa165.dogbarber.service.ServiceService;
 import java.math.BigDecimal;
@@ -27,8 +25,6 @@ import java.util.Set;
 @Component
 @Transactional
 public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
-    
-    final static Logger logger = LoggerFactory.getLogger(SampleDataLoadingFacadeImpl.class);
     
     @Autowired
     private ServiceService serviceService;

@@ -19,6 +19,4 @@ public interface ServiceService {
     void removeEmployee(Service serv, Employee emp);
     void changeServiceName(Service service, String name);
     List<Service> sortedServicesByPrice();
-    //Set<Service> getTheMostPopularServices();
-    
 }

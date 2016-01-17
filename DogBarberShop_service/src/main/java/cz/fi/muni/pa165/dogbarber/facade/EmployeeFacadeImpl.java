@@ -7,10 +7,13 @@ import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
 import cz.fi.muni.pa165.dogbarber.service.BeanMappingService;
 import cz.fi.muni.pa165.dogbarber.service.EmployeeService;
+
 import java.util.Collection;
 import java.util.List;
-import javax.inject.Inject;
+
 import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 
  * @author MichalBrath
@@ -19,13 +22,13 @@ import javax.transaction.Transactional;
 @Transactional
 @org.springframework.stereotype.Service
 public class EmployeeFacadeImpl implements EmployeeFacade {
-    @Inject
+	
+	@Autowired
     private EmployeeService employeeService;
 
-    @Inject
+    @Autowired
     private BeanMappingService beanMappingService;
 
-    @Override
     public void registerEmployee(EmployeeDTO employeeDTO, String encryptedPass) {
         Employee employee = beanMappingService.mapTo(employeeDTO, Employee.class);
         employeeService.registerEmployee(employee, encryptedPass);
@@ -54,21 +57,19 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public EmployeeDTO findEmployeeById(Long userId) {
-       
-        Employee emp = employeeService.findEmployeeById(userId);
+       Employee emp = employeeService.findEmployeeById(userId);
         
-         if(emp==null){
+       if(emp==null){
             throw new DogBarberException("Employee does not exist!");
-        }
-            return beanMappingService.mapTo(emp, EmployeeDTO.class);
-    
+       }
+       return beanMappingService.mapTo(emp, EmployeeDTO.class);
     }
 
     @Override
     public List<EmployeeDTO> findEmployeeByName(String name) {
         List<Employee> users = employeeService.findEmployeeByName(name);
         
-         if(users==null){
+        if(users==null){
             throw new DogBarberException("Employees does not exist!");
         }
         return beanMappingService.mapTo(users, EmployeeDTO.class);
@@ -112,15 +113,11 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public EmployeeDTO findEmployeeByEmail(String email) {
-        
         Employee emp = employeeService.findEmployeeByEmail(email);
         
         if(emp==null){
             throw new DogBarberException("Employee does not exist!");
-        
         }
             return beanMappingService.mapTo(emp, EmployeeDTO.class);
     }
-
-    
 }

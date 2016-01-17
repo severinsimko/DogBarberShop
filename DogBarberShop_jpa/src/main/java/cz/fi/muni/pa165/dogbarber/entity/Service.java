@@ -100,26 +100,19 @@ public class Service {
     
     }
     
-    
-    
     //hashCode and equals methods 
     
     @Override
     public int hashCode(){
-    
         int hash = 5;
         hash = 17 * hash + ((serviceName == null) ? 0 : serviceName.hashCode());
         return hash;
-        
     }
    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        }
-        if (obj == null) {
-            return false;
         }
         if (!(obj instanceof Service)) {
             return false;

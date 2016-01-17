@@ -89,8 +89,7 @@ public class DogFacadeImpl implements DogFacade {
     }
     
     public void update(DogDTO d){
-        
-          if(d==null){
+        if(d==null){
             throw new DogBarberException("Dog does not exist!");
         }
         

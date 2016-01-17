@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -68,13 +70,10 @@ public class Employee {
     }
     
     public void addService(Service service){
-        
         services.add(service);
-    
     }
     
     public Long getId(){
-    
         return id;
     }
     
@@ -158,27 +157,24 @@ public class Employee {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+        if (obj instanceof Employee) {
+	        final Employee other = (Employee) obj;
+	
+	        if (!Objects.equals(this.name, other.name)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.surname, other.surname)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.address, other.address)) {
+	            return false;
+	        }
+	        if (!Objects.equals(this.phone_number, other.phone_number)) {
+	            return false;
+	        }
+	        return true;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Employee other = (Employee) obj;
-
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.surname, other.surname)) {
-            return false;
-        }
-        if (!Objects.equals(this.address, other.address)) {
-            return false;
-        }
-        if (!Objects.equals(this.phone_number, other.phone_number)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     @Override
@@ -191,8 +187,4 @@ public class Employee {
                ", salary=" + salary + 
                ", services=" + services + '}';
     }
-
-  /*  public void addService(org.springframework.stereotype.Service s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 }

@@ -5,12 +5,13 @@ import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
+
 import java.util.List;
 import java.util.Set;
-import javax.inject.Inject;
+
 import javax.persistence.PersistenceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 /**
@@ -20,12 +21,10 @@ import org.springframework.dao.DataAccessException;
 @org.springframework.stereotype.Service
 public class DogServiceImpl implements DogService {
     
-     final static Logger log = LoggerFactory.getLogger(DogServiceImpl.class);
-
-    @Inject
+	@Autowired
     DogDao dogDao;
 
-    @Inject
+    @Autowired
     ServiceDao serviceDao;
 
     @Override

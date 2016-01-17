@@ -1,27 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.dogbarber.service;
 
 import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
 import cz.fi.muni.pa165.dogbarber.entity.Employee;
+import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
+
 import java.util.ArrayList;
 import java.util.List;
-//import javax.inject.Inject;
-import cz.fi.muni.pa165.dogbarber.entity.Service;
-import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author MichalBrath
  */
 @org.springframework.stereotype.Service
-//@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Inject
+	@Autowired
     private EmployeeDao employeeDao;
     
     
@@ -69,9 +64,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static boolean validatePassword(String password, String hash) {
         return password.equals(hash);
     }
-    
-    
-    
     
     @Override
     public void addService(Employee emp, Service s) {

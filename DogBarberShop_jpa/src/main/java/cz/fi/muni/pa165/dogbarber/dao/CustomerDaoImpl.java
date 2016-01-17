@@ -6,13 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Martin Penaz
  */
-@Transactional
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -26,9 +24,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void createCustomer(Customer customer) {
-      
-           em.persist(customer);
-      
+    	em.persist(customer);
     }
 
     @Override

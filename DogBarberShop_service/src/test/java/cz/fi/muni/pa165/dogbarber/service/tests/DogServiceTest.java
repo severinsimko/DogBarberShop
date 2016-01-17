@@ -4,7 +4,6 @@ import cz.fi.muni.pa165.dogbarber.config.ServiceConfiguration;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.entity.Service;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.*;

@@ -17,6 +17,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
+import cz.fi.muni.pa165.dogbarber.dao.DogDao;
+import cz.fi.muni.pa165.dogbarber.dao.EmployeeDao;
+import cz.fi.muni.pa165.dogbarber.dao.ServiceDao;
 
 /**
  *
@@ -25,17 +28,14 @@ import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses={CustomerDao.class})
+@ComponentScan(basePackageClasses={CustomerDao.class, ServiceDao.class, DogDao.class, EmployeeDao.class})
 public class PersistenceSampleApplicationContext {
-        @Bean 
+    
+	@Bean 
 	public JpaTransactionManager transactionManager(){
 		return  new JpaTransactionManager(entityManagerFactory().getObject());
 	}
 	
-	/**
-	 * Starts up a container that emulates behavior prescribed in JPA spec for container-managed EntityManager
-	 * @return
-	 */
 	@Bean
 	public LocalContainerEntityManagerFactoryBean  entityManagerFactory(){
 		LocalContainerEntityManagerFactoryBean jpaFactoryBean = new LocalContainerEntityManagerFactoryBean ();
@@ -45,10 +45,6 @@ public class PersistenceSampleApplicationContext {
 		return jpaFactoryBean;
 	}
 	
-	/*@Bean 
-	public LocalValidatorFactoryBean localValidatorFactoryBean(){
-		return new LocalValidatorFactoryBean();
-	}*/
 	@Bean
 	public LoadTimeWeaver instrumentationLoadTimeWeaver() {
 		return new InstrumentationLoadTimeWeaver();

@@ -51,7 +51,6 @@ public class ServiceFacadeImplTest {
     private ServiceDTO serviceDTO;
     private List<Service> services = new ArrayList<>();
     private List<ServiceDTO> listServiceDTO = new ArrayList<ServiceDTO>();
-   // private ServiceDTO serviceDTO = new TroopDTO();
     
     @BeforeClass
     public void setup() throws ServiceException {
@@ -87,7 +86,6 @@ public class ServiceFacadeImplTest {
         verify(service).getAllServices();
     }
     
-   
     @Test
     public void getServiceByIdTest() {
         ServiceDTO returnedDTO = facade.getServiceById(1l);
@@ -95,12 +93,6 @@ public class ServiceFacadeImplTest {
         Assert.assertEquals(returnedDTO, serviceDTO);
         verify(service, times(2)).findById(1l);
     }
-    
-    /*@Test
-    public void deleteService() {
-        facade.deleteService(Long.MIN_VALUE);
-        verify(service).remove(Matchers.eq(service1));
-    }*/
 
     private void mockServiceService() {
         Mockito.when(service.getAllServices())

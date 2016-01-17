@@ -4,16 +4,16 @@ import cz.fi.muni.pa165.dogbarber.dao.CustomerDao;
 import cz.fi.muni.pa165.dogbarber.entity.Customer;
 import cz.fi.muni.pa165.dogbarber.entity.Dog;
 import cz.fi.muni.pa165.dogbarber.exception.DogBarberException;
-import java.math.BigDecimal;
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.Set;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import javax.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,14 +22,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
-
     
-    final static Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
-    
-    @Inject
+	@Autowired
     private CustomerDao customerDao;
 
-    @Inject
+    @Autowired
     private DogService dogService;
 
     @Override
@@ -80,17 +77,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public double getTotalPrice(Customer customer) {
-        log.error("GET TOTAL PRICE METHOD CUSTOMER SERVICE IMPL");
         double price = 0;
-       // BigDecimal price = new BigDecimal("1.00");
+        
         Set<Dog> dogs = customerDao.findById(customer.getId()).getAllDogs();
         for (Dog d : dogs) {
-            
-          // BigDecimal dec = (dogService.getTotalPrice(d.getId()));
             double priceDec = dogService.getTotalPrice(d.getId());
-            log.error("CUSTOMER SERV IMPL price for a dog is:"+priceDec);
             price +=priceDec;
-           // price.add(dogService.getTotalPrice(d.getId()));
         }
         return price;
     }
@@ -173,8 +165,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer update(Customer cust) {
-
         return customerDao.updateCustomer(cust);
-
     }
 }

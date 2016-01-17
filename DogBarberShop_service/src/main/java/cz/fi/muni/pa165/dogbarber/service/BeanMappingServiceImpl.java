@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
  *
  * @author MichalBrath
  */
-
-
 @Service
 public class BeanMappingServiceImpl implements BeanMappingService {
     	
